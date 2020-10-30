@@ -1,0 +1,60 @@
+{
+  "name": "CPhilipse",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "react-native start",
+    "clean": "watchman watch-del-all && rm -rf $TMPDIR/react-native-packager-cache-* && rm -rf $TMPDIR/metro-bundler-cache-* && rm -rf node_modules/ && yarn cache clean && yarn",
+    "test": "jest",
+    "test-update": "jest -u",
+    "android": "cd ./android && gradlew app:assembleDebug && gradlew installDebug",
+    "run-android": "react-native run-android",
+    "clean-android": "cd android && ./gradlew clean && cd ..",
+    "build-apk": "cd android && ./gradlew assembleRelease && cd ..",
+    "keytool": "keytool -list -v -keystore android/app/HvGeAReleaseKey.keystore -alias HvGeA -storepass HvGeA -keypass HvGeA",
+    "run-android-prd": "cd ./android && gradlew assembleRelease && cd .. && react-native run-android --variant=release",
+    "run-android-prd-bundle": "cd ./android && gradlew bundleRelease && gradlew assembleRelease && cd ../ && react-native run-android --variant=release",
+    "run-android-prd-stackoverflow": "cd ./android && gradlew assembleRelease -x bundleReleaseJsAndAssets && cd .. && react-native run-android --variant=release",
+    "dev-menu": "adb shell input keyevent 82",
+    "fastlane-android": "cd android && bundle exec fastlane android build && cd ..",
+    "fastlane-ios": "cd ios && bundle exec fastlane ios build && cd ..",
+    "run-ios": "react-native run-ios",
+    "run-ios-11": "react-native run-ios --simulator='iPhone11'",
+    "pods": "cd ios && pod install && cd ..",
+    "clean-pods": "cd ios && pod deintegrate && pod cache clean --all && pod install && cd ..",
+    "prettier": "prettier --write --config ./.prettierrc './src/**/*.{ts,tsx}'",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "fix-lint": "eslint . --fix --ext .js,.jsx,.ts,.tsx"
+  },
+  "dependencies": {
+    "react": "16.13.1",
+    "react-native": "0.63.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/runtime": "^7.8.4",
+    "@react-native-community/eslint-config": "^1.1.0",
+    "@types/jest": "^25.2.3",
+    "@types/react-native": "^0.63.2",
+    "@types/react-test-renderer": "^16.9.2",
+    "@typescript-eslint/eslint-plugin": "^2.27.0",
+    "@typescript-eslint/parser": "^2.27.0",
+    "babel-jest": "^25.1.0",
+    "eslint": "^6.5.1",
+    "jest": "^25.1.0",
+    "metro-react-native-babel-preset": "^0.59.0",
+    "react-test-renderer": "16.13.1",
+    "typescript": "^3.8.3"
+  },
+  "jest": {
+    "preset": "react-native",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
+}
