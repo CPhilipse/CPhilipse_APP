@@ -78,7 +78,7 @@ import com.android.build.OutputFile
  */
 
 project.ext.react = [
-    enableHermes: false,  // clean and rebuild if changing
+    enableHermes: true,  // clean and rebuild if changing
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -95,6 +95,8 @@ def enableSeparateBuildPerCPUArchitecture = false
 
 /**
  * Run Proguard to shrink the Java bytecode in release builds.
+    ?Regarding reanimated, where to put this: -keep class com.facebook.react.turbomodule.** { *; }
+    ?https://docs.swmansion.com/react-native-reanimated/docs/installation
  */
 def enableProguardInReleaseBuilds = false
 
