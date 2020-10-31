@@ -3,3 +3,9 @@ export const logApiError = (message: string, error: string) =>
 
 export const logApiSuccess = (message: string) =>
   console.log('%c%s', 'color: #10FF10;', `${message}`);
+
+export const logMultipleItems = (items: []) => {
+  items.map((item: any, index: number) =>
+    console.log(`Item ${index}:\n\t${item}\n`),
+  );
+};
