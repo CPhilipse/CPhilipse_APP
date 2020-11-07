@@ -68,11 +68,26 @@ const icon = {
   l: scale(90),
 };
 
+const fonts = {
+  title: {
+    fontFamily: 'Sansita-Regular',
+    fontSize: scale(80),
+  },
+  subtitle: {
+    fontFamily: 'Sansita-Regular',
+    fontSize: scale(60),
+  },
+  regular: {
+    fontFamily: 'Sansita-Regular',
+  },
+};
+
 export default {
   screenHeight: height,
   screenWidth: width,
   horizontal,
   vertical,
+  fonts,
   scale,
   scaleY,
   topPadding,
