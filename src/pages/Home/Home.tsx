@@ -41,46 +41,9 @@ const Home = ({navigation}: Props) => {
   //   };
   // });
 
-  const row = useSharedValue(false);
-
-  const changeState = useCallback(() => {
-    row.value = !row.value;
-  }, [row]);
-
   return (
     <View style={styles.container}>
       <AnimationOverlay />
-      <Button title={'Change state'} onPress={changeState} />
-      <View
-        style={
-          row.value
-            ? {
-                flexDirection: 'row',
-                alignItems: 'center',
-                flexWrap: 'wrap',
-              }
-            : {
-                flexDirection: 'column',
-                alignItems: 'center',
-                flexWrap: 'wrap',
-              }
-        }>
-        {projects.map(({title, body, video}: any) => {
-          return (
-            <View
-              key={title}
-              style={{
-                width: metrics.screenWidth / 2.5,
-                backgroundColor: 'white',
-                margin: 20,
-              }}>
-              <Text>{title}</Text>
-              <Text>{body}</Text>
-              <Text>{video}</Text>
-            </View>
-          );
-        })}
-      </View>
       {/*<PanGestureHandler {...{onGestureEvent}}>*/}
       {/*  <Animated.View style={style}>*/}
       {/*    <View style={styles.cardContainer}>*/}
