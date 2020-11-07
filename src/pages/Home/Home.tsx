@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect} from 'react';
-import {View, Text, Button} from 'react-native';
+import {View, Text, Button, TouchableOpacity} from 'react-native';
 import styles from './home.style';
 import Pages from '../../enum/Pages';
 import StrokeAnimation from '../../components/StrokeAnimation';
@@ -43,7 +43,9 @@ const Home = ({navigation}: Props) => {
 
   return (
     <View style={styles.container}>
-      <AnimationOverlay />
+      <TouchableOpacity onPress={() => navigation.navigate(Pages.CPHILIPSE)}>
+        <AnimationOverlay />
+      </TouchableOpacity>
       {/*<PanGestureHandler {...{onGestureEvent}}>*/}
       {/*  <Animated.View style={style}>*/}
       {/*    <View style={styles.cardContainer}>*/}
