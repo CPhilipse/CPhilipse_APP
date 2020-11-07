@@ -1,17 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
-import Animated, {
-  Easing,
-  Extrapolate,
-  interpolate,
-  useAnimatedStyle,
-  useSharedValue,
-  withRepeat,
-  withTiming,
-} from 'react-native-reanimated';
-import {interpolateColor} from 'react-native-redash';
+import Animated from 'react-native-reanimated';
 import StrokeAnimation from '../../../../components/StrokeAnimation';
-import {colors, metrics} from '../../../../themes';
 import styles from './animationoverlay.style';
 import {useOverlay} from '../../animations/useOverlay';
 
@@ -25,11 +15,7 @@ const AnimationOverlay = () => {
   return (
     <View style={styles.container}>
       <Animated.View
-        style={[
-          styles.overlay,
-          overlayStyle,
-          hasColorAnimationStarted && colorStyle,
-        ]}>
+        style={[overlayStyle, hasColorAnimationStarted && colorStyle]}>
         <StrokeAnimation start_shrinking={start_shrinking} />
       </Animated.View>
     </View>

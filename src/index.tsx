@@ -7,6 +7,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Home from './pages/Home';
 import Portfolio from './pages/Portfolio';
 import Pages from './enum/Pages';
+import Cphilipse from './pages/Cphilipse';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,11 @@ export default () => {
           name={Pages.HOME}
           component={Home}
           options={{title: Pages.HOME}}
+        />
+        <Stack.Screen
+          name={Pages.CPHILIPSE}
+          component={Cphilipse}
+          options={{title: Pages.CPHILIPSE}}
         />
         <Stack.Screen
           name={Pages.PORTFOLIO}

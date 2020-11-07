@@ -20,7 +20,7 @@ export const useOverlay = () => {
     // -1 stands for infinite I believe
     color.value = withRepeat(
       withTiming(1, {
-        duration: 10000,
+        duration: 5000,
         easing: Easing.linear,
       }),
       -1,
@@ -32,14 +32,8 @@ export const useOverlay = () => {
     'worklet';
     const backgroundColor = interpolateColor(
       color.value,
-      [0, 0.2, 0.5, 0.7, 1],
-      [
-        colors.black,
-        colors.darkPurple,
-        colors.purple,
-        colors.lightPurple,
-        colors.white,
-      ],
+      [0, 1],
+      [colors.black, colors.white],
     );
 
     return {
