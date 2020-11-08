@@ -18,14 +18,14 @@ export default () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name={Pages.HOME}
-          component={Home}
-          options={{title: Pages.HOME}}
-        />
-        <Stack.Screen
           name={Pages.CPHILIPSE}
           component={Cphilipse}
-          options={{title: Pages.CPHILIPSE}}
+          options={{title: Pages.CPHILIPSE, headerShown: false}}
+        />
+        <Stack.Screen
+          name={Pages.HOME}
+          component={Home}
+          options={{title: Pages.HOME, headerShown: false}}
         />
         <Stack.Screen
           name={Pages.PORTFOLIO}

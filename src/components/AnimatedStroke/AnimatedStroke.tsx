@@ -23,7 +23,8 @@ const AnimatedStroke = ({d, progress}: Props) => {
   }));
   const animatedProps = useAnimatedProps(() => ({
     // Easing functions specify the rate of change of a parameter over time.
-    // Calculating the slope, with a method of Easing, like .bezier, you define the chart.
+    // Calculating the slope, with a method of Easing, like .bezier, you define the chart I believe.
+    // https://easings.net/#easeInOutCubic
     strokeDashoffset:
       length - length * Easing.bezier(0.37, 0, 0.63, 1)(progress.value),
   }));
