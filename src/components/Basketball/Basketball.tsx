@@ -1,9 +1,10 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import styles from './basketball.style';
+import CustomIcon from '../Icon';
+import Icons from '../../enum/Icons';
+import {colors} from '../../themes';
 
-const Basketball = React.forwardRef((props, ref) => (
-  <View ref={ref} style={styles.container} />
-));
+const Basketball = () => (
+  <CustomIcon name={Icons.BASKETBALL} color={colors.darkOrange} />
+);
 
 export default Basketball;
