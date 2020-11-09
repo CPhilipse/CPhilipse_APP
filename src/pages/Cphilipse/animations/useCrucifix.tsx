@@ -5,19 +5,26 @@ import {
   withRepeat,
   withTiming,
 } from 'react-native-reanimated';
-// import {interpolateColor} from 'react-native-redash';
-// import {colors} from '../../../themes';
+import {interpolateColor} from 'react-native-redash';
+import {colors} from '../../../themes';
 
 export const useCrucifix = () => {
-  // TODO: Look whether you can still implement the colorInterpolation in the crucifix.
-  //  Maybe even as a replacement for the scaling. Feels a bit weird, the scaling here.
-  const scale = useSharedValue(1.4);
+  const scale = useSharedValue(1.2);
+  const color = useSharedValue(0);
 
   const startAnimatingCrucifix = () => {
     'worklet';
     scale.value = withRepeat(
       withTiming(1.6, {
         duration: 1500,
+      }),
+      -1,
+      true,
+    );
+
+    color.value = withRepeat(
+      withTiming(1, {
+        duration: 2000,
       }),
       -1,
       true,
@@ -31,20 +38,67 @@ export const useCrucifix = () => {
     };
   });
 
-  // const colorStyle = useAnimatedStyle(() => {
-  //   const backgroundColor = interpolateColor(
-  //     scale.value,
-  //     [1, 2],
-  //     [colors.black, colors.white],
-  //   );
-  //   return {
-  //     backgroundColor,
-  //   };
-  // });
+  /** TODO: Fix this code by following the DRY principle.
+   * For some reason, colorStyle cannot be used for multiple Animated.Views therefore this temp workaround.
+   * */
+  const colorStyle = useAnimatedStyle(() => {
+    const backgroundColor = interpolateColor(
+      color.value,
+      [0, 1],
+      [colors.black, colors.white],
+    );
+    return {
+      backgroundColor,
+    };
+  });
+  const colorStyle2 = useAnimatedStyle(() => {
+    const backgroundColor = interpolateColor(
+      color.value,
+      [0, 1],
+      [colors.black, colors.white],
+    );
+    return {
+      backgroundColor,
+    };
+  });
+  const colorStyle3 = useAnimatedStyle(() => {
+    const backgroundColor = interpolateColor(
+      color.value,
+      [0, 1],
+      [colors.black, colors.white],
+    );
+    return {
+      backgroundColor,
+    };
+  });
+  const colorStyle4 = useAnimatedStyle(() => {
+    const backgroundColor = interpolateColor(
+      color.value,
+      [0, 1],
+      [colors.black, colors.white],
+    );
+    return {
+      backgroundColor,
+    };
+  });
+  const colorStyle5 = useAnimatedStyle(() => {
+    const backgroundColor = interpolateColor(
+      color.value,
+      [0, 1],
+      [colors.black, colors.white],
+    );
+    return {
+      backgroundColor,
+    };
+  });
 
   return {
     startAnimatingCrucifix,
     scaleStyle,
-    // colorStyle,
+    colorStyle,
+    colorStyle2,
+    colorStyle3,
+    colorStyle4,
+    colorStyle5,
   };
 };

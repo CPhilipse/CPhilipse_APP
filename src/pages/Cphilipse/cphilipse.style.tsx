@@ -16,4 +16,14 @@ export default StyleSheet.create({
     bottom: metrics.scale(110),
     right: metrics.scale(150),
   },
+  nineteenContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    bottom: metrics.scale(125),
+    right: metrics.scale(35),
+  },
+  nineteen: {
+    ...metrics.fonts.subtitle,
+    color: colors.white,
+  },
 });

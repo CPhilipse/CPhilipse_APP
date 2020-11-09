@@ -80,6 +80,15 @@ const fonts = {
   regular: {
     fontFamily: 'Sansita-Regular',
   },
+  regularBold: {
+    fontFamily: 'Sansita-Bold',
+  },
+  regularExtraBold: {
+    fontFamily: 'Sansita-ExtraBold',
+  },
+  regularItalic: {
+    fontFamily: 'Sansita-Italic',
+  },
 };
 
 export default {
