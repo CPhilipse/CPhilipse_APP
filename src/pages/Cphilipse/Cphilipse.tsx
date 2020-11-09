@@ -17,13 +17,14 @@ import {useCrucifix} from './animations/useCrucifix';
 import Crucifix from '../../components/Crucifix/Crucifix';
 import Button from '../../components/Button';
 import {PanGestureHandler} from 'react-native-gesture-handler';
-import {ICON_SIZE} from '../../components/Icon/Icon';
+import {swipeBasketball} from './animations/swipeBasketball';
 
 interface Props {
   navigation: any;
 }
 
 const Cphilipse = ({navigation}: Props) => {
+  const {onGestureEvent, gestureStyle} = swipeBasketball();
   const {style, startBasketballAnimation} = useBounce();
   const {
     scaleStyle,
@@ -44,36 +45,6 @@ const Cphilipse = ({navigation}: Props) => {
     Linking.openURL('https://www.linkedin.com/in/clemens-philipse-2615b9162/');
   }, []);
 
-  const gestureX = useSharedValue(metrics.scale(260));
-  const gestureY = useSharedValue(metrics.scale(325));
-  const onGestureEvent = useAnimatedGestureHandler({
-    onStart: (event, ctx) => {
-      ctx.offsetX = gestureX.value;
-      ctx.offsetY = gestureY.value;
-    },
-    onActive: (event, ctx) => {
-      gestureX.value = event.translationX + ctx.offsetX;
-      gestureY.value = event.translationY + ctx.offsetY;
-    },
-    onEnd: (event, ctx) => {
-      gestureX.value = withDecay({
-        velocity: event.velocityX,
-        clamp: [ICON_SIZE / 2, metrics.screenWidth - ICON_SIZE],
-      });
-      gestureY.value = withDecay({
-        velocity: event.velocityY,
-        clamp: [
-          -metrics.screenHeight / 5 + ICON_SIZE,
-          metrics.screenHeight / 1.5,
-        ],
-      });
-    },
-  });
-  const gestureStyle = useAnimatedStyle(() => {
-    return {
-      transform: [{translateX: gestureX.value}, {translateY: gestureY.value}],
-    };
-  });
   return (
     <View style={styles.container}>
       <ScrollView>

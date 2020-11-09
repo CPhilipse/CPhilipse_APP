@@ -12,6 +12,7 @@ export default StyleSheet.create({
     position: 'absolute',
     left: -metrics.scale(25),
     zIndex: 9,
+    padding: metrics.scale(25),
   },
   crucifix: {
     bottom: metrics.scale(110),
