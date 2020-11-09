@@ -11,6 +11,7 @@ import Cphilipse from './pages/Cphilipse';
 
 const Stack = createStackNavigator();
 
+// TODO: After this page, focus on the settings page. Locales (en (default), nl), darkmode and notifications perhaps.
 export default () => {
   return (
     // <Provider store={store}>

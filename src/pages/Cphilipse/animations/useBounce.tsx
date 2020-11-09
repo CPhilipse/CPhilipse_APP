@@ -9,19 +9,21 @@ export const useBounce = () => {
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(0);
 
-  const startAnimation = () => {
+  const startBasketballAnimation = () => {
+    'worklet';
     translateX.value = withTiming(100, {
-      duration: 4000,
+      duration: 3000,
       easing: Easing.linear,
     });
 
     translateY.value = withTiming(5, {
-      duration: 4000,
+      duration: 3000,
       easing: Easing.bounce,
     });
   };
 
   const style = useAnimatedStyle(() => {
+    'worklet';
     // https://easings.net/#easeInBounce
     const bouncingY = Easing.bounce(translateY.value);
 
@@ -31,7 +33,7 @@ export const useBounce = () => {
   });
 
   return {
-    startAnimation,
+    startBasketballAnimation,
     style,
   };
 };
