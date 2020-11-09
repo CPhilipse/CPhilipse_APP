@@ -1,22 +1,22 @@
-import React, {useCallback, useEffect} from 'react';
-import {View, Text, Button, TouchableOpacity} from 'react-native';
+import React from 'react';
+import {View, TouchableOpacity} from 'react-native';
 import styles from './home.style';
 import Pages from '../../enum/Pages';
-import StrokeAnimation from '../../components/StrokeAnimation';
-import {metrics} from '../../themes';
-import {PanGestureHandler} from 'react-native-gesture-handler';
-import Animated, {
-  interpolate,
-  Easing,
-  useAnimatedGestureHandler,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-  Extrapolate,
-  useDerivedValue,
-} from 'react-native-reanimated';
+// import StrokeAnimation from '../../components/StrokeAnimation';
+// import {metrics} from '../../themes';
+// import {PanGestureHandler} from 'react-native-gesture-handler';
+// import Animated, {
+//   interpolate,
+//   Easing,
+//   useAnimatedGestureHandler,
+//   useAnimatedStyle,
+//   useSharedValue,
+//   withTiming,
+//   Extrapolate,
+//   useDerivedValue,
+// } from 'react-native-reanimated';
 import AnimationOverlay from './components/AnimationOverlay';
-import {projects} from '../../utils/DummyData';
+// import {projects} from '../../utils/DummyData';
 
 interface Props {
   navigation: any;

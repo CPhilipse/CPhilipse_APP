@@ -11,6 +11,7 @@ export default StyleSheet.create({
     top: HEADER_HEIGHT / 2,
     position: 'absolute',
     left: -metrics.scale(25),
+    zIndex: 9,
   },
   crucifix: {
     bottom: metrics.scale(110),

@@ -3,13 +3,18 @@ import {Linking, ScrollView, Text, View} from 'react-native';
 import styles from './cphilipse.style';
 import BackButton from '../../components/BackButton';
 import Basketball from '../../components/Basketball';
-import Animated from 'react-native-reanimated';
+import Animated, {
+  useAnimatedGestureHandler,
+  useAnimatedStyle,
+  useSharedValue,
+} from 'react-native-reanimated';
 import {images} from '../../themes';
 import Header from '../../components/Header';
 import {useBounce} from './animations/useBounce';
 import {useCrucifix} from './animations/useCrucifix';
 import Crucifix from '../../components/Crucifix/Crucifix';
 import Button from '../../components/Button';
+import {PanGestureHandler} from 'react-native-gesture-handler';
 
 interface Props {
   navigation: any;
@@ -36,14 +41,36 @@ const Cphilipse = ({navigation}: Props) => {
     Linking.openURL('https://www.linkedin.com/in/clemens-philipse-2615b9162/');
   }, []);
 
+  const translateX = useSharedValue(0);
+  const translateY = useSharedValue(0);
+  const onGestureEvent = useAnimatedGestureHandler({
+    onStart: (event, ctx) => {
+      ctx.offsetX = translateX.value;
+      ctx.offsetY = translateY.value;
+    },
+    onActive: (event, ctx) => {
+      translateX.value = event.translationX + ctx.offsetX;
+      translateY.value = event.translationY + ctx.offsetY;
+    },
+  });
+  const gestureStyle = useAnimatedStyle(() => {
+    return {
+      transform: [
+        {translateX: translateX.value},
+        {translateY: translateY.value},
+      ],
+    };
+  });
   return (
     <View style={styles.container}>
       <ScrollView>
         <Header title={'Clemens Philipse'} image={images.cphilipse} />
 
-        <Animated.View style={[style, styles.basketball]}>
-          <Basketball />
-        </Animated.View>
+        <PanGestureHandler {...{onGestureEvent}}>
+          <Animated.View style={[styles.basketball, gestureStyle]}>
+            <Basketball />
+          </Animated.View>
+        </PanGestureHandler>
         <View style={styles.crucifix}>
           <Crucifix
             {...{
