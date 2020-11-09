@@ -40,4 +40,15 @@ export default StyleSheet.create({
   linkedin: {
     ...metrics.fonts.regularExtraBold,
   },
+  bodyContainer: {
+    paddingHorizontal: metrics.horizontal.pagePadding,
+  },
+  subtitle: {
+    ...metrics.fonts.smallSubtitle,
+    color: colors.white,
+  },
+  body: {
+    ...metrics.fonts.regular,
+    color: colors.white,
+  },
 });

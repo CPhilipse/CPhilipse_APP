@@ -77,6 +77,10 @@ const fonts = {
     fontFamily: 'Sansita-Regular',
     fontSize: scale(60),
   },
+  smallSubtitle: {
+    fontFamily: 'Sansita-Bold',
+    fontSize: scale(40),
+  },
   regular: {
     fontFamily: 'Sansita-Regular',
   },
