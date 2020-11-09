@@ -43,7 +43,7 @@ const Home = ({navigation}: Props) => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => navigation.navigate(Pages.CPHILIPSE)}>
+      <TouchableOpacity onPress={() => navigation.push(Pages.CPHILIPSE)}>
         <AnimationOverlay />
       </TouchableOpacity>
       {/*<PanGestureHandler {...{onGestureEvent}}>*/}

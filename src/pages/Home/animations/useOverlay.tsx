@@ -15,47 +15,12 @@ export const useOverlay = () => {
   const color = useSharedValue(0);
   const shrink = useSharedValue(0);
 
-  const start_coloring = () => {
-    'worklet';
-    // -1 stands for infinite I believe
-    color.value = withRepeat(
-      withTiming(1, {
-        duration: 5000,
-        easing: Easing.linear,
-      }),
-      -1,
-      true,
-    );
-  };
-
-  const colorStyle = useAnimatedStyle(() => {
-    'worklet';
-    const backgroundColor = interpolateColor(
-      color.value,
-      [0, 1],
-      [colors.black, colors.white],
-    );
-
-    return {
-      backgroundColor,
-    };
-  });
-
   const start_shrinking = () => {
     'worklet';
-    shrink.value = withTiming(
-      1,
-      {
-        duration: 1500,
-        easing: Easing.linear,
-      },
-      (isFinished) => {
-        if (isFinished) {
-          hasColorAnimationStarted.value = true;
-          start_coloring();
-        }
-      },
-    );
+    shrink.value = withTiming(1, {
+      duration: 1500,
+      easing: Easing.linear,
+    });
   };
 
   const overlayStyle = useAnimatedStyle(() => {
@@ -90,14 +55,10 @@ export const useOverlay = () => {
   });
 
   return {
-    flag: {
-      hasColorAnimationStarted,
-    },
     methods: {
       start_shrinking,
     },
     styles: {
-      colorStyle,
       overlayStyle,
     },
   };

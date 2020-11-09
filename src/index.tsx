@@ -30,6 +30,7 @@ export default () => {
           component={Home}
           options={{title: Pages.HOME, headerShown: false}}
         />
+
         <Stack.Screen
           name={Pages.PORTFOLIO}
           component={Portfolio}

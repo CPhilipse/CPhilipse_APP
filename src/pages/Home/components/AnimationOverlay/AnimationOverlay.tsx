@@ -7,15 +7,13 @@ import {useOverlay} from '../../animations/useOverlay';
 
 const AnimationOverlay = () => {
   const {
-    styles: {overlayStyle, colorStyle},
+    styles: {overlayStyle},
     methods: {start_shrinking},
-    flag: {hasColorAnimationStarted},
   } = useOverlay();
 
   return (
     <View style={styles.container}>
-      <Animated.View
-        style={[overlayStyle, hasColorAnimationStarted && colorStyle]}>
+      <Animated.View style={[styles.bg, overlayStyle]}>
         <StrokeAnimation start_shrinking={start_shrinking} />
       </Animated.View>
     </View>
