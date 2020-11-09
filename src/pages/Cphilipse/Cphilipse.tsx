@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {Text, View} from 'react-native';
+import React, {useCallback, useEffect} from 'react';
+import {Linking, Text, TouchableOpacity, View} from 'react-native';
 import styles from './cphilipse.style';
 import BackButton from '../../components/BackButton';
 import Basketball from '../../components/Basketball';
@@ -15,6 +15,7 @@ import Header from '../../components/Header';
 import {useBounce} from './animations/useBounce';
 import {useCrucifix} from './animations/useCrucifix';
 import Crucifix from '../../components/Crucifix/Crucifix';
+import Button from '../../components/Button';
 
 interface Props {
   navigation: any;
@@ -37,6 +38,10 @@ const Cphilipse = ({navigation}: Props) => {
     startBasketballAnimation();
     startAnimatingCrucifix();
   }, [startBasketballAnimation, startAnimatingCrucifix, scale.value, scale]);
+
+  const openLinkedIn = useCallback(() => {
+    Linking.openURL('https://www.linkedin.com/in/clemens-philipse-2615b9162/');
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -61,6 +66,9 @@ const Cphilipse = ({navigation}: Props) => {
         <Text style={styles.nineteen}>19</Text>
       </View>
 
+      <Button onPress={openLinkedIn} style={styles.linkedinContainer}>
+        <Text style={styles.linkedin}>LinkedIn</Text>
+      </Button>
       <BackButton onPress={() => navigation.goBack()} />
     </View>
   );

@@ -26,4 +26,18 @@ export default StyleSheet.create({
     ...metrics.fonts.subtitle,
     color: colors.white,
   },
+  linkedinContainer: {
+    backgroundColor: colors.white,
+    width: metrics.scale(275),
+    height: metrics.scale(65),
+    borderRadius: metrics.scale(10),
+    alignSelf: 'flex-end',
+    bottom: metrics.scale(195),
+    right: metrics.scale(240),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  linkedin: {
+    ...metrics.fonts.regularExtraBold,
+  },
 });
