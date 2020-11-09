@@ -7,14 +7,17 @@ import Animated, {
   useAnimatedGestureHandler,
   useAnimatedStyle,
   useSharedValue,
+  withDecay,
+  withSpring,
 } from 'react-native-reanimated';
-import {images} from '../../themes';
+import {images, metrics} from '../../themes';
 import Header from '../../components/Header';
 import {useBounce} from './animations/useBounce';
 import {useCrucifix} from './animations/useCrucifix';
 import Crucifix from '../../components/Crucifix/Crucifix';
 import Button from '../../components/Button';
 import {PanGestureHandler} from 'react-native-gesture-handler';
+import {ICON_SIZE} from '../../components/Icon/Icon';
 
 interface Props {
   navigation: any;
@@ -41,24 +44,34 @@ const Cphilipse = ({navigation}: Props) => {
     Linking.openURL('https://www.linkedin.com/in/clemens-philipse-2615b9162/');
   }, []);
 
-  const translateX = useSharedValue(0);
-  const translateY = useSharedValue(0);
+  const gestureX = useSharedValue(metrics.scale(260));
+  const gestureY = useSharedValue(metrics.scale(325));
   const onGestureEvent = useAnimatedGestureHandler({
     onStart: (event, ctx) => {
-      ctx.offsetX = translateX.value;
-      ctx.offsetY = translateY.value;
+      ctx.offsetX = gestureX.value;
+      ctx.offsetY = gestureY.value;
     },
     onActive: (event, ctx) => {
-      translateX.value = event.translationX + ctx.offsetX;
-      translateY.value = event.translationY + ctx.offsetY;
+      gestureX.value = event.translationX + ctx.offsetX;
+      gestureY.value = event.translationY + ctx.offsetY;
+    },
+    onEnd: (event, ctx) => {
+      gestureX.value = withDecay({
+        velocity: event.velocityX,
+        clamp: [ICON_SIZE / 2, metrics.screenWidth - ICON_SIZE],
+      });
+      gestureY.value = withDecay({
+        velocity: event.velocityY,
+        clamp: [
+          -metrics.screenHeight / 5 + ICON_SIZE,
+          metrics.screenHeight / 1.5,
+        ],
+      });
     },
   });
   const gestureStyle = useAnimatedStyle(() => {
     return {
-      transform: [
-        {translateX: translateX.value},
-        {translateY: translateY.value},
-      ],
+      transform: [{translateX: gestureX.value}, {translateY: gestureY.value}],
     };
   });
   return (
@@ -67,7 +80,7 @@ const Cphilipse = ({navigation}: Props) => {
         <Header title={'Clemens Philipse'} image={images.cphilipse} />
 
         <PanGestureHandler {...{onGestureEvent}}>
-          <Animated.View style={[styles.basketball, gestureStyle]}>
+          <Animated.View style={[style, styles.basketball, gestureStyle]}>
             <Basketball />
           </Animated.View>
         </PanGestureHandler>

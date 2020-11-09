@@ -8,9 +8,9 @@ interface Props {
   color?: string;
 }
 
-const SIZE = metrics.scale(75);
+export const ICON_SIZE = metrics.scale(75);
 const COLOR = colors.black;
-const CustomIcon = ({name, size = SIZE, color = COLOR}: Props) => {
+const CustomIcon = ({name, size = ICON_SIZE, color = COLOR}: Props) => {
   return <Icon {...{name, size, color}} />;
 };
 
