@@ -1,6 +1,7 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {StatusBar} from 'react-native';
 // import {Provider} from 'react-redux';
 // import {PersistGate} from 'redux-persist/integration/react';
 // import {store, persistor} from './store';
@@ -17,6 +18,7 @@ export default () => {
     // <Provider store={store}>
     //   <PersistGate loading={null} persistor={persistor}>
     <NavigationContainer>
+      <StatusBar translucent={true} backgroundColor={'transparent'} />
       <Stack.Navigator>
         <Stack.Screen
           name={Pages.CPHILIPSE}
