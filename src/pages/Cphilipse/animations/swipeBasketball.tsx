@@ -24,17 +24,12 @@ export const swipeBasketball = () => {
       gestureX.value = withDecay({
         velocity: event.velocityX,
         deceleration: 0.993,
-        clamp: [0, metrics.screenWidth - ICON_SIZE],
-        // clamp: [ICON_SIZE / 2, metrics.screenWidth - ICON_SIZE],
+        clamp: [0, metrics.screenWidth - 25],
       });
       gestureY.value = withDecay({
         velocity: event.velocityY,
         deceleration: 0.993,
-        clamp: [
-          // -metrics.screenHeight / 5 + ICON_SIZE,
-          0,
-          metrics.screenHeight / 1.5,
-        ],
+        clamp: [-160, metrics.screenHeight / 1.5],
       });
     },
   });
