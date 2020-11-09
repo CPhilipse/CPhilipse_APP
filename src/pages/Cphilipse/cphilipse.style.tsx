@@ -12,4 +12,8 @@ export default StyleSheet.create({
     position: 'absolute',
     left: -metrics.scale(25),
   },
+  crucifix: {
+    bottom: metrics.scale(110),
+    right: metrics.scale(150),
+  },
 });

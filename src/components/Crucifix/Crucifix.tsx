@@ -1,21 +1,21 @@
 import React, {memo} from 'react';
 import Animated from 'react-native-reanimated';
 import {styles} from './crucifix.style';
+import {View} from 'react-native';
 
 interface Props {
   scaleStyle: any;
-  colorStyle?: any;
   borderColor?: string;
 }
 
-const Crucifix = ({scaleStyle, colorStyle}: Props) => {
+const Crucifix = ({scaleStyle}: Props) => {
   return (
     <Animated.View style={[styles.container, scaleStyle]}>
-      <Animated.View style={[styles.topPiece, colorStyle]} />
-      <Animated.View style={[styles.leftPiece, colorStyle]} />
-      <Animated.View style={[styles.bottomPiece, colorStyle]} />
-      <Animated.View style={[styles.rightPiece, colorStyle]} />
-      <Animated.View style={[styles.centerSquare, colorStyle]} />
+      <View style={styles.topPiece} />
+      <View style={styles.leftPiece} />
+      <View style={styles.bottomPiece} />
+      <View style={styles.rightPiece} />
+      <View style={styles.centerSquare} />
     </Animated.View>
   );
 };

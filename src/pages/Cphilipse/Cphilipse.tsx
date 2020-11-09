@@ -22,7 +22,7 @@ interface Props {
 
 const Cphilipse = ({navigation}: Props) => {
   const {style, startBasketballAnimation} = useBounce();
-  const {colorStyle, scaleStyle, startAnimatingCrucifix} = useCrucifix();
+  const {scaleStyle, startAnimatingCrucifix} = useCrucifix();
   const scale = useSharedValue(1);
 
   useEffect(() => {
@@ -37,8 +37,9 @@ const Cphilipse = ({navigation}: Props) => {
       <Animated.View style={[style, styles.basketball]}>
         <Basketball />
       </Animated.View>
-      <Crucifix {...{scaleStyle, colorStyle}} />
-
+      <View style={styles.crucifix}>
+        <Crucifix {...{scaleStyle}} />
+      </View>
       <BackButton onPress={() => navigation.goBack()} />
     </View>
   );
