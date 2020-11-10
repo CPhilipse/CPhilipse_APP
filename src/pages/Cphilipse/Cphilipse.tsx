@@ -12,7 +12,7 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import {images, metrics} from '../../themes';
+import {colors, images, metrics} from '../../themes';
 import Header from '../../components/Header';
 import {useBounce} from './animations/useBounce';
 import {useCrucifix} from './animations/useCrucifix';
@@ -22,6 +22,8 @@ import {PanGestureHandler} from 'react-native-gesture-handler';
 import {swipeBasketball} from './animations/swipeBasketball';
 import CustomIcon from '../../components/Icon';
 import Icons from '../../enum/Icons';
+import Icon from 'react-native-vector-icons/Entypo';
+import {ICON_SIZE} from '../../components/Icon/Icon';
 
 interface Props {
   navigation: any;
@@ -48,6 +50,9 @@ const Cphilipse = ({navigation}: Props) => {
   const openLinkedIn = useCallback(() => {
     Linking.openURL('https://www.linkedin.com/in/clemens-philipse-2615b9162/');
   }, []);
+  const openGitHub = useCallback(() => {
+    Linking.openURL('https://github.com/CPhilipse/CPhilipse_APP');
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -71,12 +76,25 @@ const Cphilipse = ({navigation}: Props) => {
             }}
           />
         </View>
-        <View style={[styles.nineteenContainer]}>
-          <Text style={styles.nineteen}>19</Text>
+
+        <View style={styles.characterColumn}>
+          <View style={[styles.gameController]}>
+            <Icon
+              name={Icons.GAME_CONTROLLER}
+              size={ICON_SIZE}
+              color={colors.lightPurple}
+            />
+          </View>
+          <View style={[styles.nineteenContainer]}>
+            <Text style={styles.nineteen}>19</Text>
+          </View>
+          <Button onPress={openLinkedIn} style={styles.button}>
+            <Text style={styles.buttonText}>LinkedIn</Text>
+          </Button>
+          <Button onPress={openGitHub} style={styles.button}>
+            <Text style={styles.buttonText}>GitHub</Text>
+          </Button>
         </View>
-        <Button onPress={openLinkedIn} style={styles.linkedinContainer}>
-          <Text style={styles.linkedin}>LinkedIn</Text>
-        </Button>
 
         <View style={styles.bodyContainer}>
           <Text style={styles.body}>

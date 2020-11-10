@@ -41,6 +41,7 @@ const Home = ({navigation}: Props) => {
   //   };
   // });
 
+  // AnimationOverlay causes error when navigating to other page.
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => navigation.push(Pages.CPHILIPSE)}>

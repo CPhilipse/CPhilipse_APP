@@ -6,6 +6,7 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: colors.black,
   },
+  characterColumn: {},
   basketball: {
     bottom: metrics.scale(200),
     left: metrics.scale(50),
@@ -13,20 +14,25 @@ export default StyleSheet.create({
     padding: metrics.scale(25),
   },
   crucifix: {
-    bottom: metrics.scale(110),
-    right: metrics.scale(130),
+    bottom: metrics.scale(115),
+    right: metrics.scale(60),
+  },
+  gameController: {
+    left: metrics.scale(260),
+    alignItems: 'center',
+    position: 'absolute',
   },
   nineteenContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    bottom: metrics.scale(125),
-    right: metrics.scale(35),
+    bottom: metrics.scale(5),
+    right: metrics.scale(60),
   },
   nineteen: {
     ...metrics.fonts.subtitle,
     color: colors.white,
   },
-  linkedinContainer: {
+  button: {
     backgroundColor: colors.white,
     width: metrics.scale(275),
     height: metrics.scale(65),
@@ -36,8 +42,9 @@ export default StyleSheet.create({
     right: metrics.scale(240),
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: 20,
   },
-  linkedin: {
+  buttonText: {
     ...metrics.fonts.regularExtraBold,
   },
   bodyContainer: {

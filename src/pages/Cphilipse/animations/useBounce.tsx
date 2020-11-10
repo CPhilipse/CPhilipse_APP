@@ -4,7 +4,6 @@ import {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import {metrics} from '../../../themes';
 
 export const useBounce = () => {
   const translateX = useSharedValue(0);

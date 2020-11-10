@@ -4,7 +4,6 @@ export default {
   BASKETBALL: 'sports-basketball',
   SCHOOL: 'school',
   SETTINGS: 'settings',
-  GAMEPAD: 'gamepad',
   MOOD_BAD: 'mood-bad',
   MOOD: 'mood',
   ICECREAM: 'icecream',
@@ -16,4 +15,5 @@ export default {
   RECOMMEND: 'recommend',
   READ_MORE: 'read-more',
   BEENHERE: 'beenhere',
+  GAME_CONTROLLER: 'game-controller',
 };
