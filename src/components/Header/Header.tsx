@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, ImageRequireSource} from 'react-native';
+import {View, Text, ImageRequireSource, Image} from 'react-native';
 import Animated from 'react-native-reanimated';
 import LinearGradient from 'react-native-linear-gradient';
 import styles from './header.style';
@@ -12,13 +12,13 @@ interface Props {
 const Header = ({title, image}: Props) => {
   return (
     <>
-      <Animated.Image style={styles.image} source={image} />
+      <Image style={styles.image} source={image} />
       <LinearGradient
         style={styles.gradient}
         colors={['transparent', '#000']}
         locations={[0.5, 1]}
       />
-      <Animated.View style={styles.overlay} />
+      <View style={styles.overlay} />
       <View>
         <Animated.View style={styles.textContainer}>
           <Text style={styles.imageTitle}>{title}</Text>

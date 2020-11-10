@@ -4,6 +4,7 @@ import {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import {metrics} from '../../../themes';
 
 export const useBounce = () => {
   const translateX = useSharedValue(0);
@@ -11,12 +12,12 @@ export const useBounce = () => {
 
   const startBasketballAnimation = () => {
     'worklet';
-    translateX.value = withTiming(100, {
+    translateX.value = withTiming(70, {
       duration: 3000,
       easing: Easing.linear,
     });
 
-    translateY.value = withTiming(5, {
+    translateY.value = withTiming(4, {
       duration: 3000,
       easing: Easing.bounce,
     });

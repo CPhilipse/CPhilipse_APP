@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {colors, metrics} from '../../themes';
 
-export const HEADER_HEIGHT = metrics.screenHeight / 2.5;
+export const HEADER_HEIGHT = metrics.screenHeight / 2.8;
 export default StyleSheet.create({
   gradient: {
     position: 'absolute',
@@ -26,8 +26,7 @@ export default StyleSheet.create({
   textContainer: {
     alignSelf: 'center',
     position: 'absolute',
-    bottom: 50,
-    zIndex: 9,
+    bottom: metrics.scale(25),
   },
   imageTitle: {
     color: colors.white,

@@ -1,6 +1,5 @@
 import {StyleSheet} from 'react-native';
 import {colors, metrics} from '../../themes';
-import {HEADER_HEIGHT} from '../../components/Header/header.style';
 
 export default StyleSheet.create({
   container: {
@@ -8,15 +7,14 @@ export default StyleSheet.create({
     backgroundColor: colors.black,
   },
   basketball: {
-    top: HEADER_HEIGHT / 2,
-    position: 'absolute',
-    left: -metrics.scale(25),
+    bottom: metrics.scale(200),
+    left: metrics.scale(50),
     zIndex: 9,
     padding: metrics.scale(25),
   },
   crucifix: {
     bottom: metrics.scale(110),
-    right: metrics.scale(150),
+    right: metrics.scale(130),
   },
   nineteenContainer: {
     justifyContent: 'center',

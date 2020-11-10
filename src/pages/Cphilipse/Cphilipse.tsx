@@ -8,7 +8,9 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withDecay,
+  withRepeat,
   withSpring,
+  withTiming,
 } from 'react-native-reanimated';
 import {images, metrics} from '../../themes';
 import Header from '../../components/Header';
@@ -18,6 +20,8 @@ import Crucifix from '../../components/Crucifix/Crucifix';
 import Button from '../../components/Button';
 import {PanGestureHandler} from 'react-native-gesture-handler';
 import {swipeBasketball} from './animations/swipeBasketball';
+import CustomIcon from '../../components/Icon';
+import Icons from '../../enum/Icons';
 
 interface Props {
   navigation: any;

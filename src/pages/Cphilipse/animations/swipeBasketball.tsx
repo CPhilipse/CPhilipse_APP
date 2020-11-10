@@ -8,8 +8,8 @@ import {metrics} from '../../../themes';
 import {ICON_SIZE} from '../../../components/Icon';
 
 export const swipeBasketball = () => {
-  const gestureX = useSharedValue(metrics.scale(260));
-  const gestureY = useSharedValue(metrics.scale(325));
+  const gestureX = useSharedValue(metrics.scale(200));
+  const gestureY = useSharedValue(metrics.scale(190));
 
   const onGestureEvent = useAnimatedGestureHandler({
     onStart: (event, ctx) => {
@@ -24,12 +24,12 @@ export const swipeBasketball = () => {
       gestureX.value = withDecay({
         velocity: event.velocityX,
         deceleration: 0.993,
-        clamp: [0, metrics.screenWidth - 25],
+        clamp: [-10, metrics.screenWidth - 50],
       });
       gestureY.value = withDecay({
         velocity: event.velocityY,
         deceleration: 0.993,
-        clamp: [-160, metrics.screenHeight / 1.5],
+        clamp: [-150, metrics.screenHeight / 1.5],
       });
     },
   });
