@@ -92,7 +92,7 @@ const Cphilipse = ({navigation}: Props) => {
             <Icon
               name={Icons.GAME_CONTROLLER}
               size={ICON_SIZE}
-              color={colors.lightPurple}
+              color={colors.red}
             />
           </View>
           <View style={[styles.nineteenContainer]}>
@@ -106,7 +106,6 @@ const Cphilipse = ({navigation}: Props) => {
           </Button>
         </View>
 
-        {/* @ts-ignore */}
         <Paragraph paragraph={paragraphs} />
         <BackButton onPress={() => navigation.navigate('Home')} />
       </ScrollView>
