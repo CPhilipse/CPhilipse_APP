@@ -20,15 +20,25 @@ import Crucifix from '../../components/Crucifix/Crucifix';
 import Button from '../../components/Button';
 import {PanGestureHandler} from 'react-native-gesture-handler';
 import {swipeBasketball} from './animations/swipeBasketball';
-import CustomIcon from '../../components/Icon';
 import Icons from '../../enum/Icons';
 import Icon from 'react-native-vector-icons/Entypo';
 import {ICON_SIZE} from '../../components/Icon/Icon';
+import Paragraph from '../../components/Paragraph';
+import {paragraphs} from '../../utils/DummyData';
 
 interface Props {
   navigation: any;
 }
 
+/**
+ * TODO: Make buttons padding bigger, so it'll be easier to press.
+ * TODO: Locales for the text.
+ * TODO: Abstract the body.
+ * TODO: Abstract the character container.
+ * TODO: Test this page on multiple device simulators.
+ * TODO: Create 'master' branch, change 'main' to 'master' branch. Delete 'main' branch.
+ *  Merge all to 'dev' and the 'master' branch. Remove 'setup' branch.
+ * */
 const Cphilipse = ({navigation}: Props) => {
   const {onGestureEvent, gestureStyle} = swipeBasketball();
   const {style, startBasketballAnimation} = useBounce();
@@ -96,34 +106,8 @@ const Cphilipse = ({navigation}: Props) => {
           </Button>
         </View>
 
-        <View style={styles.bodyContainer}>
-          <Text style={styles.body}>
-            Hello! My name is Clemens and here I'm gonna tell some things about
-            me and this app.{'\n'}
-          </Text>
-
-          <Text style={styles.subtitle}>Me</Text>
-          <Text style={styles.body}>
-            I live in The Netherlands and I'm following the education Machine
-            Science at the university of Leiden. My ultimate dream and goal is
-            to become a digital investigator at Interpol in Lyon.
-            {'\n'}
-          </Text>
-
-          <Text style={styles.subtitle}>Reason</Text>
-          <Text style={styles.body}>
-            I started making this app with the intent of practicing mobile
-            animations. I knew I could go nuts with animations on my own app and
-            since I really love animations, I went all out! While trying to not
-            make it too chaotic.
-            {'\n'}
-          </Text>
-
-          <Text style={styles.body}>
-            PS You can swipe the basketball :D{'\n'}
-          </Text>
-          <Text style={styles.body}>More...</Text>
-        </View>
+        {/* @ts-ignore */}
+        <Paragraph paragraph={paragraphs} />
         <BackButton onPress={() => navigation.navigate('Home')} />
       </ScrollView>
     </View>

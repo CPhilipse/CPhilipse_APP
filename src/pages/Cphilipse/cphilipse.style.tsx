@@ -49,6 +49,7 @@ export default StyleSheet.create({
   },
   bodyContainer: {
     paddingHorizontal: metrics.horizontal.pagePadding,
+    bottom: metrics.scale(125),
   },
   subtitle: {
     ...metrics.fonts.smallSubtitle,
