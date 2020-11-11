@@ -40,7 +40,6 @@ const AnimatedStroke = ({d, progress}: Props) => {
       />
       <AnimatedPath
         animatedProps={animatedProps}
-        // TODO: Test + 80 on multiple devices. It's namely a random number.
         onLayout={() => setLength(ref.current.getTotalLength() + 80)}
         ref={ref}
         d={d}

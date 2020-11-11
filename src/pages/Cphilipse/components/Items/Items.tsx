@@ -44,7 +44,7 @@ const Items = ({
   return (
     <View style={styles.characterColumn}>
       <PanGestureHandler {...{onGestureEvent}}>
-        <Animated.View style={[style, styles.basketball, gestureStyle]}>
+        <Animated.View style={[style, gestureStyle, styles.basketball]}>
           <Basketball />
         </Animated.View>
       </PanGestureHandler>

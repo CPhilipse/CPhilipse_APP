@@ -7,7 +7,10 @@ export default StyleSheet.create({
     bottom: metrics.scale(200),
     left: metrics.scale(50),
     zIndex: 9,
-    padding: metrics.scale(25),
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: metrics.scale(120),
+    height: metrics.scale(120),
   },
   crucifix: {
     bottom: metrics.scale(115),

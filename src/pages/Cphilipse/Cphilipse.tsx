@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ScrollView, View, Text} from 'react-native';
 import styles from './cphilipse.style';
 import BackButton from '../../components/BackButton';
@@ -16,6 +16,14 @@ interface Props {
   navigation: any;
 }
 
+const cards = [
+  {index: 3, body: 'Fourth card'},
+  {index: 2, body: 'Third card'},
+  {index: 1, body: 'Second card'},
+  {index: 0, body: 'First card'},
+];
+const step = 1 / (cards.length - 1);
+
 /**
  * TODO: Make buttons padding bigger, so it'll be easier to press.
  * TODO: Locales for the text.
@@ -24,6 +32,7 @@ interface Props {
  *  Merge all to 'dev' and the 'master' branch. Remove 'setup' branch.
  * */
 const Cphilipse = ({navigation}: Props) => {
+  const [currentIndex, setCurrentIndex] = useState(step);
   const {onGestureEvent, gestureStyle} = swipeBasketball();
   const {style, startBasketballAnimation} = useBounce();
   const {
@@ -68,7 +77,10 @@ const Cphilipse = ({navigation}: Props) => {
             }}>
             Me
           </Text>
-          <Card body={paragraphs[5]} />
+          <Card
+            body={paragraphs[5]}
+            onSwipe={() => setCurrentIndex((prev) => prev + step)}
+          />
         </View>
         {/*<Paragraph paragraph={paragraphs} />*/}
         <BackButton onPress={() => navigation.navigate('Home')} />

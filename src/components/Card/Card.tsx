@@ -1,5 +1,5 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
+import {Text, View} from 'react-native';
 import Animated, {
   useAnimatedGestureHandler,
   useAnimatedStyle,
@@ -9,33 +9,19 @@ import Animated, {
 import styles from './card.style';
 import {PanGestureHandler} from 'react-native-gesture-handler';
 import {snapPoint} from 'react-native-redash';
-import {colors, metrics} from '../../../../themes';
+import {colors, metrics} from '../../themes';
 
 interface Props {
   body: string;
+  onSwipe: () => void;
 }
 
-const Card = ({body}: Props) => {
+const Card = ({body, onSwipe}: Props) => {
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(0);
   const velocityX = useSharedValue(0);
   const velocityY = useSharedValue(0);
-  // const translateXx = useSpring({
-  //   value: translation.x,
-  //   velocity: velocity.x,
-  //   state,
-  //   snapPoints: [-metrics.screenWidth, 0, metrics.screenWidth],
-  //   onSnap: ([x]) => x !== 0 && onSwipe(),
-  // });
-  // const translateYy = add(
-  //   translateYOffset,
-  //   useSpring({
-  //     value: translation.y,
-  //     velocity: velocity.y,
-  //     state,
-  //     snapPoints: [0],
-  //   }),
-  // );
+  const isActive = useSharedValue(true);
 
   const onGestureEvent = useAnimatedGestureHandler({
     onStart: (event, ctx) => {
@@ -54,10 +40,16 @@ const Card = ({body}: Props) => {
     },
   });
 
+  // TODO: Wait for the Swiping video https://start-react-native.dev/
+  //  This will help with the snapping points of the cards.
   const swipeStyle = useAnimatedStyle(() => {
     const springX = withSpring(translateX.value, {velocity: velocityX.value});
     const springY = withSpring(translateY.value, {velocity: velocityY.value});
-
+    console.log(
+      translateX.value,
+      translateX.value > metrics.screenWidth / 4,
+      isActive.value,
+    );
     return {
       transform: [{translateX: springX}, {translateY: springY}],
     };
