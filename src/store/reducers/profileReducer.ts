@@ -1,5 +1,4 @@
-import {createReducer} from '@reduxjs/toolkit';
-import {switchDarkmode} from '../index';
+import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
   darkmode: true,
@@ -9,21 +8,24 @@ const initialState = {
   birthday: null,
 };
 
-// @ts-ignore - computed properties (value of variable as key)
-const profileReducer = createReducer(initialState, {
-  [switchDarkmode.type]: (state) => !state.darkmode,
+/** Returns a reducer slice and the actions, all in one place.
+ * https://redux-toolkit.js.org/tutorials/basic-tutorial
+ * */
+const profileReducer = createSlice({
+  name: 'profile',
+  initialState: initialState,
+  reducers: {
+    switchDarkmode(state, action) {
+      state.darkmode = action.payload;
+    },
+  },
 });
 
-// const profileReducer = (state = initialState, action: any) => {
-//   switch (action.type) {
-//     case switchDarkmode.type:
-//       return {
-//         ...state,
-//         darkmode: !state.darkmode, // or action.payload
-//       };
-//     default:
-//       return state;
-//   }
-// };
+/** Redux community code convention called the "ducks".
+ * it suggests that you should put all your action creators and reducers in one file,
+ * do named exports of the action creators, and a default export of the reducer function.
+ * https://redux-toolkit.js.org/tutorials/intermediate-tutorial
+ * */
+export const {switchDarkmode} = profileReducer.actions;
 
-export default profileReducer;
+export default profileReducer.reducer;

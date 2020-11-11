@@ -25,7 +25,6 @@ const cards = [
 const step = 1 / (cards.length - 1);
 
 /**
- * TODO: Make buttons padding bigger, so it'll be easier to press.
  * TODO: Locales for the text.
  * TODO: Test this page on multiple device simulators.
  * TODO: Create 'master' branch, change 'main' to 'master' branch. Delete 'main' branch.
@@ -75,7 +74,7 @@ const Cphilipse = ({navigation}: Props) => {
               ...metrics.fonts.subtitle,
               paddingBottom: 20,
             }}>
-            Me
+            About me
           </Text>
           <Card
             body={paragraphs[5]}
