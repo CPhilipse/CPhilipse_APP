@@ -7,14 +7,6 @@ import rootReducer from './reducers';
 // Actions switchDarkmode.type returns the action type string.
 export const switchDarkmode = createAction('DARKMODE');
 
-// Flipper is only available in DEV mode.
-const middlewares = [];
-
-if (__DEV__) {
-  const createDebugger = require('redux-flipper').default;
-  middlewares.push(createDebugger());
-}
-
 // const persistConfig = {
 //   key: 'root',
 //   storage: AsyncStorage,
@@ -31,7 +23,6 @@ const store = configureStore({
   // reducer: persistedReducer,
   reducer: rootReducer,
   devTools: composeEnhancers,
-  middleware: middlewares,
 });
 
 // let persistor = persistStore(store);
