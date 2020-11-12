@@ -1,12 +1,13 @@
 import React from 'react';
-import {View, Switch, Text} from 'react-native';
+import {View, Switch} from 'react-native';
 import styles from './settings.style';
 import {getLocalizedString, languages} from '../../utils/LocalizedUtils';
 import Pages from '../../enum/Pages';
-import Button from '../../components/Button';
 import Slider from '../../components/Slider';
 import {useSharedValue} from 'react-native-reanimated';
 import {bgcolor} from '../../utils/DarkmodeUtils';
+import BackButton from '../../components/BackButton';
+import TitleHeader from '../../components/TitleHeader';
 
 interface Props {
   navigation: any;
@@ -30,11 +31,10 @@ const Settings = ({
   const velocityX = useSharedValue(0);
   return (
     <View style={[styles.container, bgcolor(darkmode)]}>
-      <Slider {...{gestureX, velocityX, darkmode, switchDarkmode}} />
-
-      <Button onPress={() => navigation.navigate(Pages.CPHILIPSE)}>
-        <Text>{localizedCopy('save')}</Text>
-      </Button>
+      <TitleHeader darkmode={darkmode} title={localizedCopy('title')} />
+      <View style={styles.row}>
+        <Slider {...{gestureX, velocityX, darkmode, switchDarkmode}} />
+      </View>
       <Switch
         trackColor={{false: '#767577', true: '#434343'}}
         thumbColor={'#bca2ff'}
@@ -48,13 +48,7 @@ const Settings = ({
         }}
         value={language === languages.en}
       />
-      <Switch
-        trackColor={{false: '#767577', true: '#434343'}}
-        thumbColor={'#bca2ff'}
-        ios_backgroundColor="#3e3e3e"
-        onValueChange={(value) => switchDarkmode(value)}
-        value={darkmode}
-      />
+      <BackButton onPress={() => navigation.goBack()} />
     </View>
   );
 };

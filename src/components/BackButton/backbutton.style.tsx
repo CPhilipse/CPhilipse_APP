@@ -1,10 +1,10 @@
 import {StyleSheet} from 'react-native';
-import {colors, metrics} from '../../themes';
+import {metrics} from '../../themes';
 
 export default StyleSheet.create({
   container: {
     position: 'absolute',
-    top: metrics.scale(75),
-    paddingLeft: metrics.scale(75),
+    top: metrics.scale(120),
+    left: metrics.scale(80),
   },
 });
