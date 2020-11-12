@@ -10,15 +10,15 @@ const persistConfig = {
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 const composeEnhancers =
   (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const store = configureStore({
   reducer: persistedReducer,
   devTools: composeEnhancers,
   middleware: getDefaultMiddleware({
     /** Ignore persist package, because it causes a common unneeded error.
-     * https://redux-toolkit.js.org/usage/usage-guide#working-with-non-serializable-data
+     * https://github.com/rt2zz/redux-persist/issues/988
      * */
     serializableCheck: {
       ignoredActions: ['persist/PERSIST'],

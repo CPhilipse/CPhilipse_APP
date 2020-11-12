@@ -4,6 +4,9 @@ import styles from './settings.style';
 import {getLocalizedString, languages} from '../../utils/LocalizedUtils';
 import Pages from '../../enum/Pages';
 import Button from '../../components/Button';
+import Slider from '../../components/Slider';
+import {useSharedValue} from 'react-native-reanimated';
+import {bgcolor} from '../../utils/DarkmodeUtils';
 
 interface Props {
   navigation: any;
@@ -23,8 +26,12 @@ const Settings = ({
   setLanguage,
   language,
 }: Props) => {
+  const gestureX = useSharedValue(0);
+  const velocityX = useSharedValue(0);
   return (
-    <View style={[styles.container, darkmode && {backgroundColor: 'black'}]}>
+    <View style={[styles.container, bgcolor(darkmode)]}>
+      <Slider {...{gestureX, velocityX, darkmode, switchDarkmode}} />
+
       <Button onPress={() => navigation.navigate(Pages.CPHILIPSE)}>
         <Text>{localizedCopy('save')}</Text>
       </Button>

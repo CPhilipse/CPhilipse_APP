@@ -45,11 +45,6 @@ const Card = ({body, onSwipe}: Props) => {
   const swipeStyle = useAnimatedStyle(() => {
     const springX = withSpring(translateX.value, {velocity: velocityX.value});
     const springY = withSpring(translateY.value, {velocity: velocityY.value});
-    console.log(
-      translateX.value,
-      translateX.value > metrics.screenWidth / 4,
-      isActive.value,
-    );
     return {
       transform: [{translateX: springX}, {translateY: springY}],
     };

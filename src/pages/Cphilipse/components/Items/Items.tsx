@@ -1,5 +1,5 @@
 import React, {useCallback} from 'react';
-import {View, Text, Linking} from 'react-native';
+import {View, Text} from 'react-native';
 import {PanGestureHandler} from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/Entypo';
@@ -10,6 +10,9 @@ import {ICON_SIZE} from '../../../../components/Icon/Icon';
 import {colors} from '../../../../themes';
 import Button from '../../../../components/Button';
 import styles from './items.style';
+import {getLocalizedString} from '../../../../utils/LocalizedUtils';
+import Pages from '../../../../enum/Pages';
+import {openUrl} from '../../../../utils/LinkingUtils';
 
 interface Props {
   onGestureEvent: any;
@@ -23,6 +26,9 @@ interface Props {
   colorStyle5: any;
 }
 
+const localizedCopy = (value: string) =>
+  getLocalizedString(Pages.CPHILIPSE, value);
+
 const Items = ({
   onGestureEvent,
   style,
@@ -34,11 +40,11 @@ const Items = ({
   colorStyle4,
   colorStyle5,
 }: Props) => {
-  const openLinkedIn = useCallback(() => {
-    Linking.openURL('https://www.linkedin.com/in/clemens-philipse-2615b9162/');
+  const openLinkedin = useCallback(() => {
+    openUrl(localizedCopy('linkedinUrl'));
   }, []);
-  const openGitHub = useCallback(() => {
-    Linking.openURL('https://github.com/CPhilipse/CPhilipse_APP');
+  const openGithub = useCallback(() => {
+    openUrl(localizedCopy('githubUrl'));
   }, []);
 
   return (
@@ -69,13 +75,13 @@ const Items = ({
         />
       </View>
       <View style={styles.nineteenContainer}>
-        <Text style={styles.nineteen}>19</Text>
+        <Text style={styles.nineteen}>{localizedCopy('age')}</Text>
       </View>
-      <Button onPress={openLinkedIn} style={styles.button}>
-        <Text style={styles.buttonText}>LinkedIn</Text>
+      <Button onPress={openLinkedin} style={styles.button}>
+        <Text style={styles.buttonText}>{localizedCopy('linkedin')}</Text>
       </Button>
-      <Button onPress={openGitHub} style={styles.button}>
-        <Text style={styles.buttonText}>GitHub</Text>
+      <Button onPress={openGithub} style={styles.button}>
+        <Text style={styles.buttonText}>{localizedCopy('github')}</Text>
       </Button>
     </View>
   );

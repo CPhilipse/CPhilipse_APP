@@ -16,4 +16,6 @@ export default {
   READ_MORE: 'read-more',
   BEENHERE: 'beenhere',
   GAME_CONTROLLER: 'game-controller',
+  ARROW_LEFT: 'arrow-left',
+  ARROW_RIGHT: 'arrow-right',
 };

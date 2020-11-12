@@ -11,6 +11,8 @@ import Paragraph from '../../components/Paragraph';
 import {paragraphs} from '../../utils/DummyData';
 import Items from './components/Items';
 import Card from '../../components/Card';
+import {getLocalizedString} from '../../utils/LocalizedUtils';
+import Pages from '../../enum/Pages';
 
 interface Props {
   navigation: any;
@@ -23,6 +25,9 @@ const cards = [
   {index: 0, body: 'First card'},
 ];
 const step = 1 / (cards.length - 1);
+
+const localizedCopy = (value: string) =>
+  getLocalizedString(Pages.CPHILIPSE, value);
 
 /**
  * TODO: Test this page on multiple device simulators.
@@ -51,7 +56,7 @@ const Cphilipse = ({navigation}: Props) => {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <Header title={'Clemens Philipse'} image={images.cphilipse} />
+        <Header title={localizedCopy('name')} image={images.cphilipse} />
         <Items
           {...{
             style,

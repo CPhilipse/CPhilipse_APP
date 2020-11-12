@@ -5,7 +5,7 @@ export default StyleSheet.create({
   characterColumn: {},
   basketball: {
     bottom: metrics.scale(200),
-    left: metrics.scale(50),
+    left: metrics.scale(20),
     zIndex: 9,
     alignItems: 'center',
     justifyContent: 'center',
@@ -17,7 +17,7 @@ export default StyleSheet.create({
     right: metrics.scale(60),
   },
   gameController: {
-    left: metrics.scale(260),
+    left: metrics.scale(245),
     alignItems: 'center',
     position: 'absolute',
     top: metrics.scale(135),
