@@ -1,5 +1,4 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {languages} from '../../utils/LocalizedUtils';
 
 const initialState = {
   language: 'en',
@@ -8,17 +7,18 @@ const initialState = {
 /** Returns a reducer slice and the actions, all in one place.
  * https://redux-toolkit.js.org/tutorials/basic-tutorial
  * */
+// TODO: Use constants here for 'en' and 'nl', while bypassing the cycle warning.
 const languageSlice = createSlice({
   name: 'language',
   initialState: initialState,
   reducers: {
     setLanguage(state, action) {
-      if (action.payload === languages.en) {
-        state.language = languages.en;
-      } else if (action.payload === languages.nl) {
-        state.language = languages.nl;
+      if (action.payload === 'en') {
+        state.language = 'en';
+      } else if (action.payload === 'nl') {
+        state.language = 'nl';
       } else {
-        state.language = languages.en;
+        state.language = 'en';
       }
     },
   },

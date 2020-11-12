@@ -1,33 +1,31 @@
-import {compose, configureStore, createAction} from '@reduxjs/toolkit';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
-// import {persistStore, persistReducer} from 'redux-persist';
+import {compose, configureStore, getDefaultMiddleware} from '@reduxjs/toolkit';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {persistStore, persistReducer} from 'redux-persist';
 import rootReducer from './reducers';
 
-// Creates action creator function
-// Actions switchDarkmode.type returns the action type string.
-export const switchDarkmode = createAction('DARKMODE');
+const persistConfig = {
+  key: 'root',
+  storage: AsyncStorage,
+  blacklist: [],
+};
 
-// const persistConfig = {
-//   key: 'root',
-//   storage: AsyncStorage,
-//   whitelist: ['profileReducer'],
-// };
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-// const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-// User and Profile reducer. Profile has profile settings. User has user information.
-// configureStore has DevTools Extension support by default, which createStore has not.
 const composeEnhancers =
   (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = configureStore({
-  // reducer: persistedReducer,
-  reducer: rootReducer,
+  reducer: persistedReducer,
   devTools: composeEnhancers,
+  middleware: getDefaultMiddleware({
+    /** Ignore persist package, because it causes a common unneeded error.
+     * https://redux-toolkit.js.org/usage/usage-guide#working-with-non-serializable-data
+     * */
+    serializableCheck: {
+      ignoredActions: ['persist/PERSIST'],
+    },
+  }),
 });
 
-// let persistor = persistStore(store);
+let persistor = persistStore(store);
 
-export {
-  store,
-  // persistor
-};
+export {store, persistor};

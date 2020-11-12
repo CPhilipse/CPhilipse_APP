@@ -3,8 +3,10 @@ import {View, Switch, Text} from 'react-native';
 import styles from './settings.style';
 import {getLocalizedString, languages} from '../../utils/LocalizedUtils';
 import Pages from '../../enum/Pages';
+import Button from '../../components/Button';
 
 interface Props {
+  navigation: any;
   darkmode: boolean;
   switchDarkmode: (change: boolean) => void;
   setLanguage: (language: string) => void;
@@ -14,10 +16,18 @@ interface Props {
 const localizedCopy = (value: string) =>
   getLocalizedString(Pages.SETTINGS, value);
 
-const Settings = ({darkmode, switchDarkmode, setLanguage, language}: Props) => {
+const Settings = ({
+  navigation,
+  darkmode,
+  switchDarkmode,
+  setLanguage,
+  language,
+}: Props) => {
   return (
     <View style={[styles.container, darkmode && {backgroundColor: 'black'}]}>
-      <Text>{localizedCopy('save')}</Text>
+      <Button onPress={() => navigation.navigate(Pages.CPHILIPSE)}>
+        <Text>{localizedCopy('save')}</Text>
+      </Button>
       <Switch
         trackColor={{false: '#767577', true: '#434343'}}
         thumbColor={'#bca2ff'}

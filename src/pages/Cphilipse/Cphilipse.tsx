@@ -25,7 +25,6 @@ const cards = [
 const step = 1 / (cards.length - 1);
 
 /**
- * TODO: Locales for the text.
  * TODO: Test this page on multiple device simulators.
  * TODO: Create 'master' branch, change 'main' to 'master' branch. Delete 'main' branch.
  *  Merge all to 'dev' and the 'master' branch. Remove 'setup' branch.
@@ -82,7 +81,7 @@ const Cphilipse = ({navigation}: Props) => {
           />
         </View>
         {/*<Paragraph paragraph={paragraphs} />*/}
-        <BackButton onPress={() => navigation.navigate('Home')} />
+        <BackButton onPress={() => navigation.goBack()} />
       </ScrollView>
     </View>
   );
