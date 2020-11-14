@@ -63,7 +63,11 @@ const Settings = ({
         <View style={styles.row}>
           <Slider
             title={language === languages.en ? 'EN' : 'NL'}
-            darkmode={darkmode}
+            darkmode={
+              (language === languages.nl && darkmode) ||
+              (!darkmode && language === languages.en) ||
+              darkmode
+            }
             gestureX={lanGestureX}
             velocityX={lanVelocityX}
             rightCb={lanRight}
