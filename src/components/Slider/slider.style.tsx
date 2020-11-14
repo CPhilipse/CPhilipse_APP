@@ -22,7 +22,7 @@ export default StyleSheet.create({
   knob: {
     borderWidth: 1,
     borderColor: colors.borderGrey,
-    borderRadius: metrics.scale(150),
+    borderRadius: KNOB_SIZE / 2,
     height: KNOB_SIZE,
     width: KNOB_SIZE,
     marginLeft: metrics.scale(10),

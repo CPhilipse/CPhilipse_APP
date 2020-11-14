@@ -8,25 +8,29 @@ import CustomIcon from '../Icon';
 import Icons from '../../enum/Icons';
 import {colors} from '../../themes';
 import {color} from '../../utils/DarkmodeUtils';
-import {getLocalizedString} from '../../utils/LocalizedUtils';
-import Pages from '../../enum/Pages';
 
 interface Props {
   darkmode: boolean;
+  title: string;
   gestureX: {value: number};
   velocityX: any;
-  switchDarkmode: (change: boolean) => void;
+  rightCb: () => void;
+  leftCb: () => void;
 }
 
-const localizedCopy = (value: string) =>
-  getLocalizedString(Pages.SETTINGS, value);
-
-const Slider = ({darkmode, gestureX, velocityX, switchDarkmode}: Props) => {
+const Slider = ({
+  darkmode,
+  gestureX,
+  velocityX,
+  title,
+  rightCb,
+  leftCb,
+}: Props) => {
   const onDraggedSuccess = () => {
-    switchDarkmode(true);
+    return rightCb();
   };
   const OnDraggedLeft = () => {
-    switchDarkmode(false);
+    return leftCb();
   };
 
   const {
@@ -36,9 +40,7 @@ const Slider = ({darkmode, gestureX, velocityX, switchDarkmode}: Props) => {
 
   return (
     <View style={styles.slider}>
-      <Text style={[styles.title, color(darkmode)]}>
-        {darkmode ? localizedCopy('dark') : localizedCopy('light')}
-      </Text>
+      <Text style={[styles.title, color(darkmode)]}>{title}</Text>
       <Animated.View style={[styles.progress, progressStyle, colorStyle]} />
       <PanGestureHandler {...{onGestureEvent}}>
         <Animated.View style={[styles.knob, gestureStyle]}>

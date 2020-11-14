@@ -29,26 +29,49 @@ const Settings = ({
 }: Props) => {
   const gestureX = useSharedValue(0);
   const velocityX = useSharedValue(0);
+
+  const lanGestureX = useSharedValue(0);
+  const lanVelocityX = useSharedValue(0);
+
+  const darkmodeRight = () => {
+    switchDarkmode(true);
+  };
+  const darkmodeLeft = () => {
+    switchDarkmode(false);
+  };
+  const lanRight = () => {
+    setLanguage(languages.en);
+  };
+  const lanLeft = () => {
+    setLanguage(languages.nl);
+  };
+
   return (
     <View style={[styles.container, bgcolor(darkmode)]}>
       <TitleHeader darkmode={darkmode} title={localizedCopy('title')} />
-      <View style={styles.row}>
-        <Slider {...{gestureX, velocityX, darkmode, switchDarkmode}} />
+      <View style={styles.settingsContainer}>
+        <View style={styles.row}>
+          <Slider
+            title={darkmode ? localizedCopy('dark') : localizedCopy('light')}
+            gestureX={gestureX}
+            velocityX={velocityX}
+            darkmode={darkmode}
+            rightCb={darkmodeRight}
+            leftCb={darkmodeLeft}
+          />
+        </View>
+        <View style={styles.row}>
+          <Slider
+            title={language === languages.en ? 'EN' : 'NL'}
+            darkmode={darkmode}
+            gestureX={lanGestureX}
+            velocityX={lanVelocityX}
+            rightCb={lanRight}
+            leftCb={lanLeft}
+          />
+        </View>
       </View>
-      <Switch
-        trackColor={{false: '#767577', true: '#434343'}}
-        thumbColor={'#bca2ff'}
-        ios_backgroundColor="#3e3e3e"
-        onValueChange={(value) => {
-          if (value) {
-            setLanguage(languages.en);
-          } else {
-            setLanguage(languages.nl);
-          }
-        }}
-        value={language === languages.en}
-      />
-      <BackButton onPress={() => navigation.goBack()} />
+      <BackButton darkmode={darkmode} onPress={() => navigation.goBack()} />
     </View>
   );
 };
