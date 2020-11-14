@@ -31,8 +31,6 @@ const localizedCopy = (value: string) =>
 
 /**
  * TODO: Test this page on multiple device simulators.
- * TODO: Create 'master' branch, change 'main' to 'master' branch. Delete 'main' branch.
- *  Merge all to 'dev' and the 'master' branch. Remove 'setup' branch.
  * */
 const Cphilipse = ({navigation}: Props) => {
   const [currentIndex, setCurrentIndex] = useState(step);
