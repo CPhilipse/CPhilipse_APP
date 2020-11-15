@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, memo} from 'react';
 import {View, Text} from 'react-native';
 import {PanGestureHandler} from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
@@ -87,4 +87,4 @@ const Items = ({
   );
 };
 
-export default Items;
+export default memo(Items);

@@ -62,7 +62,11 @@ const Settings = ({
         </View>
         <View style={styles.row}>
           <Slider
-            title={language === languages.en ? 'EN' : 'NL'}
+            title={
+              language === languages.en
+                ? localizedCopy('english')
+                : localizedCopy('dutch')
+            }
             darkmode={
               (language === languages.nl && darkmode) ||
               (!darkmode && language === languages.en) ||

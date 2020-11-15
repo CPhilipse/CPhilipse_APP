@@ -23,7 +23,6 @@ export const useBounce = () => {
   };
 
   const style = useAnimatedStyle(() => {
-    'worklet';
     // https://easings.net/#easeInBounce
     const bouncingY = Easing.bounce(translateY.value);
 

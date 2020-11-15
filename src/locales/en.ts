@@ -3,8 +3,10 @@ import Pages from '../enum/Pages';
 export default {
   [Pages.SETTINGS]: {
     title: 'Settings',
-    dark: 'Dark',
-    light: 'Light',
+    dark: 'DARK',
+    light: 'LIGHT',
+    english: 'ENGLISH',
+    dutch: 'DUTCH',
   },
   [Pages.CPHILIPSE]: {
     age: '19',
