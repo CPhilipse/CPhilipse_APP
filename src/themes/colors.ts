@@ -2,6 +2,10 @@ export default {
   white: '#ffffff',
   error: '#ff4a1e',
 
+  lightPurple: '#af76e7',
+  purple: '#7121be',
+  darkPurple: '#2f0954',
+
   midBlue: '#1a73e8',
   lightBlue: '#E8F0FE',
   lightDarkBlue: '#4285F4',

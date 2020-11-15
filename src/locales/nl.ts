@@ -1,22 +1,17 @@
 import Pages from '../enum/Pages';
 
 export default {
-  [Pages.ARTICLE_DETAILS]: {
-    save: 'Wijzigingen opslaan',
-    edit: 'Wijzigen',
+  [Pages.SETTINGS]: {
+    title: 'Instellingen',
+    dark: 'Donker',
+    light: 'Licht',
   },
-  [Pages.FALLBACK]: {
-    refresh: 'Opnieuw laden',
-    notify: 'Laat het ons weten!',
-    title: 'Er is een fout',
-    formNote: 'Nog steeds problemen?',
-    followingNote: 'Vertel ons hoe je bij deze error bent gekomen.',
-    message: 'Het zal zo z.s.m. opgelost worden!',
-  },
-  [Pages.UNAUTHORIZED]: {
-    login: 'Inloggen',
-    register: 'Maak er één!',
-    title: 'Voor meer content even',
-    formNote: 'Heb jij nog geen account?',
+  [Pages.CPHILIPSE]: {
+    age: '19',
+    name: 'Clemens Philipse',
+    linkedin: 'LinkedIn',
+    github: 'GitHub',
+    linkedinUrl: 'https://www.linkedin.com/in/clemens-philipse-2615b9162/',
+    githubUrl: 'https://github.com/CPhilipse/CPhilipse_APP',
   },
 };

@@ -95,8 +95,11 @@ def enableSeparateBuildPerCPUArchitecture = false
 
 /**
  * Run Proguard to shrink the Java bytecode in release builds.
-    ?Regarding reanimated, where to put this: -keep class com.facebook.react.turbomodule.** { *; }
-    ?https://docs.swmansion.com/react-native-reanimated/docs/installation
+    Regarding reanimated add this to proguard-rules file: -keep class com.facebook.react.turbomodule.** { *; }
+    https://docs.swmansion.com/react-native-reanimated/docs/installation
+    ## https://reactnative.dev/docs/hermes/
+    ## https://github.com/software-mansion/react-native-reanimated/issues/1314
+    Prevents app from crashing in release state.
  */
 def enableProguardInReleaseBuilds = false
 
@@ -218,4 +221,5 @@ task copyDownloadableDepsToLibs(type: Copy) {
     into 'libs'
 }
 
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
