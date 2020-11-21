@@ -1,6 +1,6 @@
 export default {
   HOME: 'Home',
-  ARTICLE_DETAILS: 'Article',
+  PROJECT_DETAILS: 'ProjectDetails',
   PORTFOLIO: 'Portfolio',
   SETTINGS: 'Settings',
   CPHILIPSE: 'CPHILIPSE',

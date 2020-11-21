@@ -1,9 +1,19 @@
+// English
+export interface ProjectProps {
+  id: number;
+  title: string;
+  body: string;
+  images: string[];
+  video: string;
+}
+
 export const projects = [
-  {title: 'title', body: 'body', images: [], video: 'video'},
-  {title: 'title1', body: 'body1', images: [], video: 'video1'},
-  {title: 'title2', body: 'body2', images: [], video: 'video2'},
+  {id: 0, title: 'HvGeA', body: 'body', images: [], video: 'video'},
+  {id: 1, title: 'MBO Exam', body: 'body1', images: [], video: 'video1'},
+  {id: 2, title: 'title2', body: 'body2', images: [], video: 'video2'},
 ];
 
+// English
 export const paragraphs = [
   '',
   "Hello! My name is Clemens and here I'm gonna tell some things about me and this app.",

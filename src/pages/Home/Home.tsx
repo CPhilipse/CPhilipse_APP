@@ -1,66 +1,48 @@
 import React from 'react';
-import {View, TouchableOpacity} from 'react-native';
+import {View, Text} from 'react-native';
 import styles from './home.style';
 import Pages from '../../enum/Pages';
-// import StrokeAnimation from '../../components/StrokeAnimation';
-// import {metrics} from '../../themes';
-// import {PanGestureHandler} from 'react-native-gesture-handler';
-// import Animated, {
-//   interpolate,
-//   Easing,
-//   useAnimatedGestureHandler,
-//   useAnimatedStyle,
-//   useSharedValue,
-//   withTiming,
-//   Extrapolate,
-//   useDerivedValue,
-// } from 'react-native-reanimated';
-import AnimationOverlay from './components/AnimationOverlay';
-// import {projects} from '../../utils/DummyData';
+import {ProjectProps, projects} from '../../utils/DummyData';
+import Button from '../../components/Button';
+import {bgcolor} from '../../utils/DarkmodeUtils';
 
 interface Props {
+  darkmode: boolean;
   navigation: any;
 }
 
-const Home = ({navigation}: Props) => {
-  /** Pangesture code */
-  // const translateX = useSharedValue(0);
-  // const translateY = useSharedValue(0);
-  // const onGestureEvent = useAnimatedGestureHandler({
-  //   onActive: (event, ctx) => {
-  //     translateX.value = event.translationX;
-  //     translateY.value = event.translationY;
-  //   },
-  // });
-  // const style = useAnimatedStyle(() => {
-  //   return {
-  //     transform: [
-  //       {translateX: translateX.value},
-  //       {translateY: translateY.value},
-  //     ],
-  //   };
-  // });
-
-  // AnimationOverlay causes error when navigating to other page.
+// AnimationOverlay causes error when navigating to other page.
+const Home = ({navigation, darkmode}: Props) => {
   return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={() => navigation.push(Pages.CPHILIPSE)}>
-        <AnimationOverlay />
-      </TouchableOpacity>
-      {/*<PanGestureHandler {...{onGestureEvent}}>*/}
-      {/*  <Animated.View style={style}>*/}
-      {/*    <View style={styles.cardContainer}>*/}
-      {/*      <View style={styles.card}>*/}
-      {/*        <Text style={styles.title}>CPhilipse</Text>*/}
-      {/*        <Text*/}
-      {/*          onPress={() => navigation.navigate(Pages.PORTFOLIO)}*/}
-      {/*          style={styles.title}>*/}
-      {/*          Portfolio*/}
-      {/*        </Text>*/}
-      {/*      </View>*/}
-      {/*    </View>*/}
-      {/*  </Animated.View>*/}
-      {/*</PanGestureHandler>*/}
+    <View style={[styles.container, bgcolor(darkmode)]}>
+      <Button onPress={() => navigation.navigate(Pages.CPHILIPSE)}>
+        <View style={styles.cphilipse}>
+          <Text style={{color: 'white'}}>CPhilipse</Text>
+        </View>
+      </Button>
+      <Button onPress={() => navigation.navigate(Pages.SETTINGS)}>
+        <View style={styles.cphilipse}>
+          <Text style={{color: 'white'}}>Settings</Text>
+        </View>
+      </Button>
+      {projects.map(({id, title, body, video}: ProjectProps) => {
+        return (
+          <Button
+            key={id}
+            onPress={() =>
+              navigation.navigate(Pages.PROJECT_DETAILS, {
+                id,
+                title,
+                body,
+                video,
+              })
+            }>
+            <View style={styles.projectContainer}>
+              <Text style={{color: 'white'}}>{title}</Text>
+            </View>
+          </Button>
+        );
+      })}
     </View>
   );
 };

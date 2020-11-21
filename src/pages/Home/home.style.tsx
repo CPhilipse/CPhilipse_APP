@@ -20,4 +20,16 @@ export default StyleSheet.create({
   title: {
     fontSize: 20,
   },
+  cphilipse: {
+    margin: 20,
+    width: 200,
+    height: 200,
+    backgroundColor: 'purple',
+  },
+  projectContainer: {
+    margin: 20,
+    width: 200,
+    height: 200,
+    backgroundColor: 'purple',
+  },
 });

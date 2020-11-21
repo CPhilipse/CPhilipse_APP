@@ -1,3 +1,12 @@
+import {connect} from 'react-redux';
 import Home from './Home';
+import {RootState} from '../../store/reducers';
 
-export default Home;
+const mapStateToProps = (state: RootState) => {
+  const {darkmode} = state.profile;
+  return {
+    darkmode,
+  };
+};
+
+export default connect(mapStateToProps, null)(Home);

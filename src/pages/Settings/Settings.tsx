@@ -46,6 +46,7 @@ const Settings = ({
     setLanguage(languages.nl);
   };
 
+  // TODO: On darkmode, when restarting the app, the slider is on the left (lightmode) side.
   return (
     <View style={[styles.container, bgcolor(darkmode)]}>
       <TitleHeader darkmode={darkmode} title={localizedCopy('title')} />
