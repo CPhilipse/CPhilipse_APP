@@ -5,7 +5,7 @@ export default StyleSheet.create({
   characterColumn: {},
   basketball: {
     bottom: metrics.scale(200),
-    left: metrics.scale(20),
+    left: metrics.scale(40),
     zIndex: 9,
     alignItems: 'center',
     justifyContent: 'center',

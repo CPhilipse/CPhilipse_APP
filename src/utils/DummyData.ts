@@ -1,16 +1,46 @@
-// English
+import {ImageRequireSource} from 'react-native';
+import Categories from '../enum/Categories';
+import {images} from '../themes';
+
 export interface ProjectProps {
   id: number;
   title: string;
+  subTitle: string;
   body: string;
-  images: string[];
+  images: ImageRequireSource[];
   video: string;
+  categories: string[];
 }
 
 export const projects = [
-  {id: 0, title: 'HvGeA', body: 'body', images: [], video: 'video'},
-  {id: 1, title: 'MBO Exam', body: 'body1', images: [], video: 'video1'},
-  {id: 2, title: 'title2', body: 'body2', images: [], video: 'video2'},
+  {
+    id: 0,
+    title: 'HvGeA',
+    subTitle: 'Huis van Gebed en Aanbidding.',
+    body: 'body',
+    images: [images.hvgea],
+    video: 'video',
+    categories: [Categories.BLOG],
+  },
+  {
+    id: 1,
+    title: 'MAD School Exam',
+    subTitle:
+      'Mobile Application Development (MAD). Creating detailed incident reports.',
+    body: 'body1',
+    images: [images.cphilipse],
+    video: 'video1',
+    categories: [Categories.SCHOOL, Categories.HOBBY],
+  },
+  {
+    id: 2,
+    title: 'Summer project',
+    subTitle: 'Login and registration app with NodeJS backend.',
+    body: 'body2',
+    images: [images.hvgea],
+    video: 'video2',
+    categories: [Categories.HOBBY],
+  },
 ];
 
 // English

@@ -17,18 +17,18 @@ const getLocalizedString = (page: string, value: string) => {
   const state = store.getState();
   const {language} = state.language;
 
-  const enText = getKeyValue(en)(page, value);
-  const nlText = getKeyValue(nl)(page, value);
-  switch (language) {
-    case languages.nl:
-      nlText;
-      break;
-    case languages.en:
-      enText;
-      break;
-    default:
-      enText;
-      break;
+  // const enText = getKeyValue(en)(page, value);
+  // const nlText = getKeyValue(nl)(page, value);
+  // @ts-ignore
+  const enText = en[page][value];
+  // @ts-ignore
+  const nlText = nl[page][value];
+  if (language === languages.en) {
+    return enText;
+  } else if (language === languages.nl) {
+    return nlText;
+  } else {
+    return enText;
   }
 };
 
