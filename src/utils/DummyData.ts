@@ -15,6 +15,15 @@ export interface ProjectProps {
 export const projects = [
   {
     id: 0,
+    title: 'CPhilipse portfolio',
+    subTitle: 'Welcome to my very own app!',
+    body: 'This app is open source, so if interested in the code ....',
+    images: [images.cphilipse],
+    video: 'video2',
+    categories: [Categories.HOBBY],
+  },
+  {
+    id: 1,
     title: 'HvGeA',
     subTitle: 'Home of Prayer and Worship.',
     body: 'body',
@@ -23,17 +32,17 @@ export const projects = [
     categories: [Categories.BLOG, Categories.PROJECT],
   },
   {
-    id: 1,
+    id: 2,
     title: 'MAD School Exam',
     subTitle:
       'Mobile Application Development (MAD). Creating detailed incident reports.',
     body: 'body1',
     images: [images.cphilipse],
     video: 'video1',
-    categories: [Categories.SCHOOL, Categories.HOBBY],
+    categories: [Categories.SCHOOL],
   },
   {
-    id: 2,
+    id: 3,
     title: 'Summer project',
     subTitle: 'Login and registration app with NodeJS backend.',
     body: 'body2',

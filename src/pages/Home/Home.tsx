@@ -14,7 +14,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import CustomIcon from '../../components/Icon';
 import Icons from '../../enum/Icons';
-import {colors} from '../../themes';
+import {colors, metrics} from '../../themes';
 import useMenu from './animations/useMenu';
 import {isAndroid} from '../../utils/PlatformUtils';
 
@@ -35,20 +35,35 @@ const Home = ({navigation, darkmode}: Props) => {
     [setMenuActive],
   );
 
-  const {startMenuAnimation, closeMenu, scaleStyle} = useMenu(toggleMenu);
+  const {
+    methods: {startMenuAnimation, closeMenu},
+    styles: {scaleStyle, opacityStyle},
+  } = useMenu(toggleMenu);
 
-  // TODO: Rotate icon to close icon. Once done, fade all the other stuff in.
   return (
     <View style={styles.container}>
-      {menuActive && (
-        <View
-          style={{
+      <Animated.View
+        style={[
+          {
             ...StyleSheet.absoluteFillObject,
-            backgroundColor: colors.overlay,
-            zIndex: 1,
-          }}
-        />
-      )}
+            backgroundColor: colors.black,
+          },
+          menuActive && {zIndex: 1},
+          opacityStyle,
+        ]}>
+        <Button
+          onPress={() => navigation.navigate(Pages.SETTINGS)}
+          style={styles.menuItem}>
+          <Text style={[color(darkmode), styles.menuItemText]}>Settings</Text>
+        </Button>
+        <Button
+          onPress={() => navigation.navigate(Pages.CPHILIPSE)}
+          style={styles.menuItem2}>
+          <Text style={[color(darkmode), styles.menuItemText]}>
+            The creator
+          </Text>
+        </Button>
+      </Animated.View>
       <View style={styles.menuContainer}>
         <Button
           onPress={menuActive ? closeMenu : startMenuAnimation}

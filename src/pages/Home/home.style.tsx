@@ -52,9 +52,19 @@ export default StyleSheet.create({
     borderRadius: CIRCLE_SIZE / 2,
     backgroundColor: colors.lightPurple,
     position: 'absolute',
-    right: 0,
+    right: metrics.scale(100),
+    top: metrics.scale(200),
     zIndex: 2,
   },
+  menuItem: {
+    marginHorizontal: metrics.horizontal.pagePadding,
+    top: metrics.scaleY(600),
+  },
+  menuItem2: {
+    marginHorizontal: metrics.horizontal.pagePadding,
+    top: metrics.scaleY(675),
+  },
+  menuItemText: {...metrics.fonts.mediumSubtitle},
   cphilipse: {
     paddingHorizontal: metrics.horizontal.pagePadding,
     marginVertical: metrics.vertical.spacing.xl,
