@@ -19,11 +19,17 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  menu: {
+  menuContainer: {
     position: 'absolute',
     top: metrics.vertical.spacing.l,
     right: metrics.horizontal.pagePadding,
     zIndex: 9,
+  },
+  menu: {
+    width: metrics.scale(125),
+    height: metrics.scale(125),
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   lineOne: {
     width: metrics.scale(75),

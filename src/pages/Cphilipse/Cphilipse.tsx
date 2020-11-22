@@ -16,15 +16,8 @@ import Pages from '../../enum/Pages';
 
 interface Props {
   navigation: any;
+  darkmode: boolean;
 }
-
-const cards = [
-  {index: 3, body: 'Fourth card'},
-  {index: 2, body: 'Third card'},
-  {index: 1, body: 'Second card'},
-  {index: 0, body: 'First card'},
-];
-const step = 1 / (cards.length - 1);
 
 const localizedCopy = (value: string) =>
   getLocalizedString(Pages.CPHILIPSE, value);
@@ -34,12 +27,10 @@ const localizedCopy = (value: string) =>
  * TODO: Create 'master' branch, change 'main' to 'master' branch. Delete 'main' branch.
  *  Merge all to 'dev' and the 'master' branch. Remove 'setup' branch.
  * */
-const Cphilipse = ({navigation}: Props) => {
-  const [currentIndex, setCurrentIndex] = useState(step);
+const Cphilipse = ({navigation, darkmode}: Props) => {
   const {onGestureEvent, gestureStyle} = swipeBasketball();
   const {style, startBasketballAnimation} = useBounce();
   const {
-    scaleStyle,
     colorStyle,
     colorStyle2,
     colorStyle3,
@@ -67,7 +58,6 @@ const Cphilipse = ({navigation}: Props) => {
             colorStyle3,
             colorStyle4,
             colorStyle5,
-            scaleStyle,
           }}
         />
         <View style={{bottom: 30}}>
@@ -80,13 +70,10 @@ const Cphilipse = ({navigation}: Props) => {
             }}>
             About me
           </Text>
-          <Card
-            body={paragraphs[5]}
-            onSwipe={() => setCurrentIndex((prev) => prev + step)}
-          />
+          <Card body={paragraphs[5]} />
         </View>
         {/*<Paragraph paragraph={paragraphs} />*/}
-        <BackButton onPress={() => navigation.goBack()} />
+        <BackButton darkmode={darkmode} onPress={() => navigation.goBack()} />
       </ScrollView>
     </View>
   );

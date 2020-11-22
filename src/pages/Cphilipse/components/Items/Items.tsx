@@ -1,5 +1,5 @@
 import React, {useCallback, memo} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import {PanGestureHandler} from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/Entypo';
@@ -18,7 +18,6 @@ interface Props {
   onGestureEvent: any;
   style: any;
   gestureStyle: any;
-  scaleStyle: any;
   colorStyle: any;
   colorStyle2: any;
   colorStyle3: any;
@@ -33,7 +32,6 @@ const Items = ({
   onGestureEvent,
   style,
   gestureStyle,
-  scaleStyle,
   colorStyle,
   colorStyle2,
   colorStyle3,
@@ -56,14 +54,7 @@ const Items = ({
       </PanGestureHandler>
       <View style={styles.crucifix}>
         <Crucifix
-          {...{
-            scaleStyle,
-            colorStyle,
-            colorStyle2,
-            colorStyle3,
-            colorStyle4,
-            colorStyle5,
-          }}
+          {...{colorStyle, colorStyle2, colorStyle3, colorStyle4, colorStyle5}}
         />
       </View>
 

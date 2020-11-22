@@ -20,7 +20,7 @@ export const projects = [
     body: 'body',
     images: [images.hvgea],
     video: 'video',
-    categories: [Categories.BLOG],
+    categories: [Categories.BLOG, Categories.PROJECT],
   },
   {
     id: 1,

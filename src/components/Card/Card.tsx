@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Text, View} from 'react-native';
 import Animated, {
   useAnimatedGestureHandler,
@@ -13,10 +13,9 @@ import {colors, metrics} from '../../themes';
 
 interface Props {
   body: string;
-  onSwipe: () => void;
 }
 
-const Card = ({body, onSwipe}: Props) => {
+const Card = ({body}: Props) => {
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(0);
   const velocityX = useSharedValue(0);
@@ -34,7 +33,7 @@ const Card = ({body, onSwipe}: Props) => {
       velocityX.value = event.velocityX;
       velocityY.value = event.velocityY;
     },
-    onEnd: (event, ctx) => {
+    onEnd: () => {
       translateX.value = snapPoint(translateX.value, velocityX.value, [0]);
       translateY.value = snapPoint(translateY.value, velocityY.value, [0]);
     },
