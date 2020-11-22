@@ -2,6 +2,7 @@ import {StyleSheet} from 'react-native';
 import {colors, metrics} from '../../themes';
 
 const PROJECT_SIZE = metrics.screenWidth / 1.8;
+const CIRCLE_SIZE = metrics.scale(100);
 export default StyleSheet.create({
   container: {
     flex: 1,
@@ -22,6 +23,7 @@ export default StyleSheet.create({
     position: 'absolute',
     top: metrics.vertical.spacing.l,
     right: metrics.horizontal.pagePadding,
+    zIndex: 9,
   },
   lineOne: {
     width: metrics.scale(75),
@@ -35,9 +37,22 @@ export default StyleSheet.create({
     marginTop: metrics.scaleY(10),
     right: metrics.scaleY(20),
   },
+  closeIcon: {
+    backgroundColor: colors.lightPurple,
+  },
+  menuCircle: {
+    width: CIRCLE_SIZE,
+    height: CIRCLE_SIZE,
+    borderRadius: CIRCLE_SIZE / 2,
+    backgroundColor: colors.lightPurple,
+    position: 'absolute',
+    right: 0,
+  },
   cphilipse: {
     paddingHorizontal: metrics.horizontal.pagePadding,
     marginVertical: metrics.vertical.spacing.xl,
+    width: metrics.scale(600),
+    height: metrics.scale(300),
   },
   clemens: {
     ...metrics.fonts.bigAssTitle,

@@ -16,7 +16,7 @@ export const projects = [
   {
     id: 0,
     title: 'HvGeA',
-    subTitle: 'Huis van Gebed en Aanbidding.',
+    subTitle: 'Home of Prayer and Worship.',
     body: 'body',
     images: [images.hvgea],
     video: 'video',

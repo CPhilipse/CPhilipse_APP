@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, ScrollView, Image} from 'react-native';
 import styles from './home.style';
 import Pages from '../../enum/Pages';
@@ -7,8 +7,14 @@ import Button from '../../components/Button';
 import {bgcolor, color} from '../../utils/DarkmodeUtils';
 import Animated, {
   useAnimatedScrollHandler,
+  useAnimatedStyle,
   useSharedValue,
+  withRepeat,
+  withTiming,
 } from 'react-native-reanimated';
+import CustomIcon from '../../components/Icon';
+import Icons from '../../enum/Icons';
+import {colors} from '../../themes';
 
 interface Props {
   darkmode: boolean;
@@ -18,6 +24,26 @@ interface Props {
 const AnimatedScrollview = Animated.createAnimatedComponent(ScrollView);
 
 const Home = ({navigation, darkmode}: Props) => {
+  const [menuActive, setMenuActive] = useState(false);
+  const scale = useSharedValue(0);
+
+  const startMenuAnimation = () => {
+    'worklet';
+    scale.value = withTiming(8, {
+      duration: 1500,
+    });
+
+    setMenuActive(true);
+  };
+
+  const closeMenu = () => {
+    'worklet';
+    scale.value = withTiming(0, {
+      duration: 1500,
+    });
+
+    setMenuActive(false);
+  };
   // const translationX = useSharedValue(0);
   //
   // const onScroll = useAnimatedScrollHandler({
@@ -26,17 +52,31 @@ const Home = ({navigation, darkmode}: Props) => {
   //   },
   // });
 
-  const handleMenuAnimation = () => {};
+  const scaleStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{scale: scale.value}],
+    };
+  });
 
   // TODO: Onpress of menu, grow circle and rotate icon to close icon. Once done, fade all the other stuff in.
   return (
-    <Button
-      onPress={handleMenuAnimation}
-      style={[styles.container, bgcolor(darkmode)]}>
-      <View style={styles.menu}>
-        <View style={styles.lineOne} />
-        <View style={styles.lineTwo} />
-      </View>
+    <View style={styles.container}>
+      <Button
+        onPress={menuActive ? closeMenu : startMenuAnimation}
+        style={[styles.menu, bgcolor(darkmode)]}>
+        {menuActive ? (
+          <View style={styles.closeIcon}>
+            <CustomIcon name={Icons.CLOSE} color={colors.white} />
+          </View>
+        ) : (
+          <>
+            <View style={styles.lineOne} />
+            <View style={styles.lineTwo} />
+          </>
+        )}
+      </Button>
+      <Animated.View style={[styles.menuCircle, scaleStyle]} />
+
       <Button
         onPress={() => navigation.navigate(Pages.CPHILIPSE)}
         style={styles.cphilipse}>
@@ -80,9 +120,11 @@ const Home = ({navigation, darkmode}: Props) => {
                   {subTitle}
                 </Text>
                 <View style={styles.categoriesContainer}>
-                  {categories.map((category: string) => {
+                  {categories.map((category: string, index: number) => {
                     return (
-                      <Text style={[styles.projectCategories, color(darkmode)]}>
+                      <Text
+                        key={index}
+                        style={[styles.projectCategories, color(darkmode)]}>
                         {category}
                       </Text>
                     );
@@ -93,7 +135,7 @@ const Home = ({navigation, darkmode}: Props) => {
           },
         )}
       </AnimatedScrollview>
-    </Button>
+    </View>
   );
 };
 
