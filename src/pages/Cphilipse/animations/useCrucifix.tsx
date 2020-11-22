@@ -13,7 +13,7 @@ export const useCrucifix = () => {
     'worklet';
     color.value = withRepeat(
       withTiming(1, {
-        duration: 2000,
+        duration: 2500,
       }),
       -1,
       true,

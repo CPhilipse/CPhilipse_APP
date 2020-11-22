@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {View, Text, ScrollView, Image} from 'react-native';
+import React, {useCallback, useEffect, useState} from 'react';
+import {View, Text, ScrollView, Image, StyleSheet} from 'react-native';
 import styles from './home.style';
 import Pages from '../../enum/Pages';
 import {ProjectProps, projects} from '../../utils/DummyData';
@@ -16,6 +16,7 @@ import CustomIcon from '../../components/Icon';
 import Icons from '../../enum/Icons';
 import {colors} from '../../themes';
 import useMenu from './animations/useMenu';
+import {isAndroid} from '../../utils/PlatformUtils';
 
 interface Props {
   darkmode: boolean;
@@ -26,11 +27,28 @@ const AnimatedScrollview = Animated.createAnimatedComponent(ScrollView);
 
 const Home = ({navigation, darkmode}: Props) => {
   const [menuActive, setMenuActive] = useState(false);
-  const {startMenuAnimation, closeMenu, scaleStyle} = useMenu(setMenuActive);
+
+  const toggleMenu = useCallback(
+    (isActive: boolean) => {
+      setMenuActive(isActive);
+    },
+    [setMenuActive],
+  );
+
+  const {startMenuAnimation, closeMenu, scaleStyle} = useMenu(toggleMenu);
 
   // TODO: Rotate icon to close icon. Once done, fade all the other stuff in.
   return (
     <View style={styles.container}>
+      {menuActive && (
+        <View
+          style={{
+            ...StyleSheet.absoluteFillObject,
+            backgroundColor: colors.overlay,
+            zIndex: 1,
+          }}
+        />
+      )}
       <View style={styles.menuContainer}>
         <Button
           onPress={menuActive ? closeMenu : startMenuAnimation}

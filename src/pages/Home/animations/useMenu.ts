@@ -1,10 +1,11 @@
+import {SetStateAction} from 'react';
 import {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
 
-const useMenu = (setMenuActive: any) => {
+const useMenu = (setMenuActive: (isActive: boolean) => void) => {
   const scale = useSharedValue(0);
 
   const startMenuAnimation = () => {

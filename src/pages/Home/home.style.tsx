@@ -53,6 +53,7 @@ export default StyleSheet.create({
     backgroundColor: colors.lightPurple,
     position: 'absolute',
     right: 0,
+    zIndex: 2,
   },
   cphilipse: {
     paddingHorizontal: metrics.horizontal.pagePadding,

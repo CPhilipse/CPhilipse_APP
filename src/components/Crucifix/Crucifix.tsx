@@ -21,7 +21,7 @@ const Crucifix = ({
 }: Props) => {
   return (
     <View style={styles.container}>
-      <View style={[styles.topPiece]}>
+      <View style={styles.topPiece}>
         <Animated.View
           style={[
             {backgroundColor: 'white', ...StyleSheet.absoluteFillObject},
@@ -29,7 +29,7 @@ const Crucifix = ({
           ]}
         />
       </View>
-      <View style={[styles.leftPiece]}>
+      <View style={styles.leftPiece}>
         <Animated.View
           style={[
             {backgroundColor: 'white', ...StyleSheet.absoluteFillObject},
@@ -37,7 +37,7 @@ const Crucifix = ({
           ]}
         />
       </View>
-      <View style={[styles.bottomPiece]}>
+      <View style={styles.bottomPiece}>
         <Animated.View
           style={[
             {backgroundColor: 'white', ...StyleSheet.absoluteFillObject},
@@ -45,7 +45,7 @@ const Crucifix = ({
           ]}
         />
       </View>
-      <View style={[styles.rightPiece]}>
+      <View style={styles.rightPiece}>
         <Animated.View
           style={[
             {backgroundColor: 'white', ...StyleSheet.absoluteFillObject},
@@ -53,7 +53,7 @@ const Crucifix = ({
           ]}
         />
       </View>
-      <View style={[styles.centerSquare]}>
+      <View style={styles.centerSquare}>
         <Animated.View
           style={[
             {backgroundColor: 'white', ...StyleSheet.absoluteFillObject},
