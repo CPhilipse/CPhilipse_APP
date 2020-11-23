@@ -4,6 +4,7 @@ import styles from './projectdetails.style';
 import {bgcolor} from '../../utils/DarkmodeUtils';
 import BackButton from '../../components/BackButton';
 import {ProjectProps} from '../../utils/DummyData';
+import Menu from '../../components/Menu';
 
 interface Props {
   darkmode: boolean;
@@ -16,6 +17,7 @@ const ProjectDetails = ({darkmode, route, navigation}: Props) => {
 
   return (
     <View style={[styles.container, bgcolor(darkmode)]}>
+      <Menu darkmode={darkmode} goToPage={navigation.navigate} />
       <Text>{title}</Text>
       <BackButton darkmode={darkmode} onPress={() => navigation.goBack()} />
     </View>
