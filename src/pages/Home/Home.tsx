@@ -44,8 +44,11 @@ const Home = ({navigation, darkmode}: Props) => {
                   navigation.navigate(Pages.PROJECT_DETAILS, {
                     id,
                     title,
+                    subTitle,
                     body,
+                    images,
                     video,
+                    categories,
                   })
                 }
                 style={styles.projectContainer}>

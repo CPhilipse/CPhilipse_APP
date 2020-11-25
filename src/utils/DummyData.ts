@@ -15,7 +15,7 @@ export interface ProjectProps {
 export const projects = [
   {
     id: 0,
-    title: 'CPhilipse portfolio',
+    title: 'Portfolio App',
     subTitle: 'Welcome to my very own app!',
     body: 'This app is open source, so if interested in the code ....',
     images: [images.cphilipse],
@@ -33,7 +33,7 @@ export const projects = [
   },
   {
     id: 2,
-    title: 'MAD School Exam',
+    title: 'Exam',
     subTitle:
       'Mobile Application Development (MAD). Creating detailed incident reports.',
     body: 'body1',
@@ -43,7 +43,7 @@ export const projects = [
   },
   {
     id: 3,
-    title: 'Summer project',
+    title: 'Project',
     subTitle: 'Login and registration app with NodeJS backend.',
     body: 'body2',
     images: [images.hvgea],
