@@ -4,7 +4,7 @@ const CIRCLE_SIZE = metrics.scale(100);
 export default StyleSheet.create({
   menuContainer: {
     position: 'absolute',
-    top: metrics.vertical.spacing.l,
+    top: metrics.scale(120),
     right: metrics.horizontal.pagePadding,
     zIndex: 9,
   },
@@ -36,7 +36,7 @@ export default StyleSheet.create({
     backgroundColor: colors.lightPurple,
     position: 'absolute',
     right: metrics.scale(100),
-    top: metrics.scale(200),
+    top: metrics.scale(120),
     zIndex: 2,
   },
   menuItem: {

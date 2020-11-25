@@ -1,5 +1,5 @@
 import React, {useCallback, memo} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text} from 'react-native';
 import {PanGestureHandler} from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/Entypo';

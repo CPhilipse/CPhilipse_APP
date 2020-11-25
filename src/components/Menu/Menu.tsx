@@ -5,7 +5,7 @@ import {colors} from '../../themes';
 import Button from '../Button';
 import Pages from '../../enum/Pages';
 import styles from './menu.style';
-import {color} from '../../utils/DarkmodeUtils';
+import {bgcolor, color} from '../../utils/DarkmodeUtils';
 import CustomIcon from '../Icon';
 import Icons from '../../enum/Icons';
 import useMenu from './useMenu';
@@ -27,7 +27,7 @@ const Menu = ({darkmode, goToPage}: Props) => {
 
   const {
     methods: {startMenuAnimation, closeMenu},
-    styles: {scaleStyle, opacityStyle},
+    styles: {scaleStyle, opacityStyle, opacityIcon, opacityIcon2},
   } = useMenu(toggleMenu);
 
   return (
@@ -58,16 +58,24 @@ const Menu = ({darkmode, goToPage}: Props) => {
         <Button
           onPress={menuActive ? closeMenu : startMenuAnimation}
           style={styles.menu}>
-          {menuActive ? (
-            <View style={styles.closeIcon}>
-              <CustomIcon name={Icons.CLOSE} color={colors.white} />
-            </View>
-          ) : (
-            <>
-              <View style={styles.lineOne} />
-              <View style={styles.lineTwo} />
-            </>
-          )}
+          <View style={styles.lineOne}>
+            <Animated.View
+              style={[
+                {...StyleSheet.absoluteFillObject},
+                bgcolor(!darkmode),
+                opacityIcon,
+              ]}
+            />
+          </View>
+          <View style={styles.lineTwo}>
+            <Animated.View
+              style={[
+                {...StyleSheet.absoluteFillObject},
+                bgcolor(!darkmode),
+                opacityIcon2,
+              ]}
+            />
+          </View>
         </Button>
       </View>
       <Animated.View style={[styles.menuCircle, scaleStyle]} />

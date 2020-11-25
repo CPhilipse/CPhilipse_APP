@@ -26,11 +26,7 @@ const Home = ({navigation, darkmode}: Props) => {
         <Text style={[styles.clemens, color(darkmode)]}>Clemens</Text>
         <Text style={[styles.philipse, color(darkmode)]}>Philipse</Text>
       </Button>
-      <AnimatedScrollview
-        horizontal
-        scrollEventThrottle={1}
-        // onScroll={onScroll}
-      >
+      <AnimatedScrollview horizontal scrollEventThrottle={1}>
         {projects.map(
           ({
             id,

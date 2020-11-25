@@ -1,15 +1,14 @@
-import {SetStateAction} from 'react';
 import {
-  interpolate,
   useAnimatedStyle,
   useSharedValue,
-  withRepeat,
   withTiming,
 } from 'react-native-reanimated';
 
 const useMenu = (setMenuActive: (isActive: boolean) => void) => {
   const scale = useSharedValue(0);
   const opacityValue = useSharedValue(0);
+  const opacityIconValue = useSharedValue(0);
+  const opacityIconValue2 = useSharedValue(0);
 
   const startMenuAnimation = () => {
     'worklet';
@@ -22,6 +21,12 @@ const useMenu = (setMenuActive: (isActive: boolean) => void) => {
 
     // Overlay animation
     opacityValue.value = withTiming(0.8, {
+      duration: 1500,
+    });
+    opacityIconValue.value = withTiming(1, {
+      duration: 1500,
+    });
+    opacityIconValue2.value = withTiming(1, {
       duration: 1500,
     });
   };
@@ -42,6 +47,12 @@ const useMenu = (setMenuActive: (isActive: boolean) => void) => {
     opacityValue.value = withTiming(0, {
       duration: 1500,
     });
+    opacityIconValue.value = withTiming(0, {
+      duration: 1500,
+    });
+    opacityIconValue2.value = withTiming(0, {
+      duration: 1500,
+    });
   };
 
   const scaleStyle = useAnimatedStyle(() => {
@@ -56,6 +67,17 @@ const useMenu = (setMenuActive: (isActive: boolean) => void) => {
     };
   });
 
+  const opacityIcon = useAnimatedStyle(() => {
+    return {
+      opacity: opacityIconValue.value,
+    };
+  });
+  const opacityIcon2 = useAnimatedStyle(() => {
+    return {
+      opacity: opacityIconValue2.value,
+    };
+  });
+
   return {
     methods: {
       startMenuAnimation,
@@ -64,6 +86,8 @@ const useMenu = (setMenuActive: (isActive: boolean) => void) => {
     styles: {
       opacityStyle,
       scaleStyle,
+      opacityIcon,
+      opacityIcon2,
     },
   };
 };
