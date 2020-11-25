@@ -6,8 +6,6 @@ import Button from '../Button';
 import Pages from '../../enum/Pages';
 import styles from './menu.style';
 import {bgcolor, color} from '../../utils/DarkmodeUtils';
-import CustomIcon from '../Icon';
-import Icons from '../../enum/Icons';
 import useMenu from './useMenu';
 
 interface Props {
