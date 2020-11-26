@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {ScrollView, View, Text} from 'react-native';
 import styles from './cphilipse.style';
 import BackButton from '../../components/BackButton';
@@ -13,6 +13,8 @@ import Items from './components/Items';
 import Card from '../../components/Card';
 import {getLocalizedString} from '../../utils/LocalizedUtils';
 import Pages from '../../enum/Pages';
+import {sub, useDerivedValue, useSharedValue} from 'react-native-reanimated';
+import {useTiming} from 'react-native-redash';
 
 interface Props {
   navigation: any;
@@ -22,11 +24,13 @@ interface Props {
 const localizedCopy = (value: string) =>
   getLocalizedString(Pages.CPHILIPSE, value);
 
-/**
- * TODO: Test this page on multiple device simulators.
- * TODO: Create 'master' branch, change 'main' to 'master' branch. Delete 'main' branch.
- *  Merge all to 'dev' and the 'master' branch. Remove 'setup' branch.
- * */
+const cards = [
+  {index: 3, body: 'Fourth card'},
+  {index: 2, body: 'Third card'},
+  {index: 1, body: 'Second card'},
+  {index: 0, body: 'First card'},
+];
+const step = 1 / (cards.length - 1);
 const Cphilipse = ({navigation, darkmode}: Props) => {
   const {onGestureEvent, gestureStyle} = swipeBasketball();
   const {style, startBasketballAnimation} = useBounce();
@@ -44,6 +48,14 @@ const Cphilipse = ({navigation, darkmode}: Props) => {
     startAnimatingCrucifix();
   }, [startBasketballAnimation, startAnimatingCrucifix]);
 
+  const scrollY = useSharedValue(0);
+  const [currentIndex, setCurrentIndex] = useState(step);
+  const aIndex = useTiming(currentIndex);
+
+  const onSwipe = useCallback(() => {
+    setCurrentIndex((prev) => prev + step);
+  }, [setCurrentIndex]);
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -60,18 +72,19 @@ const Cphilipse = ({navigation, darkmode}: Props) => {
             colorStyle5,
           }}
         />
-        <View style={{bottom: 30}}>
-          <Text
-            style={{
-              color: 'white',
-              alignSelf: 'center',
-              ...metrics.fonts.subtitle,
-              paddingBottom: 20,
-            }}>
-            About me
-          </Text>
-          <Card body={paragraphs[5]} />
-        </View>
+        {cards.map(
+          ({index, body}) =>
+            currentIndex < index * step + step + step && (
+              <Card
+                key={index}
+                index={index}
+                aIndex={aIndex}
+                body={body}
+                step={step}
+                onSwipe={onSwipe}
+              />
+            ),
+        )}
         {/*<Paragraph paragraph={paragraphs} />*/}
         <BackButton darkmode={darkmode} onPress={() => navigation.goBack()} />
       </ScrollView>

@@ -22,6 +22,7 @@ export const useBounce = () => {
     });
   };
 
+  /** 'worklet' is not necessary here. Since it's already under the hood of the Reanimated hooks. */
   const style = useAnimatedStyle(() => {
     // https://easings.net/#easeInBounce
     const bouncingY = Easing.bounce(translateY.value);

@@ -7,6 +7,7 @@ import {useSharedValue} from 'react-native-reanimated';
 import {bgcolor} from '../../utils/DarkmodeUtils';
 import BackButton from '../../components/BackButton';
 import TitleHeader from '../../components/TitleHeader';
+import Slider from '../../components/Slider';
 
 interface Props {
   navigation: any;
@@ -26,6 +27,11 @@ const Settings = ({
   setLanguage,
   language,
 }: Props) => {
+  const gestureX = useSharedValue(0);
+  const velocityX = useSharedValue(0);
+
+  const lanGestureX = useSharedValue(0);
+  const lanVelocityX = useSharedValue(0);
   const darkmodeRight = () => {
     switchDarkmode(true);
   };
@@ -42,7 +48,36 @@ const Settings = ({
   return (
     <View style={[styles.container, bgcolor(darkmode)]}>
       <TitleHeader darkmode={darkmode} title={localizedCopy('title')} />
-      <View style={styles.settingsContainer} />
+      <View style={styles.settingsContainer}>
+        <View style={styles.row}>
+          <Slider
+            title={darkmode ? localizedCopy('dark') : localizedCopy('light')}
+            gestureX={gestureX}
+            velocityX={velocityX}
+            darkmode={darkmode}
+            rightCb={darkmodeRight}
+            leftCb={darkmodeLeft}
+          />
+        </View>
+        <View style={styles.row}>
+          <Slider
+            title={
+              language === languages.en
+                ? localizedCopy('english')
+                : localizedCopy('dutch')
+            }
+            darkmode={
+              (language === languages.nl && darkmode) ||
+              (!darkmode && language === languages.en) ||
+              darkmode
+            }
+            gestureX={lanGestureX}
+            velocityX={lanVelocityX}
+            rightCb={lanRight}
+            leftCb={lanLeft}
+          />
+        </View>
+      </View>
       <BackButton darkmode={darkmode} onPress={() => navigation.goBack()} />
     </View>
   );

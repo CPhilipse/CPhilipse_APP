@@ -11,9 +11,14 @@ import useMenu from './useMenu';
 interface Props {
   darkmode: boolean;
   goToPage: (page: string) => void;
+  backgroundColor?: string;
 }
 
-const Menu = ({darkmode, goToPage}: Props) => {
+const Menu = ({
+  darkmode,
+  goToPage,
+  backgroundColor = colors.lightPurple,
+}: Props) => {
   const [menuActive, setMenuActive] = useState(false);
 
   const toggleMenu = useCallback(
@@ -47,16 +52,14 @@ const Menu = ({darkmode, goToPage}: Props) => {
         <Button
           onPress={() => goToPage(Pages.CPHILIPSE)}
           style={styles.menuItem2}>
-          <Text style={[color(darkmode), styles.menuItemText]}>
-            The creator
-          </Text>
+          <Text style={[color(darkmode), styles.menuItemText]}>About</Text>
         </Button>
       </Animated.View>
       <View style={styles.menuContainer}>
         <Button
           onPress={menuActive ? closeMenu : startMenuAnimation}
           style={styles.menu}>
-          <View style={styles.lineOne}>
+          <View style={[styles.lineOne, {backgroundColor}]}>
             <Animated.View
               style={[
                 {...StyleSheet.absoluteFillObject},
@@ -65,7 +68,7 @@ const Menu = ({darkmode, goToPage}: Props) => {
               ]}
             />
           </View>
-          <View style={styles.lineTwo}>
+          <View style={[styles.lineTwo, {backgroundColor}]}>
             <Animated.View
               style={[
                 {...StyleSheet.absoluteFillObject},

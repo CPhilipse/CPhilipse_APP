@@ -17,12 +17,10 @@ export default StyleSheet.create({
   lineOne: {
     width: metrics.scale(75),
     height: metrics.scale(10),
-    backgroundColor: colors.lightPurple,
   },
   lineTwo: {
     width: metrics.scale(75),
     height: metrics.scale(10),
-    backgroundColor: colors.lightPurple,
     marginTop: metrics.scaleY(10),
     right: metrics.scaleY(20),
   },
