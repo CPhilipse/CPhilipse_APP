@@ -54,36 +54,34 @@ const Cphilipse = ({navigation, darkmode}: Props) => {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
-        <Header title={localizedCopy('name')} image={images.cphilipse} />
-        <Items
-          {...{
-            style,
-            gestureStyle,
-            onGestureEvent,
-            colorStyle,
-            colorStyle2,
-            colorStyle3,
-            colorStyle4,
-            colorStyle5,
-          }}
-        />
-        {cards.map(
-          ({index, body}) =>
-            currentIndex < index * step + step + step && (
-              <Card
-                key={index}
-                index={index}
-                aIndex={aIndex}
-                body={body}
-                step={step}
-                onSwipe={() => setCurrentIndex((prev) => prev + step)}
-              />
-            ),
-        )}
-        {/*<Paragraph paragraph={paragraphs} />*/}
-        <BackButton darkmode={darkmode} onPress={() => navigation.goBack()} />
-      </ScrollView>
+      <Header title={localizedCopy('name')} image={images.cphilipse} />
+      <Items
+        {...{
+          style,
+          gestureStyle,
+          onGestureEvent,
+          colorStyle,
+          colorStyle2,
+          colorStyle3,
+          colorStyle4,
+          colorStyle5,
+        }}
+      />
+      {cards.map(
+        ({index, body}) =>
+          currentIndex < index * step + step + step && (
+            <Card
+              key={index}
+              index={index}
+              aIndex={aIndex}
+              body={body}
+              step={step}
+              onSwipe={() => setCurrentIndex((prev) => prev + step)}
+            />
+          ),
+      )}
+      {/*<Paragraph paragraph={paragraphs} />*/}
+      <BackButton darkmode={darkmode} onPress={() => navigation.goBack()} />
     </View>
   );
 };

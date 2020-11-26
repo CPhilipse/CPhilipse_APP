@@ -5,6 +5,9 @@ import {HEADER_HEIGHT} from '../Header/header.style';
 export default StyleSheet.create({
   container: {
     alignItems: 'center',
+    position: 'absolute',
+    top: HEADER_HEIGHT * 1.5,
+    alignSelf: 'center',
   },
   card: {
     width: metrics.scale(600),
