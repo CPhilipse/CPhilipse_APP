@@ -52,10 +52,6 @@ const Cphilipse = ({navigation, darkmode}: Props) => {
   const [currentIndex, setCurrentIndex] = useState(step);
   const aIndex = useTiming(currentIndex);
 
-  const onSwipe = useCallback(() => {
-    setCurrentIndex((prev) => prev + step);
-  }, [setCurrentIndex]);
-
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -81,7 +77,7 @@ const Cphilipse = ({navigation, darkmode}: Props) => {
                 aIndex={aIndex}
                 body={body}
                 step={step}
-                onSwipe={onSwipe}
+                onSwipe={() => setCurrentIndex((prev) => prev + step)}
               />
             ),
         )}

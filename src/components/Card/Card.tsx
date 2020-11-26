@@ -20,8 +20,6 @@ interface Props {
   onSwipe: () => void;
 }
 
-const width = metrics.screenWidth * 0.75;
-const height = metrics.screenWidth * (425 / 294);
 // Snap out of the screen on the left, snap in the middle or out of screen to the right
 const snapPoints = [-metrics.screenWidth, 0, metrics.screenWidth];
 
@@ -29,7 +27,6 @@ const Card = ({body, index, aIndex, step, onSwipe}: Props) => {
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(0);
   const velocityX = useSharedValue(0);
-  const velocityY = useSharedValue(0);
 
   const position = useDerivedValue(() => index * step - aIndex.value);
 
@@ -67,7 +64,8 @@ const Card = ({body, index, aIndex, step, onSwipe}: Props) => {
           restSpeedThreshold: dest === 0 ? 0.01 : 100,
           restDisplacementThreshold: dest === 0 ? 0.01 : 100,
         },
-        () => dest !== 0 && onSwipe(),
+        () => dest !== 0 && {},
+        // () => dest !== 0 && onSwipe(), // TODO: Why does app crash? (this line)
       );
     },
   });
