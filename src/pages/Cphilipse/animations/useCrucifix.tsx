@@ -1,10 +1,12 @@
 import {
   interpolate,
   useAnimatedStyle,
+  useDerivedValue,
   useSharedValue,
   withRepeat,
   withTiming,
 } from 'react-native-reanimated';
+import {mix} from 'react-native-redash';
 
 export const useCrucifix = () => {
   const color = useSharedValue(0);
@@ -20,40 +22,25 @@ export const useCrucifix = () => {
     );
   };
 
-  /** TODO: Fix this code by following the DRY principle.
-   * For some reason, colorStyle cannot be used for multiple Animated.Views therefore this temp workaround.
-   * */
-  /** 'worklet' is not necessary here. Since it's already under the hood of the Reanimated hooks. */
-  const colorStyle = useAnimatedStyle(() => {
-    const opacity = interpolate(color.value, [0, 1], [0, 1]);
-    return {
-      opacity,
-    };
+  const colorStyleBase = useDerivedValue(() => {
+    /** mix - interpolate from 0 to 1 */
+    return mix(color.value, 0, 1);
   });
-  const colorStyle2 = useAnimatedStyle(() => {
-    const opacity = interpolate(color.value, [0, 1], [0, 1]);
-    return {
-      opacity,
-    };
-  });
-  const colorStyle3 = useAnimatedStyle(() => {
-    const opacity = interpolate(color.value, [0, 1], [0, 1]);
-    return {
-      opacity,
-    };
-  });
-  const colorStyle4 = useAnimatedStyle(() => {
-    const opacity = interpolate(color.value, [0, 1], [0, 1]);
-    return {
-      opacity,
-    };
-  });
-  const colorStyle5 = useAnimatedStyle(() => {
-    const opacity = interpolate(color.value, [0, 1], [0, 1]);
-    return {
-      opacity,
-    };
-  });
+  const colorStyle = useAnimatedStyle(() => ({
+    opacity: colorStyleBase.value,
+  }));
+  const colorStyle2 = useAnimatedStyle(() => ({
+    opacity: colorStyleBase.value,
+  }));
+  const colorStyle3 = useAnimatedStyle(() => ({
+    opacity: colorStyleBase.value,
+  }));
+  const colorStyle4 = useAnimatedStyle(() => ({
+    opacity: colorStyleBase.value,
+  }));
+  const colorStyle5 = useAnimatedStyle(() => ({
+    opacity: colorStyleBase.value,
+  }));
 
   return {
     startAnimatingCrucifix,
