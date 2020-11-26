@@ -5,28 +5,29 @@ export default StyleSheet.create({
   container: {
     flex: 1,
   },
-  backgroundImageContainer: {position: 'absolute', top: 0},
-  backgroundImageBlurred: {
-    width: metrics.screenWidth,
-    height: metrics.screenHeight / 1.4,
-  },
-  gradient: {
-    ...StyleSheet.absoluteFillObject,
+  header: {alignItems: 'center', marginTop: metrics.vertical.spacing.xl},
+  categories: {...metrics.fonts.smallItalic, color: colors.lightPurple},
+  title: {
+    ...metrics.fonts.subtitle,
+    paddingTop: metrics.scaleY(20),
+    color: colors.lightPurple,
   },
   cardContainer: {
     position: 'absolute',
     bottom: metrics.scale(250),
+    // height: metrics.scale(700),
+    // width: metrics.screenWidth,
   },
   card: {
     width: metrics.screenWidth / 1.3,
-    // width: metrics.screenWidth,
-    height: metrics.scale(700),
+    height: metrics.screenWidth / 2,
     backgroundColor: colors.palePurple,
     borderRadius: metrics.scale(75),
     paddingHorizontal: metrics.horizontal.pagePadding,
     paddingTop: metrics.vertical.spacing.m,
+    marginHorizontal: 32,
     // marginLeft: metrics.scale(80),
-    marginHorizontal: metrics.scale(40),
+    // marginHorizontal: metrics.scale(40),
   },
   cardTitle: {
     ...metrics.fonts.subtitle,
