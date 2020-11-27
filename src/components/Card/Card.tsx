@@ -11,8 +11,13 @@ import styles from './card.style';
 import {PanGestureHandler} from 'react-native-gesture-handler';
 import {mix, mixColor, snapPoint} from 'react-native-redash';
 import {colors, metrics} from '../../themes';
+import {color} from '../../utils/DarkmodeUtils';
+import Button from '../Button';
+import {openUrl} from '../../utils/LinkingUtils';
 
 interface Props {
+  darkmode: boolean;
+  title: string;
   body: string;
   step: number;
   index: number;
@@ -23,7 +28,7 @@ interface Props {
 // Snap out of the screen on the left, snap in the middle or out of screen to the right
 const snapPoints = [-metrics.screenWidth, 0, metrics.screenWidth];
 
-const Card = ({body, index, aIndex, step, onSwipe}: Props) => {
+const Card = ({darkmode, title, body, index, aIndex, step, onSwipe}: Props) => {
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(0);
   const velocityX = useSharedValue(0);
@@ -31,7 +36,7 @@ const Card = ({body, index, aIndex, step, onSwipe}: Props) => {
   const position = useDerivedValue(() => index * step - aIndex.value);
 
   const cardStyle = useAnimatedStyle(() => {
-    const scale = mix(position.value, 1, 0.7);
+    const scale = mix(position.value, 1, 0.9);
 
     return {
       transform: [
@@ -74,7 +79,18 @@ const Card = ({body, index, aIndex, step, onSwipe}: Props) => {
     <View style={styles.container}>
       <PanGestureHandler {...{onGestureEvent}}>
         <Animated.View style={[styles.card, cardStyle]}>
-          <Text style={styles.body}>{body}</Text>
+          {body?.[0] !== ':' ? (
+            <>
+              <Text style={[styles.title, color(!darkmode)]}>{title}</Text>
+              <Text style={[styles.body, color(!darkmode)]}>{body}</Text>
+            </>
+          ) : (
+            <Button
+              style={styles.bodyButton}
+              onPress={() => openUrl(body.substring(1))}>
+              <Text style={[styles.title, color(darkmode)]}>{title}</Text>
+            </Button>
+          )}
         </Animated.View>
       </PanGestureHandler>
     </View>

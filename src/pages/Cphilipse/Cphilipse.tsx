@@ -24,11 +24,33 @@ interface Props {
 const localizedCopy = (value: string) =>
   getLocalizedString(Pages.CPHILIPSE, value);
 
-const cards = [
-  {index: 3, body: 'Fourth card'},
-  {index: 2, body: 'Third card'},
-  {index: 1, body: 'Second card'},
-  {index: 0, body: 'First card'},
+interface cardProps {
+  index: number;
+  title: string;
+  body: string;
+}
+
+const cards: cardProps[] = [
+  {
+    index: 3,
+    title: localizedCopy('fourthCardTitle'),
+    body: localizedCopy('fourthCard'),
+  },
+  {
+    index: 2,
+    title: localizedCopy('thirdCardTitle'),
+    body: localizedCopy('thirdCard'),
+  },
+  {
+    index: 1,
+    title: localizedCopy('secondCardTitle'),
+    body: localizedCopy('secondCard'),
+  },
+  {
+    index: 0,
+    title: localizedCopy('firstCardTitle'),
+    body: localizedCopy('firstCard'),
+  },
 ];
 const step = 1 / (cards.length - 1);
 const Cphilipse = ({navigation, darkmode}: Props) => {
@@ -48,7 +70,6 @@ const Cphilipse = ({navigation, darkmode}: Props) => {
     startAnimatingCrucifix();
   }, [startBasketballAnimation, startAnimatingCrucifix]);
 
-  const scrollY = useSharedValue(0);
   const [currentIndex, setCurrentIndex] = useState(step);
   const aIndex = useTiming(currentIndex);
 
@@ -67,20 +88,24 @@ const Cphilipse = ({navigation, darkmode}: Props) => {
           colorStyle5,
         }}
       />
-      {cards.map(
-        ({index, body}) =>
-          currentIndex < index * step + step + step && (
+      {cards.map(({index, title, body}) => {
+        const showCard = currentIndex < index * step + step + step;
+        return (
+          showCard && (
             <Card
               key={index}
+              darkmode={darkmode}
               index={index}
               aIndex={aIndex}
+              title={title}
               body={body}
               step={step}
-              onSwipe={() => setCurrentIndex((prev) => prev + step)}
+              onSwipe={() => console.log('HIIAa')}
+              // onSwipe={() => setCurrentIndex((prev) => prev + step)}
             />
-          ),
-      )}
-      {/*<Paragraph paragraph={paragraphs} />*/}
+          )
+        );
+      })}
       <BackButton darkmode={darkmode} onPress={() => navigation.goBack()} />
     </View>
   );
