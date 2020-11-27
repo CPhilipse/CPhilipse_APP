@@ -4,7 +4,10 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 
-const useMenu = (setMenuActive: (isActive: boolean) => void) => {
+const useMenu = (
+  setOverlayActive: (isActive: boolean) => void,
+  setMenuActive: (isActive: boolean) => void,
+) => {
   const scale = useSharedValue(0);
   const opacityValue = useSharedValue(0);
   const opacityIconValue = useSharedValue(0);
@@ -18,6 +21,7 @@ const useMenu = (setMenuActive: (isActive: boolean) => void) => {
     });
 
     setMenuActive(true);
+    setOverlayActive(true);
 
     // Overlay animation
     opacityValue.value = withTiming(0.8, {
@@ -40,8 +44,9 @@ const useMenu = (setMenuActive: (isActive: boolean) => void) => {
 
     // TODO: Fix this hankey code. - cause of zIndex of overlay, once false overlay goes below container
     setTimeout(() => {
-      setMenuActive(false);
+      setOverlayActive(false);
     }, 1500);
+    setMenuActive(false);
 
     // Overlay animation
     opacityValue.value = withTiming(0, {

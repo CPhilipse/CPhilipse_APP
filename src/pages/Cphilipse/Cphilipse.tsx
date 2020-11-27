@@ -1,19 +1,16 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {ScrollView, View, Text} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View} from 'react-native';
 import styles from './cphilipse.style';
 import BackButton from '../../components/BackButton';
-import {images, metrics} from '../../themes';
+import {images} from '../../themes';
 import Header from '../../components/Header';
 import {useBounce} from './animations/useBounce';
 import {useCrucifix} from './animations/useCrucifix';
 import {swipeBasketball} from './animations/swipeBasketball';
-import Paragraph from '../../components/Paragraph';
-import {paragraphs} from '../../utils/DummyData';
 import Items from './components/Items';
 import Card from '../../components/Card';
 import {getLocalizedString} from '../../utils/LocalizedUtils';
 import Pages from '../../enum/Pages';
-import {sub, useDerivedValue, useSharedValue} from 'react-native-reanimated';
 import {useTiming} from 'react-native-redash';
 
 interface Props {

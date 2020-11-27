@@ -20,6 +20,7 @@ const Menu = ({
   backgroundColor = colors.lightPurple,
 }: Props) => {
   const [menuActive, setMenuActive] = useState(false);
+  const [overlayActive, setOverlayActive] = useState(false);
 
   const toggleMenu = useCallback(
     (isActive: boolean) => {
@@ -27,11 +28,17 @@ const Menu = ({
     },
     [setMenuActive],
   );
+  const toggleOverlay = useCallback(
+    (isActive: boolean) => {
+      setOverlayActive(isActive);
+    },
+    [setOverlayActive],
+  );
 
   const {
     methods: {startMenuAnimation, closeMenu},
     styles: {scaleStyle, opacityStyle, opacityIcon, opacityIcon2},
-  } = useMenu(toggleMenu);
+  } = useMenu(toggleOverlay, toggleMenu);
 
   return (
     <>
@@ -41,7 +48,7 @@ const Menu = ({
             ...StyleSheet.absoluteFillObject,
             backgroundColor: colors.black,
           },
-          menuActive && {zIndex: 1},
+          overlayActive && {zIndex: 1},
           opacityStyle,
         ]}>
         <Button
