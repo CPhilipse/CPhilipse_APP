@@ -7,6 +7,15 @@ export default StyleSheet.create({
   container: {
     flex: 1,
   },
+  strokeOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: colors.overlay,
+  },
+  stroke: {
+    top: metrics.screenHeight / 2,
+    position: 'absolute',
+    alignSelf: 'center',
+  },
   cardContainer: {
     alignItems: 'center',
   },

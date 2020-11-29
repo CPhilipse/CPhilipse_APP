@@ -66,7 +66,7 @@ const useSlider = ({
     const backgroundColor = interpolateColor(
       gestureX.value,
       [0, SLIDER_WIDTH - KNOB_SIZE],
-      [colors.white, colors.black],
+      [0xffffffff, 0x00000000],
     );
     return {
       backgroundColor,

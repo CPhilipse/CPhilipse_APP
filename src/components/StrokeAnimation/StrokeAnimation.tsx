@@ -50,10 +50,10 @@ const styles = StyleSheet.create({
 });
 
 interface Props {
-  start_shrinking: () => void;
+  fadeOutOverlay: () => void;
 }
 
-const StrokeAnimation = ({start_shrinking}: Props) => {
+const StrokeAnimation = ({fadeOutOverlay}: Props) => {
   const progress = useSharedValue(0);
   useEffect(() => {
     progress.value = withTiming(
@@ -62,9 +62,9 @@ const StrokeAnimation = ({start_shrinking}: Props) => {
         duration: 4000,
         easing: Easing.linear,
       },
-      (isFinished) => isFinished && start_shrinking(),
+      (isFinished) => isFinished && fadeOutOverlay(),
     );
-  }, [progress]);
+  }, [progress, fadeOutOverlay]);
 
   return (
     <View style={styles.layer}>
