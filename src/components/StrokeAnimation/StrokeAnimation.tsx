@@ -53,6 +53,7 @@ interface Props {
   fadeOutOverlay: () => void;
 }
 
+// TODO: Make notes from the tutorial in comments https://www.youtube.com/watch?v=oZHIwKJHrq0&t=610s
 const StrokeAnimation = ({fadeOutOverlay}: Props) => {
   const progress = useSharedValue(0);
   useEffect(() => {

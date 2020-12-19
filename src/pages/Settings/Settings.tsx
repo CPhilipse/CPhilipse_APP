@@ -3,11 +3,22 @@ import {View, Switch} from 'react-native';
 import styles from './settings.style';
 import {getLocalizedString, languages} from '../../utils/LocalizedUtils';
 import Pages from '../../enum/Pages';
-import {useSharedValue} from 'react-native-reanimated';
+import Animated, {
+  useAnimatedGestureHandler,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from 'react-native-reanimated';
 import {bgcolor} from '../../utils/DarkmodeUtils';
 import BackButton from '../../components/BackButton';
 import TitleHeader from '../../components/TitleHeader';
 import Slider from '../../components/Slider';
+import {
+  GestureHandlerGestureEvent,
+  PanGestureHandler,
+  PanGestureHandlerGestureEvent,
+} from 'react-native-gesture-handler';
+import {snapPoint} from 'react-native-redash';
 
 interface Props {
   navigation: any;
@@ -27,6 +38,9 @@ const Settings = ({
   setLanguage,
   language,
 }: Props) => {
+  const gestureY = useSharedValue(0);
+  const velocityY = useSharedValue(0);
+
   const gestureX = useSharedValue(0);
   const velocityX = useSharedValue(0);
 
@@ -45,39 +59,41 @@ const Settings = ({
     setLanguage(languages.nl);
   };
 
+  const translateY = useSharedValue(0);
+  const onGestureEvent = useAnimatedGestureHandler<
+    PanGestureHandlerGestureEvent,
+    {offsetY: number}
+  >({
+    onStart: (_, ctx) => {
+      ctx.offsetY = translateY.value;
+    },
+    onActive: ({translationY}, {offsetY}) => {
+      translateY.value = offsetY + translationY;
+    },
+    onEnd: (event) => {
+      // When swiping up or down it should spring back to 0.
+      translateY.value = withSpring(0, {
+        velocity: event.velocityY,
+      });
+    },
+  });
+
+  const sliderY = useAnimatedStyle(() => ({
+    transform: [{translateY: translateY.value}],
+  }));
+
   return (
     <View style={[styles.container, bgcolor(darkmode)]}>
       <TitleHeader darkmode={darkmode} title={localizedCopy('title')} />
-      <View style={styles.settingsContainer}>
-        <View style={styles.row}>
-          <Slider
-            title={darkmode ? localizedCopy('dark') : localizedCopy('light')}
-            gestureX={gestureX}
-            velocityX={velocityX}
-            darkmode={darkmode}
-            rightCb={darkmodeRight}
-            leftCb={darkmodeLeft}
-          />
-        </View>
-        <View style={styles.row}>
-          <Slider
-            title={
-              language === languages.en
-                ? localizedCopy('english')
-                : localizedCopy('dutch')
-            }
-            darkmode={
-              (language === languages.nl && darkmode) ||
-              (!darkmode && language === languages.en) ||
-              darkmode
-            }
-            gestureX={lanGestureX}
-            velocityX={lanVelocityX}
-            rightCb={lanRight}
-            leftCb={lanLeft}
-          />
+
+      <View style={styles.sliderContainer}>
+        <View style={styles.sliderField}>
+          <PanGestureHandler onGestureEvent={onGestureEvent}>
+            <Animated.View style={[styles.sliderCircle, sliderY]} />
+          </PanGestureHandler>
         </View>
       </View>
+
       <BackButton darkmode={darkmode} onPress={() => navigation.goBack()} />
     </View>
   );

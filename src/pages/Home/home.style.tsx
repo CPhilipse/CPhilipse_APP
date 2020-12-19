@@ -2,14 +2,13 @@ import {StyleSheet} from 'react-native';
 import {colors, metrics} from '../../themes';
 
 const PROJECT_SIZE = metrics.screenWidth / 1.8;
-const CIRCLE_SIZE = metrics.scale(100);
 export default StyleSheet.create({
   container: {
     flex: 1,
   },
   strokeOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: colors.overlay,
+    backgroundColor: colors.black,
   },
   stroke: {
     top: metrics.screenHeight / 2,

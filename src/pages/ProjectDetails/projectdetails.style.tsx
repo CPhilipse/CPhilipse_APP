@@ -1,6 +1,11 @@
 import {StyleSheet} from 'react-native';
 import {colors, metrics} from '../../themes';
 
+const WIDTH = metrics.screenWidth;
+const PADDING = 0.74;
+export const CARD_HEIGHT = (WIDTH * PADDING) / 2;
+export const CARD_WIDTH = WIDTH * PADDING;
+export const OFFSET_CARD = metrics.screenWidth / 2 - CARD_WIDTH / 2;
 export default StyleSheet.create({
   container: {
     flex: 1,
@@ -12,27 +17,23 @@ export default StyleSheet.create({
     paddingTop: metrics.scaleY(20),
     color: colors.lightPurple,
   },
-  cardContainer: {
+  cardRow: {
     position: 'absolute',
-    bottom: metrics.scale(250),
-    // height: metrics.scale(700),
-    // width: metrics.screenWidth,
+    bottom: metrics.vertical.spacing.xl,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    transform: [{translateX: OFFSET_CARD}],
   },
-  card: {
-    width: metrics.screenWidth / 1.3,
-    height: metrics.screenWidth / 2,
-    backgroundColor: colors.palePurple,
-    borderRadius: metrics.scale(75),
-    paddingHorizontal: metrics.horizontal.pagePadding,
-    paddingTop: metrics.vertical.spacing.m,
-    marginHorizontal: 32,
-    // marginLeft: metrics.scale(80),
-    // marginHorizontal: metrics.scale(40),
+  cards: {
+    width: metrics.screenWidth,
   },
-  cardTitle: {
-    ...metrics.fonts.subtitle,
+  cardContainer: {
+    backgroundColor: colors.lightPurple,
+    alignItems: 'center',
+    width: CARD_WIDTH,
+    height: CARD_HEIGHT,
   },
   cardBody: {
-    ...metrics.fonts.regular,
+    padding: metrics.horizontal.pagePadding,
   },
 });
