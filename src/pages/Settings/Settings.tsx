@@ -1,11 +1,12 @@
 import React from 'react';
 import {View, Switch} from 'react-native';
-import styles from './settings.style';
+import styles, {SLIDER_SIZE} from './settings.style';
 import {getLocalizedString, languages} from '../../utils/LocalizedUtils';
 import Pages from '../../enum/Pages';
 import Animated, {
   useAnimatedGestureHandler,
   useAnimatedStyle,
+  useDerivedValue,
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
@@ -18,7 +19,7 @@ import {
   PanGestureHandler,
   PanGestureHandlerGestureEvent,
 } from 'react-native-gesture-handler';
-import {snapPoint} from 'react-native-redash';
+import {clamp, mix, snapPoint} from 'react-native-redash';
 
 interface Props {
   navigation: any;
@@ -71,25 +72,34 @@ const Settings = ({
       translateY.value = offsetY + translationY;
     },
     onEnd: (event) => {
-      // When swiping up or down it should spring back to 0.
-      translateY.value = withSpring(0, {
-        velocity: event.velocityY,
-      });
+      translateY.value = snapPoint(translateY.value, event.velocityY, [
+        0,
+        SLIDER_SIZE,
+      ]);
     },
   });
 
+  const clampY = useDerivedValue(() => {
+    return clamp(translateY.value, 0, SLIDER_SIZE);
+  });
   const sliderY = useAnimatedStyle(() => ({
-    transform: [{translateY: translateY.value}],
+    transform: [{translateY: clampY.value}],
+  }));
+  const sliderYcable = useAnimatedStyle(() => ({
+    transform: [{translateY: clampY.value}],
   }));
 
   return (
     <View style={[styles.container, bgcolor(darkmode)]}>
       <TitleHeader darkmode={darkmode} title={localizedCopy('title')} />
 
+      <Animated.View style={[styles.cable, sliderYcable]} />
       <View style={styles.sliderContainer}>
         <View style={styles.sliderField}>
           <PanGestureHandler onGestureEvent={onGestureEvent}>
-            <Animated.View style={[styles.sliderCircle, sliderY]} />
+            <Animated.View style={[styles.sliderCircle, sliderY]}>
+              <View style={styles.innerCircle} />
+            </Animated.View>
           </PanGestureHandler>
         </View>
       </View>

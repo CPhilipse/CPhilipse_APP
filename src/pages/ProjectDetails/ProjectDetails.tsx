@@ -7,6 +7,10 @@ import {ProjectProps} from '../../utils/DummyData';
 import {metrics} from '../../themes';
 import Card from './components/Card';
 import Header from './components/Header';
+import Animated, {
+  useSharedValue,
+  useAnimatedScrollHandler,
+} from 'react-native-reanimated';
 
 interface Props {
   darkmode: boolean;
@@ -25,6 +29,13 @@ interface Props {
 const ProjectDetails = ({darkmode, route, navigation}: Props) => {
   const {title, body, categories} = route.params;
 
+  const translateX = useSharedValue(0);
+  const onScroll = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      translateX.value = event.contentOffset.x;
+    },
+  });
+
   return (
     <View style={[styles.container, bgcolor(darkmode)]}>
       <Header
@@ -34,16 +45,18 @@ const ProjectDetails = ({darkmode, route, navigation}: Props) => {
         navigation={navigation}
       />
       <View style={styles.cardRow}>
-        <ScrollView
+        <Animated.ScrollView
+          onScroll={onScroll}
           snapToInterval={metrics.screenWidth / 2}
+          // snapToInterval={metrics.screenWidth}
           showsHorizontalScrollIndicator={false}
           horizontal>
-          {[1, 2, 3, 4, 5].map(() => (
-            <View style={styles.cards}>
-              <Card title={title} body={body} />
+          {[1, 2, 3, 4, 5].map((_, index) => (
+            <View style={styles.cards} key={index}>
+              <Card title={title} body={body} x={translateX} index={index} />
             </View>
           ))}
-        </ScrollView>
+        </Animated.ScrollView>
       </View>
       <BackButton darkmode={darkmode} onPress={() => navigation.goBack()} />
     </View>

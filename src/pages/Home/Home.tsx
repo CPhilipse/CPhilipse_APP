@@ -37,7 +37,7 @@ const Home = ({navigation, darkmode}: Props) => {
     opacityValue.value = withTiming(
       0,
       {
-        duration: 1000,
+        duration: 500,
         easing: Easing.linear,
       },
       () => !openingScreenFinished && runOnJS(closeOpeningScreen)(),
