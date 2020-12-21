@@ -1,14 +1,18 @@
 import React from 'react';
 import {View, Switch} from 'react-native';
-import styles, {SLIDER_SIZE} from './settings.style';
+import styles, {CIRCLE_SIZE, SLIDER_SIZE} from './settings.style';
 import {getLocalizedString, languages} from '../../utils/LocalizedUtils';
 import Pages from '../../enum/Pages';
 import Animated, {
+  Easing,
+  interpolateColor,
+  runOnJS,
   useAnimatedGestureHandler,
   useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
   withSpring,
+  withTiming,
 } from 'react-native-reanimated';
 import {bgcolor} from '../../utils/DarkmodeUtils';
 import BackButton from '../../components/BackButton';
@@ -20,6 +24,8 @@ import {
   PanGestureHandlerGestureEvent,
 } from 'react-native-gesture-handler';
 import {clamp, mix, snapPoint} from 'react-native-redash';
+import {SLIDER_HEIGHT} from '../../components/Slider/slider.style';
+import {colors} from '../../themes';
 
 interface Props {
   navigation: any;
@@ -32,6 +38,7 @@ interface Props {
 const localizedCopy = (value: string) =>
   getLocalizedString(Pages.SETTINGS, value);
 
+// TODO: Abstract statusbar so it can be added to any page. Black statusbar looks nicer sometimes
 const Settings = ({
   navigation,
   darkmode,
@@ -39,28 +46,21 @@ const Settings = ({
   setLanguage,
   language,
 }: Props) => {
-  const gestureY = useSharedValue(0);
-  const velocityY = useSharedValue(0);
-
-  const gestureX = useSharedValue(0);
-  const velocityX = useSharedValue(0);
-
-  const lanGestureX = useSharedValue(0);
-  const lanVelocityX = useSharedValue(0);
-  const darkmodeRight = () => {
+  const turnLightOff = () => {
     switchDarkmode(true);
   };
-  const darkmodeLeft = () => {
+  const turnLightOn = () => {
     switchDarkmode(false);
   };
-  const lanRight = () => {
+  const enableEnglish = () => {
     setLanguage(languages.en);
   };
-  const lanLeft = () => {
+  const enableDutch = () => {
     setLanguage(languages.nl);
   };
 
-  const translateY = useSharedValue(0);
+  const translateY = useSharedValue(darkmode ? 0 : SLIDER_HEIGHT - CIRCLE_SIZE);
+  const bgTime = useSharedValue(darkmode ? 0 : 1);
   const onGestureEvent = useAnimatedGestureHandler<
     PanGestureHandlerGestureEvent,
     {offsetY: number}
@@ -76,6 +76,13 @@ const Settings = ({
         0,
         SLIDER_SIZE,
       ]);
+      if (translateY.value < SLIDER_SIZE / 2) {
+        runOnJS(turnLightOff)();
+        bgTime.value = withTiming(0);
+      } else {
+        runOnJS(turnLightOn)();
+        bgTime.value = withTiming(1);
+      }
     },
   });
 
@@ -89,23 +96,33 @@ const Settings = ({
     transform: [{translateY: clampY.value}],
   }));
 
+  // @ts-ignore
+  const bgStyle = useAnimatedStyle(() => {
+    const backgroundColor = interpolateColor(
+      bgTime.value,
+      [0, 1],
+      [colors.black, colors.white],
+    );
+    return {backgroundColor};
+  });
   return (
-    <View style={[styles.container, bgcolor(darkmode)]}>
+    <Animated.View style={[styles.container, bgStyle]}>
       <TitleHeader darkmode={darkmode} title={localizedCopy('title')} />
+      <View style={styles.statusbar} />
 
       <Animated.View style={[styles.cable, sliderYcable]} />
       <View style={styles.sliderContainer}>
-        <View style={styles.sliderField}>
+        <View style={[styles.sliderField]}>
           <PanGestureHandler onGestureEvent={onGestureEvent}>
             <Animated.View style={[styles.sliderCircle, sliderY]}>
-              <View style={styles.innerCircle} />
+              <View style={[styles.innerCircle]} />
             </Animated.View>
           </PanGestureHandler>
         </View>
       </View>
 
       <BackButton darkmode={darkmode} onPress={() => navigation.goBack()} />
-    </View>
+    </Animated.View>
   );
 };
 

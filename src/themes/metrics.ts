@@ -1,5 +1,5 @@
 import {Dimensions} from 'react-native';
-import {isiOS, isiPhoneX} from '../utils/PlatformUtils';
+import {isAndroid, isiOS, isiPhoneX} from '../utils/PlatformUtils';
 
 const {height, width} = Dimensions.get('window');
 
@@ -42,6 +42,9 @@ const getVerticalValue = (number: number) => number * VERTICAL_STEP;
 export const getStatusBarHeight = () => {
   if (isiOS) {
     return isiPhoneX ? 44 : 20;
+  }
+  if (isAndroid) {
+    return 22;
   }
   return 0;
 };
