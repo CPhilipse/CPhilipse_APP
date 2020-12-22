@@ -30,9 +30,9 @@ export default StyleSheet.create({
   cable: {
     position: 'absolute',
     top: -50,
-    right: metrics.scale(135),
-    height: metrics.scaleY(855),
-    width: metrics.scale(30),
+    right: metrics.scale(140),
+    height: metrics.scaleY(858),
+    width: metrics.scale(15),
     borderRadius: metrics.scale(30),
     zIndex: 1,
     backgroundColor: colors.palePurple,
@@ -59,6 +59,6 @@ export default StyleSheet.create({
     height: CIRCLE_SIZE / 1.5,
     borderRadius: CIRCLE_SIZE / 1.5 / 2,
     zIndex: 3,
-    backgroundColor: colors.grey,
+    backgroundColor: colors.palePurple,
   },
 });

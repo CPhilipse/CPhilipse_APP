@@ -54,12 +54,12 @@ const Menu = ({
         <Button
           onPress={() => goToPage(Pages.SETTINGS)}
           style={styles.menuItem}>
-          <Text style={[color(darkmode), styles.menuItemText]}>Settings</Text>
+          <Text style={styles.menuItemText}>Settings</Text>
         </Button>
         <Button
           onPress={() => goToPage(Pages.CPHILIPSE)}
           style={styles.menuItem2}>
-          <Text style={[color(darkmode), styles.menuItemText]}>About</Text>
+          <Text style={styles.menuItemText}>About</Text>
         </Button>
       </Animated.View>
       <View style={styles.menuContainer}>

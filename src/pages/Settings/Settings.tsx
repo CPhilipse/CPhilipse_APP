@@ -59,7 +59,7 @@ const Settings = ({
     setLanguage(languages.nl);
   };
 
-  const translateY = useSharedValue(darkmode ? 0 : SLIDER_HEIGHT - CIRCLE_SIZE);
+  const translateY = useSharedValue(0);
   const bgTime = useSharedValue(darkmode ? 0 : 1);
   const onGestureEvent = useAnimatedGestureHandler<
     PanGestureHandlerGestureEvent,
@@ -72,11 +72,9 @@ const Settings = ({
       translateY.value = offsetY + translationY;
     },
     onEnd: (event) => {
-      translateY.value = snapPoint(translateY.value, event.velocityY, [
-        0,
-        SLIDER_SIZE,
-      ]);
-      if (translateY.value < SLIDER_SIZE / 2) {
+      const dest = snapPoint(translateY.value, event.velocityY, [0]);
+      translateY.value = withSpring(dest);
+      if (translateY.value > SLIDER_SIZE / 2 && !darkmode) {
         runOnJS(turnLightOff)();
         bgTime.value = withTiming(0);
       } else {
@@ -87,7 +85,7 @@ const Settings = ({
   });
 
   const clampY = useDerivedValue(() => {
-    return clamp(translateY.value, 0, SLIDER_SIZE);
+    return clamp(translateY.value, -SLIDER_SIZE, SLIDER_SIZE);
   });
   const sliderY = useAnimatedStyle(() => ({
     transform: [{translateY: clampY.value}],
