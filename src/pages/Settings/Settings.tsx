@@ -26,6 +26,7 @@ import {
 import {clamp, mix, snapPoint} from 'react-native-redash';
 import {SLIDER_HEIGHT} from '../../components/Slider/slider.style';
 import {colors} from '../../themes';
+import {usePullSwitch} from './animations/usePullSwitch';
 
 interface Props {
   navigation: any;
@@ -46,6 +47,7 @@ const Settings = ({
   setLanguage,
   language,
 }: Props) => {
+  const translateY = useSharedValue(0);
   const turnLightOff = () => {
     switchDarkmode(true);
   };
@@ -59,50 +61,12 @@ const Settings = ({
     setLanguage(languages.nl);
   };
 
-  const translateY = useSharedValue(0);
-  const bgTime = useSharedValue(darkmode ? 0 : 1);
-  const onGestureEvent = useAnimatedGestureHandler<
-    PanGestureHandlerGestureEvent,
-    {offsetY: number}
-  >({
-    onStart: (_, ctx) => {
-      ctx.offsetY = translateY.value;
-    },
-    onActive: ({translationY}, {offsetY}) => {
-      translateY.value = offsetY + translationY;
-    },
-    onEnd: (event) => {
-      const dest = snapPoint(translateY.value, event.velocityY, [0]);
-      translateY.value = withSpring(dest);
-      if (translateY.value > SLIDER_SIZE / 2 && !darkmode) {
-        runOnJS(turnLightOff)();
-        bgTime.value = withTiming(0);
-      } else {
-        runOnJS(turnLightOn)();
-        bgTime.value = withTiming(1);
-      }
-    },
-  });
+  const {
+    styles: {bgStyle},
+    values: {sliderYcable, sliderY},
+    event: {onGestureEvent},
+  } = usePullSwitch({darkmode, turnLightOff, turnLightOn, translateY});
 
-  const clampY = useDerivedValue(() => {
-    return clamp(translateY.value, -SLIDER_SIZE, SLIDER_SIZE);
-  });
-  const sliderY = useAnimatedStyle(() => ({
-    transform: [{translateY: clampY.value}],
-  }));
-  const sliderYcable = useAnimatedStyle(() => ({
-    transform: [{translateY: clampY.value}],
-  }));
-
-  // @ts-ignore
-  const bgStyle = useAnimatedStyle(() => {
-    const backgroundColor = interpolateColor(
-      bgTime.value,
-      [0, 1],
-      [colors.black, colors.white],
-    );
-    return {backgroundColor};
-  });
   return (
     <Animated.View style={[styles.container, bgStyle]}>
       <TitleHeader darkmode={darkmode} title={localizedCopy('title')} />
