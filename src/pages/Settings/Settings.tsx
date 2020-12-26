@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text} from 'react-native';
 import styles, {LAN_CIRCLE_SIZE} from './settings.style';
 import {getLocalizedString, languages} from '../../utils/LocalizedUtils';

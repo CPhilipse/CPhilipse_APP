@@ -1,7 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {colors, metrics} from '../../themes';
 
-// const SIZE = metrics.scale(15); // with scaling
 const SIZE = metrics.scale(25);
 export const styles = StyleSheet.create({
   container: {
@@ -27,8 +26,7 @@ export const styles = StyleSheet.create({
     borderBottomRightRadius: 5,
     position: 'absolute',
     top: SIZE,
-    // right: metrics.scale(522), // with scaling
-    right: metrics.scale(510),
+    left: metrics.scale(60),
   },
   leftPiece: {
     width: SIZE,
@@ -40,8 +38,7 @@ export const styles = StyleSheet.create({
     borderBottomLeftRadius: 5,
     position: 'absolute',
     top: SIZE,
-    // left: metrics.scale(522), // with scaling
-    left: metrics.scale(510),
+    right: metrics.scale(60),
   },
   bottomPiece: {
     width: SIZE / 2,
@@ -52,7 +49,6 @@ export const styles = StyleSheet.create({
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
     position: 'absolute',
-    // top: metrics.scale(22), // with scaling
     top: metrics.scale(37),
     zIndex: 1,
   },

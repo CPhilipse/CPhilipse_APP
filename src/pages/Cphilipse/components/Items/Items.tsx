@@ -1,6 +1,5 @@
 import React, {useCallback, memo} from 'react';
 import {View, Text} from 'react-native';
-import {PanGestureHandler} from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/Entypo';
 import Basketball from '../../../../components/Basketball';
@@ -15,23 +14,17 @@ import Pages from '../../../../enum/Pages';
 import {openUrl} from '../../../../utils/LinkingUtils';
 
 interface Props {
-  onGestureEvent: any;
-  style: any;
-  gestureStyle: any;
-  colorStyle: any;
-  colorStyle2: any;
-  colorStyle3: any;
-  colorStyle4: any;
-  colorStyle5: any;
+  colorStyle: Animated.AnimatedStyleProp<object>;
+  colorStyle2: Animated.AnimatedStyleProp<object>;
+  colorStyle3: Animated.AnimatedStyleProp<object>;
+  colorStyle4: Animated.AnimatedStyleProp<object>;
+  colorStyle5: Animated.AnimatedStyleProp<object>;
 }
 
 const localizedCopy = (value: string) =>
   getLocalizedString(Pages.CPHILIPSE, value);
 
 const Items = ({
-  onGestureEvent,
-  style,
-  gestureStyle,
   colorStyle,
   colorStyle2,
   colorStyle3,
@@ -47,33 +40,41 @@ const Items = ({
 
   return (
     <View style={styles.characterColumn}>
-      <PanGestureHandler {...{onGestureEvent}}>
-        <Animated.View style={[style, gestureStyle, styles.basketball]}>
+      <View style={styles.row}>
+        <View style={styles.basketball}>
           <Basketball />
-        </Animated.View>
-      </PanGestureHandler>
-      <View style={styles.crucifix}>
-        <Crucifix
-          {...{colorStyle, colorStyle2, colorStyle3, colorStyle4, colorStyle5}}
-        />
+        </View>
+        <View style={styles.crucifix}>
+          <Crucifix
+            {...{
+              colorStyle,
+              colorStyle2,
+              colorStyle3,
+              colorStyle4,
+              colorStyle5,
+            }}
+          />
+        </View>
+        <Button onPress={openLinkedin} style={styles.button}>
+          <Text style={styles.buttonText}>{localizedCopy('linkedin')}</Text>
+        </Button>
       </View>
 
-      <View style={styles.gameController}>
-        <Icon
-          name={Icons.GAME_CONTROLLER}
-          size={ICON_SIZE}
-          color={colors.red}
-        />
+      <View style={styles.row}>
+        <View style={styles.gameController}>
+          <Icon
+            name={Icons.GAME_CONTROLLER}
+            size={ICON_SIZE}
+            color={colors.red}
+          />
+        </View>
+        <View style={styles.nineteenContainer}>
+          <Text style={styles.nineteen}>{localizedCopy('age')}</Text>
+        </View>
+        <Button onPress={openGithub} style={styles.button}>
+          <Text style={styles.buttonText}>{localizedCopy('github')}</Text>
+        </Button>
       </View>
-      <View style={styles.nineteenContainer}>
-        <Text style={styles.nineteen}>{localizedCopy('age')}</Text>
-      </View>
-      <Button onPress={openLinkedin} style={styles.button}>
-        <Text style={styles.buttonText}>{localizedCopy('linkedin')}</Text>
-      </Button>
-      <Button onPress={openGithub} style={styles.button}>
-        <Text style={styles.buttonText}>{localizedCopy('github')}</Text>
-      </Button>
     </View>
   );
 };

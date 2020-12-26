@@ -4,11 +4,11 @@ import {styles} from './crucifix.style';
 import {StyleSheet, View} from 'react-native';
 
 interface Props {
-  colorStyle: Animated.AnimateStyle<any>;
-  colorStyle2: Animated.AnimateStyle<any>;
-  colorStyle3: Animated.AnimateStyle<any>;
-  colorStyle4: Animated.AnimateStyle<any>;
-  colorStyle5: Animated.AnimateStyle<any>;
+  colorStyle: Animated.AnimateStyle<object>;
+  colorStyle2: Animated.AnimateStyle<object>;
+  colorStyle3: Animated.AnimateStyle<object>;
+  colorStyle4: Animated.AnimateStyle<object>;
+  colorStyle5: Animated.AnimateStyle<object>;
   borderColor?: string;
 }
 

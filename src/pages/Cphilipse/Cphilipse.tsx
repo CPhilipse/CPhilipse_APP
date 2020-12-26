@@ -4,9 +4,7 @@ import styles from './cphilipse.style';
 import BackButton from '../../components/BackButton';
 import {images} from '../../themes';
 import Header from '../../components/Header';
-import {useBounce} from './animations/useBounce';
 import {useCrucifix} from './animations/useCrucifix';
-import {swipeBasketball} from './animations/swipeBasketball';
 import Items from './components/Items';
 import Card from '../../components/Card';
 import {getLocalizedString} from '../../utils/LocalizedUtils';
@@ -51,8 +49,6 @@ const cards: cardProps[] = [
 ];
 const step = 1 / (cards.length - 1);
 const Cphilipse = ({navigation, darkmode}: Props) => {
-  const {onGestureEvent, gestureStyle} = swipeBasketball();
-  const {style, startBasketballAnimation} = useBounce();
   const {
     colorStyle,
     colorStyle2,
@@ -63,9 +59,8 @@ const Cphilipse = ({navigation, darkmode}: Props) => {
   } = useCrucifix();
 
   useEffect(() => {
-    startBasketballAnimation();
     startAnimatingCrucifix();
-  }, [startBasketballAnimation, startAnimatingCrucifix]);
+  }, [startAnimatingCrucifix]);
 
   const [currentIndex, setCurrentIndex] = useState(step);
   const aIndex = useTiming(currentIndex);
@@ -75,9 +70,6 @@ const Cphilipse = ({navigation, darkmode}: Props) => {
       <Header title={localizedCopy('name')} image={images.cphilipse} />
       <Items
         {...{
-          style,
-          gestureStyle,
-          onGestureEvent,
           colorStyle,
           colorStyle2,
           colorStyle3,

@@ -5,18 +5,24 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 
+/**
+ * TODO (I): Needs another look, the values aren't right.
+ * What could be a nice idea though is that the user can swipe the ball and
+ * the ball bounces on the 'floor'.
+ * (I): idea
+ * */
 export const useBounce = () => {
-  const translateX = useSharedValue(0);
-  const translateY = useSharedValue(0);
+  const translateX = useSharedValue(50);
+  const translateY = useSharedValue(4);
 
   const startBasketballAnimation = () => {
     'worklet';
-    translateX.value = withTiming(70, {
+    translateX.value = withTiming(0, {
       duration: 3000,
       easing: Easing.linear,
     });
 
-    translateY.value = withTiming(4, {
+    translateY.value = withTiming(0, {
       duration: 3000,
       easing: Easing.bounce,
     });
