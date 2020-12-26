@@ -5,8 +5,9 @@ export default {
     title: 'Settings',
     dark: 'DARK',
     light: 'LIGHT',
-    english: 'ENGLISH',
-    dutch: 'DUTCH',
+    english: 'EN',
+    dutch: 'NL',
+    lan: 'Language',
   },
   [Pages.CPHILIPSE]: {
     age: '19',
