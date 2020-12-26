@@ -16,7 +16,7 @@ export default StyleSheet.create({
     zIndex: 2,
   },
   languageContainer: {
-    marginTop: metrics.scaleY(600),
+    top: metrics.scaleY(530),
     marginHorizontal: metrics.horizontal.pagePadding,
   },
   circle: {

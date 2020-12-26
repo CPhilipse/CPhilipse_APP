@@ -12,7 +12,7 @@ export default StyleSheet.create({
   },
   cable: {
     position: 'absolute',
-    top: -50,
+    top: -50, // top out of screen
     right: metrics.scale(140),
     height: metrics.scaleY(858),
     width: metrics.scale(15),
@@ -35,13 +35,6 @@ export default StyleSheet.create({
     zIndex: 2,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.palePurple,
-  },
-  innerCircle: {
-    width: CIRCLE_SIZE / 1.5,
-    height: CIRCLE_SIZE / 1.5,
-    borderRadius: CIRCLE_SIZE / 1.5 / 2,
-    zIndex: 3,
     backgroundColor: colors.palePurple,
   },
 });

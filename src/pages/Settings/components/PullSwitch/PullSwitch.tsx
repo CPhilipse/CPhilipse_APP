@@ -24,9 +24,7 @@ const PullSwitch = ({
       <View style={styles.container}>
         <View style={[styles.sliderField]}>
           <PanGestureHandler onGestureEvent={onGestureEvent}>
-            <Animated.View style={[styles.sliderCircle, sliderY]}>
-              <View style={[styles.innerCircle]} />
-            </Animated.View>
+            <Animated.View style={[styles.sliderCircle, sliderY]} />
           </PanGestureHandler>
         </View>
       </View>

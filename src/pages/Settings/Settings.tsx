@@ -27,7 +27,6 @@ interface Props {
 const localizedCopy = (value: string) =>
   getLocalizedString(Pages.SETTINGS, value);
 
-// TODO: Abstract statusbar so it can be added to any page. Black statusbar looks nicer sometimes
 const Settings = ({
   navigation,
   darkmode,
