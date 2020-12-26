@@ -6,6 +6,9 @@ export default StyleSheet.create({
   container: {
     flex: 1,
   },
+  padding: {
+    marginTop: metrics.vertical.spacing.s,
+  },
   strokeOverlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: colors.black,
@@ -30,7 +33,7 @@ export default StyleSheet.create({
 
   cphilipse: {
     paddingHorizontal: metrics.horizontal.pagePadding,
-    marginVertical: metrics.vertical.spacing.xl,
+    marginVertical: metrics.scale(100),
     width: metrics.scale(600),
     height: metrics.scale(300),
   },
