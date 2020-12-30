@@ -2,10 +2,8 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
   darkmode: true,
-  isLoggedIn: false,
-  image: '',
   favoriteColor: '#FFFFFF', // Use this color to customize the user profile. Bg to this color e.g.
-  birthday: null,
+  splashscreen: true,
 };
 
 /** Returns a reducer slice and the actions, all in one place.
@@ -18,6 +16,9 @@ const profileReducer = createSlice({
     switchDarkmode(state, action) {
       state.darkmode = action.payload;
     },
+    setSplashscreen(state, action) {
+      state.splashscreen = action.payload;
+    },
   },
 });
 
@@ -26,6 +27,6 @@ const profileReducer = createSlice({
  * do named exports of the action creators, and a default export of the reducer function.
  * https://redux-toolkit.js.org/tutorials/intermediate-tutorial
  * */
-export const {switchDarkmode} = profileReducer.actions;
+export const {switchDarkmode, setSplashscreen} = profileReducer.actions;
 
 export default profileReducer.reducer;

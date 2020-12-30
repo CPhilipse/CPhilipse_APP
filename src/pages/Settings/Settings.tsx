@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback} from 'react';
 import {View, Text} from 'react-native';
 import styles, {LAN_CIRCLE_SIZE} from './settings.style';
 import {getLocalizedString, languages} from '../../utils/LocalizedUtils';
@@ -19,7 +19,9 @@ import Button from '../../components/Button';
 interface Props {
   navigation: any;
   darkmode: boolean;
+  splashscreen: boolean;
   switchDarkmode: (change: boolean) => void;
+  setSplashscreen: (change: boolean) => void;
   setLanguage: (language: string) => void;
   language: string;
 }
@@ -32,10 +34,13 @@ const Settings = ({
   darkmode,
   switchDarkmode,
   setLanguage,
+  splashscreen,
+  setSplashscreen,
   language,
 }: Props) => {
   const translateY = useSharedValue(0);
   const lanX = useSharedValue(language === languages.en ? 0 : LAN_CIRCLE_SIZE);
+  const splashX = useSharedValue(splashscreen ? 0 : LAN_CIRCLE_SIZE);
   const turnLightOff = () => {
     switchDarkmode(true);
   };
@@ -64,6 +69,31 @@ const Settings = ({
       transform: [{translateX: lanX.value}],
     };
   });
+
+  const setSplashOn = () => {
+    setSplashscreen(true);
+    moveCircleLeft2();
+  };
+  const setSplashOff = () => {
+    setSplashscreen(false);
+    moveCircleRight2();
+  };
+  const moveCircleRight2 = () => {
+    'worklet';
+    splashX.value = withTiming(LAN_CIRCLE_SIZE, {}, () =>
+      runOnJS(setSplashOff)(),
+    );
+  };
+  const moveCircleLeft2 = () => {
+    'worklet';
+    splashX.value = withTiming(0, {}, () => runOnJS(setSplashOn)());
+  };
+
+  const circlePosition2 = useAnimatedStyle(() => {
+    return {
+      transform: [{translateX: splashX.value}],
+    };
+  });
   const {
     styles: {bgStyle},
     values: {sliderYcable, sliderY},
@@ -89,6 +119,24 @@ const Settings = ({
           <Button style={styles.nlButton} onPress={moveCircleRight}>
             <Text style={[styles.nlText, color(darkmode)]}>
               {localizedCopy('dutch')}
+            </Text>
+          </Button>
+        </View>
+      </View>
+      <View style={styles.splashContainer}>
+        <Text style={[styles.subTitle, color(darkmode)]}>
+          {localizedCopy('splash')}
+        </Text>
+        <View style={styles.lanOptions}>
+          <Animated.View style={[styles.circle, circlePosition2]} />
+          <Button style={styles.enButton} onPress={moveCircleLeft2}>
+            <Text style={[styles.enText, color(darkmode)]}>
+              {localizedCopy('on')}
+            </Text>
+          </Button>
+          <Button style={styles.nlButton} onPress={moveCircleRight2}>
+            <Text style={[styles.nlText, color(darkmode)]}>
+              {localizedCopy('off')}
             </Text>
           </Button>
         </View>

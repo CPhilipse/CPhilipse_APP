@@ -8,6 +8,9 @@ export default {
     english: 'EN',
     dutch: 'NL',
     lan: 'Language',
+    on: 'On',
+    off: 'Off',
+    splash: 'Opening screen',
   },
   [Pages.CPHILIPSE]: {
     age: '19',

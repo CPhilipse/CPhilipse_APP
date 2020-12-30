@@ -3,9 +3,10 @@ import Home from './Home';
 import {RootState} from '../../store/reducers';
 
 const mapStateToProps = (state: RootState) => {
-  const {darkmode} = state.profile;
+  const {darkmode, splashscreen} = state.profile;
   return {
     darkmode,
+    splashscreen,
   };
 };
 

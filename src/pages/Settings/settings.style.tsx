@@ -19,6 +19,10 @@ export default StyleSheet.create({
     top: metrics.scaleY(530),
     marginHorizontal: metrics.horizontal.pagePadding,
   },
+  splashContainer: {
+    top: metrics.scaleY(-50),
+    marginHorizontal: metrics.horizontal.pagePadding,
+  },
   circle: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -35,7 +39,7 @@ export default StyleSheet.create({
   },
   subTitle: {
     ...metrics.fonts.smallSubtitle,
-    paddingBottom: metrics.scaleY(50),
+    paddingBottom: metrics.scaleY(40),
   },
   enButton: {
     left: 0,

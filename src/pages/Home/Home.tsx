@@ -15,16 +15,16 @@ import Animated, {
 } from 'react-native-reanimated';
 import Menu from '../../components/Menu';
 import StrokeAnimation from '../../components/StrokeAnimation';
-import {colors, metrics} from '../../themes';
 
 interface Props {
   darkmode: boolean;
+  splashscreen: boolean;
   navigation: any;
 }
 
 const AnimatedScrollview = Animated.createAnimatedComponent(ScrollView);
 
-const Home = ({navigation, darkmode}: Props) => {
+const Home = ({navigation, darkmode, splashscreen}: Props) => {
   const opacityValue = useSharedValue(1);
   const [openingScreenFinished, setOpeningScreenFinished] = useState(false);
 
@@ -64,10 +64,14 @@ const Home = ({navigation, darkmode}: Props) => {
       <View style={styles.padding}>
         <Menu darkmode={darkmode} goToPage={navigation.navigate} />
 
-        <Animated.View style={[styles.strokeOverlay, opacity]} />
-        <Animated.View style={[styles.stroke, opacity2]}>
-          <StrokeAnimation fadeOutOverlay={fadeOutOverlay} />
-        </Animated.View>
+        {splashscreen && (
+          <>
+            <Animated.View style={[styles.strokeOverlay, opacity]} />
+            <Animated.View style={[styles.stroke, opacity2]}>
+              <StrokeAnimation fadeOutOverlay={fadeOutOverlay} />
+            </Animated.View>
+          </>
+        )}
 
         <Button
           onPress={() => navigation.navigate(Pages.CPHILIPSE)}
