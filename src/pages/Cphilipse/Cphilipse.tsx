@@ -89,8 +89,7 @@ const Cphilipse = ({navigation, darkmode}: Props) => {
               title={title}
               body={body}
               step={step}
-              onSwipe={() => console.log('HIIAa')}
-              // onSwipe={() => setCurrentIndex((prev) => prev + step)}
+              onSwipe={() => setCurrentIndex((prev) => prev + step)}
             />
           )
         );

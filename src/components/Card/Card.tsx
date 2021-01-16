@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import Animated, {
+  runOnJS,
   useAnimatedGestureHandler,
   useAnimatedStyle,
   useDerivedValue,
@@ -8,7 +9,10 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated';
 import styles from './card.style';
-import {PanGestureHandler} from 'react-native-gesture-handler';
+import {
+  PanGestureHandler,
+  PanGestureHandlerGestureEvent,
+} from 'react-native-gesture-handler';
 import {mix, mixColor, snapPoint} from 'react-native-redash';
 import {colors, metrics} from '../../themes';
 import {color} from '../../utils/DarkmodeUtils';
@@ -47,7 +51,10 @@ const Card = ({darkmode, title, body, index, aIndex, step, onSwipe}: Props) => {
     };
   });
 
-  const onGestureEvent = useAnimatedGestureHandler({
+  const onGestureEvent = useAnimatedGestureHandler<
+    PanGestureHandlerGestureEvent,
+    {offsetY: number; offsetX: number}
+  >({
     onStart: (event, ctx) => {
       ctx.offsetX = translateX.value;
       ctx.offsetY = translateY.value;
@@ -69,8 +76,8 @@ const Card = ({darkmode, title, body, index, aIndex, step, onSwipe}: Props) => {
           restSpeedThreshold: dest === 0 ? 0.01 : 100,
           restDisplacementThreshold: dest === 0 ? 0.01 : 100,
         },
-        () => dest !== 0 && {},
-        // () => dest !== 0 && onSwipe(), // TODO: Why does app crash? (this line)
+        // () => dest !== 0 && {},
+        () => dest !== 0 && runOnJS(onSwipe)(),
       );
     },
   });
