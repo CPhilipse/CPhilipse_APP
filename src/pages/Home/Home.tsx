@@ -15,16 +15,19 @@ import Animated, {
 } from 'react-native-reanimated';
 import Menu from '../../components/Menu';
 import StrokeAnimation from '../../components/StrokeAnimation';
+import Pill from './components/Pill';
+import {fadeOutOverlay} from './animations/fadeOutOverlay';
+import Splashscreen from './components/Splashscreen';
 
 interface Props {
   darkmode: boolean;
-  splashscreen: boolean;
+  hasSplashscreenOn: boolean;
   navigation: any;
 }
 
 const AnimatedScrollview = Animated.createAnimatedComponent(ScrollView);
 
-const Home = ({navigation, darkmode, splashscreen}: Props) => {
+const Home = ({navigation, darkmode, hasSplashscreenOn}: Props) => {
   const opacityValue = useSharedValue(1);
   const [openingScreenFinished, setOpeningScreenFinished] = useState(false);
 
@@ -32,31 +35,13 @@ const Home = ({navigation, darkmode, splashscreen}: Props) => {
     setOpeningScreenFinished(!openingScreenFinished);
   }, [setOpeningScreenFinished, openingScreenFinished]);
 
-  const fadeOutOverlay = () => {
-    'worklet';
-    opacityValue.value = withTiming(
-      0,
-      {
-        duration: 500,
-        easing: Easing.linear,
-      },
-      () => !openingScreenFinished && runOnJS(closeOpeningScreen)(),
-    );
-  };
-
-  const opacity = useAnimatedStyle(() => {
-    const zIndex = openingScreenFinished ? 0 : 999;
-    return {
-      opacity: opacityValue.value,
-      zIndex,
-    };
-  });
-  const opacity2 = useAnimatedStyle(() => {
-    const zIndex = openingScreenFinished ? 0 : 9999;
-    return {
-      opacity: opacityValue.value,
-      zIndex,
-    };
+  const {
+    styles: {opacity, opacity2},
+    methods: {fadeOut},
+  } = fadeOutOverlay({
+    opacityValue,
+    openingScreenFinished,
+    closeOpeningScreen,
   });
 
   return (
@@ -64,14 +49,12 @@ const Home = ({navigation, darkmode, splashscreen}: Props) => {
       <View style={styles.padding}>
         <Menu darkmode={darkmode} goToPage={navigation.navigate} />
 
-        {splashscreen && (
-          <>
-            <Animated.View style={[styles.strokeOverlay, opacity]} />
-            <Animated.View style={[styles.stroke, opacity2]}>
-              <StrokeAnimation fadeOutOverlay={fadeOutOverlay} />
-            </Animated.View>
-          </>
-        )}
+        <Splashscreen
+          opacity={opacity}
+          opacity2={opacity2}
+          fadeOut={fadeOut}
+          hasSplashscreenOn={hasSplashscreenOn}
+        />
 
         <Button
           onPress={() => navigation.navigate(Pages.CPHILIPSE)}
@@ -80,55 +63,18 @@ const Home = ({navigation, darkmode, splashscreen}: Props) => {
           <Text style={[styles.philipse, color(darkmode)]}>Philipse</Text>
         </Button>
         <AnimatedScrollview horizontal scrollEventThrottle={1}>
-          {projects.map(
-            ({
-              id,
-              title,
-              subTitle,
-              body,
-              images,
-              video,
-              categories,
-            }: ProjectProps) => {
-              return (
-                <Button
-                  key={id}
-                  onPress={() =>
-                    navigation.navigate(Pages.PROJECT_DETAILS, {
-                      id,
-                      title,
-                      subTitle,
-                      body,
-                      images,
-                      video,
-                      categories,
-                    })
-                  }
-                  style={styles.projectContainer}>
-                  <View style={styles.imageContainer}>
-                    <Image source={images[0]} style={styles.image} />
-                  </View>
-                  <Text style={[styles.projectTitle, color(darkmode)]}>
-                    {title}
-                  </Text>
-                  <Text style={[styles.projectSubtitle, color(darkmode)]}>
-                    {subTitle}
-                  </Text>
-                  <View style={styles.categoriesContainer}>
-                    {categories.map((category: string, index: number) => {
-                      return (
-                        <Text
-                          key={index}
-                          style={[styles.projectCategories, color(darkmode)]}>
-                          {category}
-                        </Text>
-                      );
-                    })}
-                  </View>
-                </Button>
-              );
-            },
-          )}
+          {projects.map((item: ProjectProps) => {
+            return (
+              <Button
+                key={item.id}
+                onPress={() =>
+                  navigation.navigate(Pages.PROJECT_DETAILS, {...item})
+                }
+                style={styles.projectContainer}>
+                <Pill darkmode={darkmode} item={item} />
+              </Button>
+            );
+          })}
         </AnimatedScrollview>
       </View>
     </View>

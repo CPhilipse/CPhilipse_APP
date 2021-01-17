@@ -8,13 +8,13 @@ import {useOverlay} from '../../animations/useOverlay';
 const AnimationOverlay = () => {
   const {
     styles: {overlayStyle},
-    methods: {start_shrinking},
+    methods: {start_fadeout},
   } = useOverlay();
 
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.bg, overlayStyle]}>
-        <StrokeAnimation start_shrinking={start_shrinking} />
+        <StrokeAnimation fadeOutOverlay={start_fadeout} />
       </Animated.View>
     </View>
   );

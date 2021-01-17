@@ -6,7 +6,7 @@ const mapStateToProps = (state: RootState) => {
   const {darkmode, splashscreen} = state.profile;
   return {
     darkmode,
-    splashscreen,
+    hasSplashscreenOn: splashscreen,
   };
 };
 
