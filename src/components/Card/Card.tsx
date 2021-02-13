@@ -76,8 +76,7 @@ const Card = ({darkmode, title, body, index, aIndex, step, onSwipe}: Props) => {
           restSpeedThreshold: dest === 0 ? 0.01 : 100,
           restDisplacementThreshold: dest === 0 ? 0.01 : 100,
         },
-        // () => dest !== 0 && {},
-        () => dest !== 0 && runOnJS(onSwipe)(),
+        () => () => dest !== 0 && runOnJS(onSwipe)(),
       );
     },
   });

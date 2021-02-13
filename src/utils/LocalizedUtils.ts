@@ -7,7 +7,7 @@ const languages = {
   nl: 'nl',
 };
 
-// TODO: Research what this piece of TS does and comment explanation
+// T stands for typeof. U stands for...
 const getKeyValue = <T extends object, U extends keyof T>(obj: any) => (
   page: string,
   value: string,

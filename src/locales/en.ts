@@ -1,6 +1,10 @@
 import Pages from '../enum/Pages';
 
 export default {
+  [Pages.HOME]: {
+    fname: 'Clemens',
+    lname: 'Philipse',
+  },
   [Pages.SETTINGS]: {
     title: 'Settings',
     dark: 'DARK',

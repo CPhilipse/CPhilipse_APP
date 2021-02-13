@@ -1,23 +1,18 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {View, Text, ScrollView, Image, StyleSheet} from 'react-native';
+import React, {useCallback, useState} from 'react';
+import {View, Text, ScrollView} from 'react-native';
 import styles from './home.style';
 import Pages from '../../enum/Pages';
 import {ProjectProps, projects} from '../../utils/DummyData';
 import Button from '../../components/Button';
 import {bgcolor, color} from '../../utils/DarkmodeUtils';
-import Animated, {
-  Easing,
-  runOnJS,
-  useAnimatedStyle,
-  useDerivedValue,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
+import Animated, {useSharedValue} from 'react-native-reanimated';
 import Menu from '../../components/Menu';
-import StrokeAnimation from '../../components/StrokeAnimation';
 import Pill from './components/Pill';
 import {fadeOutOverlay} from './animations/fadeOutOverlay';
 import Splashscreen from './components/Splashscreen';
+import {getLocalizedString} from '../../utils/LocalizedUtils';
+
+const AnimatedScrollview = Animated.createAnimatedComponent(ScrollView);
 
 interface Props {
   darkmode: boolean;
@@ -25,7 +20,7 @@ interface Props {
   navigation: any;
 }
 
-const AnimatedScrollview = Animated.createAnimatedComponent(ScrollView);
+const localizedCopy = (value: string) => getLocalizedString(Pages.HOME, value);
 
 const Home = ({navigation, darkmode, hasSplashscreenOn}: Props) => {
   const opacityValue = useSharedValue(1);
@@ -45,7 +40,7 @@ const Home = ({navigation, darkmode, hasSplashscreenOn}: Props) => {
   });
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, bgcolor(darkmode)]}>
       <View style={styles.padding}>
         <Menu darkmode={darkmode} goToPage={navigation.navigate} />
 
@@ -59,10 +54,17 @@ const Home = ({navigation, darkmode, hasSplashscreenOn}: Props) => {
         <Button
           onPress={() => navigation.navigate(Pages.CPHILIPSE)}
           style={styles.cphilipse}>
-          <Text style={[styles.clemens, color(darkmode)]}>Clemens</Text>
-          <Text style={[styles.philipse, color(darkmode)]}>Philipse</Text>
+          <Text style={[styles.clemens, color(darkmode)]}>
+            {localizedCopy('fname')}
+          </Text>
+          <Text style={[styles.philipse, color(darkmode)]}>
+            {localizedCopy('lname')}
+          </Text>
         </Button>
-        <AnimatedScrollview horizontal scrollEventThrottle={1}>
+        <AnimatedScrollview
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          scrollEventThrottle={1}>
           {projects.map((item: ProjectProps) => {
             return (
               <Button

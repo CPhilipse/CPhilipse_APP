@@ -5,7 +5,7 @@ import {colors} from '../../themes';
 import Button from '../Button';
 import Pages from '../../enum/Pages';
 import styles from './menu.style';
-import {bgcolor, color} from '../../utils/DarkmodeUtils';
+import {bgcolor} from '../../utils/DarkmodeUtils';
 import useMenu from './useMenu';
 
 interface Props {
@@ -53,12 +53,14 @@ const Menu = ({
         ]}>
         <Button
           onPress={() => goToPage(Pages.SETTINGS)}
-          style={styles.menuItem}>
+          style={styles.menuItem}
+          disabled={!overlayActive}>
           <Text style={styles.menuItemText}>Settings</Text>
         </Button>
         <Button
           onPress={() => goToPage(Pages.CPHILIPSE)}
-          style={styles.menuItem2}>
+          style={styles.menuItem2}
+          disabled={!overlayActive}>
           <Text style={styles.menuItemText}>About</Text>
         </Button>
       </Animated.View>

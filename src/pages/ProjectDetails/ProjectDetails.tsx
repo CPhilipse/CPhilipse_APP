@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, ScrollView} from 'react-native';
 import styles from './projectdetails.style';
 import {bgcolor} from '../../utils/DarkmodeUtils';
@@ -10,7 +10,18 @@ import Header from './components/Header';
 import Animated, {
   useSharedValue,
   useAnimatedScrollHandler,
+  useAnimatedGestureHandler,
+  withSpring,
+  runOnJS,
+  withTiming,
 } from 'react-native-reanimated';
+import {usePanGestureHandler} from 'react-native-redash/lib/typescript/v1';
+import {
+  PanGestureHandler,
+  PanGestureHandlerGestureEvent,
+} from 'react-native-gesture-handler';
+import {snapPoint} from 'react-native-redash';
+import {SLIDER_SIZE} from '../Settings/settings.style';
 
 interface Props {
   darkmode: boolean;
@@ -18,23 +29,27 @@ interface Props {
   navigation: any;
 }
 
+type Offset = {
+  offsetY: number;
+  offsetX: number;
+};
+
 /**
  * TODO:
  *  1. Show cards on the sides
  *  2. Scale active card bigger
+ *
+ *  OnSwipe of the image/card, add this image to the back of the stack.
+ *  Do this by accessing the Prev state and adding the swiped card to the array in the state.
+ *
  * Potential helpful resources;
  *  - https://www.youtube.com/watch?v=rWwz9WO-hCo
  *  - https://github.com/catalinmiron/react-native-movie-2.0-carousel/blob/master/App.js
+ *  - Tinder Swiping video of William Candillion
  * */
 const ProjectDetails = ({darkmode, route, navigation}: Props) => {
-  const {title, body, categories} = route.params;
-
-  const translateX = useSharedValue(0);
-  const onScroll = useAnimatedScrollHandler({
-    onScroll: (event) => {
-      translateX.value = event.contentOffset.x;
-    },
-  });
+  const {title, body, categories, images} = route.params;
+  const [index, setIndex] = useState(0);
 
   return (
     <View style={[styles.container, bgcolor(darkmode)]}>
@@ -44,20 +59,6 @@ const ProjectDetails = ({darkmode, route, navigation}: Props) => {
         darkmode={darkmode}
         navigation={navigation}
       />
-      <View style={styles.cardRow}>
-        <Animated.ScrollView
-          onScroll={onScroll}
-          snapToInterval={metrics.screenWidth / 2}
-          // snapToInterval={metrics.screenWidth}
-          showsHorizontalScrollIndicator={false}
-          horizontal>
-          {[1, 2, 3, 4, 5].map((_, index) => (
-            <View style={styles.cards} key={index}>
-              <Card title={title} body={body} x={translateX} index={index} />
-            </View>
-          ))}
-        </Animated.ScrollView>
-      </View>
       <BackButton darkmode={darkmode} onPress={() => navigation.goBack()} />
     </View>
   );

@@ -3,11 +3,14 @@ import {colors, metrics} from '../../../../themes';
 import {CARD_SIZE} from '../../projectdetails.style';
 
 export default StyleSheet.create({
-  cardContainer: {
-    backgroundColor: colors.lightPurple,
+  container: {
+    borderColor: colors.lightPurple,
+    borderWidth: 1,
     borderRadius: metrics.scale(50),
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    position: 'absolute',
+    bottom: 0,
   },
   card: {
     padding: metrics.horizontal.pagePadding,
@@ -16,8 +19,10 @@ export default StyleSheet.create({
   },
   cardTitle: {
     ...metrics.fonts.regularBold,
+    color: colors.white,
   },
   cardBody: {
     ...metrics.fonts.smallRegular,
+    color: colors.white,
   },
 });
