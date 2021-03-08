@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, ScrollView, FlatList, Image, StyleSheet} from 'react-native';
-import styles from './projectdetails.style';
+import styles, {SPACING} from './projectdetails.style';
 import {bgcolor} from '../../utils/DarkmodeUtils';
 import BackButton from '../../components/BackButton';
 import {ProjectProps, projects} from '../../utils/DummyData';
@@ -56,6 +56,17 @@ const ProjectDetails = ({darkmode, route, navigation}: Props) => {
               <Image source={item} style={styles.image} />
             </View>
           );
+        }}
+      />
+      <FlatList
+        style={styles.smallFlatlist}
+        contentContainerStyle={{paddingHorizontal: SPACING}}
+        data={images}
+        keyExtractor={(_, i) => i.toString()}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        renderItem={({item}) => {
+          return <Image source={item} style={styles.smallImage} />;
         }}
       />
       <BackButton darkmode={darkmode} onPress={() => navigation.goBack()} />
