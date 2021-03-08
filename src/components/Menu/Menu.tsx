@@ -48,7 +48,7 @@ const Menu = ({
             ...StyleSheet.absoluteFillObject,
             backgroundColor: colors.black,
           },
-          overlayActive && {zIndex: 1},
+          overlayActive && {zIndex: 2},
           opacityStyle,
         ]}>
         <Button

@@ -66,6 +66,7 @@ const Home = ({navigation, darkmode, hasSplashscreenOn}: Props) => {
           showsHorizontalScrollIndicator={false}
           scrollEventThrottle={1}>
           {projects.map((item: ProjectProps) => {
+            console.log('>>> Item home: ', item);
             return (
               <Button
                 key={item.id}

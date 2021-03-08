@@ -1,27 +1,10 @@
 import React, {useState} from 'react';
-import {View, ScrollView} from 'react-native';
+import {View, ScrollView, FlatList, Image, StyleSheet} from 'react-native';
 import styles from './projectdetails.style';
 import {bgcolor} from '../../utils/DarkmodeUtils';
 import BackButton from '../../components/BackButton';
-import {ProjectProps} from '../../utils/DummyData';
-import {metrics} from '../../themes';
-import Card from './components/Card';
+import {ProjectProps, projects} from '../../utils/DummyData';
 import Header from './components/Header';
-import Animated, {
-  useSharedValue,
-  useAnimatedScrollHandler,
-  useAnimatedGestureHandler,
-  withSpring,
-  runOnJS,
-  withTiming,
-} from 'react-native-reanimated';
-import {usePanGestureHandler} from 'react-native-redash/lib/typescript/v1';
-import {
-  PanGestureHandler,
-  PanGestureHandlerGestureEvent,
-} from 'react-native-gesture-handler';
-import {snapPoint} from 'react-native-redash';
-import {SLIDER_SIZE} from '../Settings/settings.style';
 
 interface Props {
   darkmode: boolean;
@@ -58,6 +41,22 @@ const ProjectDetails = ({darkmode, route, navigation}: Props) => {
         title={title}
         darkmode={darkmode}
         navigation={navigation}
+      />
+      <FlatList
+        style={styles.mainFlatlist}
+        data={images}
+        keyExtractor={(_, i) => i.toString()}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        renderItem={({item}) => {
+          console.log('>> Flatlist: ', item);
+          return (
+            <View style={styles.listItem}>
+              <View style={styles.overlay} />
+              <Image source={item} style={styles.image} />
+            </View>
+          );
+        }}
       />
       <BackButton darkmode={darkmode} onPress={() => navigation.goBack()} />
     </View>
