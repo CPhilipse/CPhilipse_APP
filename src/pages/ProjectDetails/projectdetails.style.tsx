@@ -4,7 +4,7 @@ import {colors, metrics} from '../../themes';
 const PADDING = 0.74;
 export const CARD_SIZE = metrics.screenWidth * PADDING;
 export const OFFSET_CARD = (metrics.screenWidth - CARD_SIZE) / 2;
-const IMAGE_SIZE = metrics.scale(200);
+export const IMAGE_SIZE = metrics.scale(200);
 export const SPACING = 10;
 export default StyleSheet.create({
   container: {
@@ -45,5 +45,9 @@ export default StyleSheet.create({
     height: IMAGE_SIZE,
     borderRadius: metrics.scale(20),
     marginRight: SPACING,
+  },
+  activeStyle: {
+    borderWidth: 2,
+    borderColor: colors.white,
   },
 });
