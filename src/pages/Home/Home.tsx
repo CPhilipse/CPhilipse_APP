@@ -11,6 +11,7 @@ import Pill from './components/Pill';
 import {fadeOutOverlay} from './animations/fadeOutOverlay';
 import Splashscreen from './components/Splashscreen';
 import {getLocalizedString} from '../../utils/LocalizedUtils';
+import {colors} from '../../themes';
 
 const AnimatedScrollview = Animated.createAnimatedComponent(ScrollView);
 
@@ -61,6 +62,15 @@ const Home = ({navigation, darkmode, hasSplashscreenOn}: Props) => {
             {localizedCopy('lname')}
           </Text>
         </Button>
+
+        <View style={styles.categories}>
+          <Text style={[styles.category, {color: colors.lightPurple}]}>
+            Show all
+          </Text>
+          <Text style={[styles.category]}>Hobby project</Text>
+          <Text style={[styles.category]}>Blog</Text>
+        </View>
+
         <AnimatedScrollview
           horizontal
           showsHorizontalScrollIndicator={false}

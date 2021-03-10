@@ -19,4 +19,5 @@ export default {
   ARROW_LEFT: 'arrow-left',
   ARROW_RIGHT: 'arrow-right',
   CLOSE: 'close',
+  FAVORITE: 'favorite',
 };

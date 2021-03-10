@@ -3,7 +3,7 @@ import {colors, metrics} from '../../../../themes';
 import {PROJECT_SIZE} from '../../home.style';
 
 export default StyleSheet.create({
-  container: {
+  imageContainer: {
     alignItems: 'center',
     marginTop: metrics.vertical.spacing.s,
   },

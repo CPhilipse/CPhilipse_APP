@@ -23,7 +23,7 @@ export default StyleSheet.create({
   },
   cphilipse: {
     paddingHorizontal: metrics.horizontal.pagePadding,
-    marginVertical: metrics.scale(100),
+    marginTop: metrics.scale(100),
     width: metrics.scale(600),
     height: metrics.scale(300),
   },
@@ -39,5 +39,15 @@ export default StyleSheet.create({
     height: PROJECT_SIZE * 2,
     backgroundColor: colors.lightPurple,
     borderRadius: PROJECT_SIZE / 2,
+  },
+  categories: {
+    flexDirection: 'row',
+    marginBottom: metrics.vertical.spacing.m,
+    paddingHorizontal: metrics.horizontal.pagePadding,
+  },
+  category: {
+    ...metrics.fonts.regularBold,
+    color: colors.lightGrey,
+    paddingRight: metrics.horizontal.padding,
   },
 });

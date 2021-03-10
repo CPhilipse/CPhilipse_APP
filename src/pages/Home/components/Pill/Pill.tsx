@@ -3,6 +3,9 @@ import {View, Text, Image} from 'react-native';
 import {color} from '../../../../utils/DarkmodeUtils';
 import {ProjectProps} from '../../../../utils/DummyData';
 import styles from './pill.style';
+import Icon from '../../../../components/Icon';
+import Icons from '../../../../enum/Icons';
+import {colors} from '../../../../themes';
 
 interface Props {
   darkmode: boolean;
@@ -12,7 +15,7 @@ interface Props {
 const Pill = ({darkmode, item}: Props) => {
   return (
     <>
-      <View style={styles.container}>
+      <View style={styles.imageContainer}>
         <Image source={item.images[0]} style={styles.image} />
       </View>
       <Text style={[styles.projectTitle, color(darkmode)]}>{item.title}</Text>
@@ -29,6 +32,15 @@ const Pill = ({darkmode, item}: Props) => {
             </Text>
           );
         })}
+      </View>
+      <View
+        style={{
+          position: 'absolute',
+          right: 0,
+          bottom: 0,
+          opacity: 0.9,
+        }}>
+        <Icon name={Icons.FAVORITE} size={75} color={colors.lightGrey} />
       </View>
     </>
   );
