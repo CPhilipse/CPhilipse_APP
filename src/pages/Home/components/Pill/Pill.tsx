@@ -12,6 +12,11 @@ interface Props {
   item: ProjectProps;
 }
 
+// Onpress of heart a nice animation.
+// maybe like with IWDER checkbox, have it go bigger and dissipate.
+// OR
+// fill the heart with a red element from bottom to top when activated
+// when unactivated have the red element go down
 const Pill = ({darkmode, item}: Props) => {
   return (
     <>
@@ -23,24 +28,17 @@ const Pill = ({darkmode, item}: Props) => {
         {item.subTitle}
       </Text>
       <View style={styles.categoriesContainer}>
-        {item.categories.map((category: string, index: number) => {
-          return (
-            <Text
-              key={index}
-              style={[styles.projectCategories, color(darkmode)]}>
-              {category}
-            </Text>
-          );
-        })}
+        <Text style={[styles.projectCategories, color(darkmode)]}>
+          {item.category}
+        </Text>
       </View>
       <View
         style={{
           position: 'absolute',
           right: 0,
           bottom: 0,
-          opacity: 0.9,
         }}>
-        <Icon name={Icons.FAVORITE} size={75} color={colors.lightGrey} />
+        <Icon name={Icons.FAVORITE} size={30} color={colors.lightGrey} />
       </View>
     </>
   );

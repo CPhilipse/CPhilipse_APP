@@ -33,7 +33,7 @@ type Offset = {
  *  - Tinder Swiping video of William Candillion
  * */
 const ProjectDetails = ({darkmode, route, navigation}: Props) => {
-  const {title, body, categories, images} = route.params;
+  const {title, body, category, images} = route.params;
   // const [index, setIndex] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -42,7 +42,6 @@ const ProjectDetails = ({darkmode, route, navigation}: Props) => {
   const thumbRef = useRef();
 
   const scrollToActiveIndex = (index: number) => {
-    console.log('>>> ACTIVE INDEX: ', index);
     setActiveIndex(index);
     topRef?.current?.scrollToOffset({
       offset: index * metrics.screenWidth,
@@ -73,7 +72,7 @@ const ProjectDetails = ({darkmode, route, navigation}: Props) => {
   return (
     <View style={[styles.container, bgcolor(darkmode)]}>
       <Header
-        categories={categories}
+        category={category}
         title={title}
         darkmode={darkmode}
         navigation={navigation}

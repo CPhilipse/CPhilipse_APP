@@ -41,7 +41,6 @@ export default StyleSheet.create({
     borderRadius: PROJECT_SIZE / 2,
   },
   categories: {
-    flexDirection: 'row',
     marginBottom: metrics.vertical.spacing.m,
     paddingHorizontal: metrics.horizontal.pagePadding,
   },
@@ -49,5 +48,8 @@ export default StyleSheet.create({
     ...metrics.fonts.regularBold,
     color: colors.lightGrey,
     paddingRight: metrics.horizontal.padding,
+  },
+  pillList: {
+    paddingRight: metrics.horizontal.pagePadding,
   },
 });

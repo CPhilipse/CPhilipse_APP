@@ -9,7 +9,7 @@ export interface ProjectProps {
   body: string;
   images: ImageRequireSource[];
   video: string;
-  categories: string[];
+  category: string;
 }
 
 export const projects = [
@@ -19,8 +19,8 @@ export const projects = [
     subTitle: 'Welcome to my very own app!',
     body: 'This app is open source, so if interested in the code ....',
     images: [
-      images.cphilipse,
-      images.hvgea,
+      images.app_home,
+      images.app_menu,
       images.cphilipse,
       images.hvgea,
       images.cphilipse,
@@ -30,7 +30,7 @@ export const projects = [
       images.cphilipse,
     ],
     video: 'video2',
-    categories: [Categories.HOBBY],
+    category: Categories.HOBBY,
   },
   {
     id: 1,
@@ -39,7 +39,7 @@ export const projects = [
     body: 'body',
     images: [images.hvgea],
     video: 'video',
-    categories: [Categories.BLOG, Categories.PROJECT],
+    category: Categories.BLOG,
   },
   {
     id: 2,
@@ -49,7 +49,7 @@ export const projects = [
     body: 'body1',
     images: [images.cphilipse],
     video: 'video1',
-    categories: [Categories.SCHOOL],
+    category: Categories.SCHOOL,
   },
   {
     id: 3,
@@ -58,7 +58,7 @@ export const projects = [
     body: 'body2',
     images: [images.hvgea],
     video: 'video2',
-    categories: [Categories.HOBBY],
+    category: Categories.HOBBY,
   },
 ];
 
@@ -71,5 +71,5 @@ export const paragraphs = [
   'About me',
   "I live in The Netherlands and I'm following the education Machine Science at the university of Leiden. My ultimate dream and goal is to become a digital investigator at Interpol in Lyon.",
   'Reason',
-  'I started making this app with the intent of practicing mobile animations. I knew I could go nuts with animations on my own app and since I really love animations, I went all out! While trying to not make it too chaotic.',
+  'I started making this app with the intent of practicing mobile animations and on my own app I can make animations based on my preferences. So it was really enjoyable making this app!',
 ];

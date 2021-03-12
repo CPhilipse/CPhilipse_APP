@@ -12,6 +12,7 @@ import {fadeOutOverlay} from './animations/fadeOutOverlay';
 import Splashscreen from './components/Splashscreen';
 import {getLocalizedString} from '../../utils/LocalizedUtils';
 import {colors} from '../../themes';
+import Categories from '../../enum/Categories';
 
 const AnimatedScrollview = Animated.createAnimatedComponent(ScrollView);
 
@@ -26,6 +27,12 @@ const localizedCopy = (value: string) => getLocalizedString(Pages.HOME, value);
 const Home = ({navigation, darkmode, hasSplashscreenOn}: Props) => {
   const opacityValue = useSharedValue(1);
   const [openingScreenFinished, setOpeningScreenFinished] = useState(false);
+  const [categories, setCategories] = useState({
+    favorites: false,
+    hobby: false,
+    blog: false,
+    school: false,
+  });
 
   const closeOpeningScreen = useCallback(() => {
     setOpeningScreenFinished(!openingScreenFinished);
@@ -63,26 +70,116 @@ const Home = ({navigation, darkmode, hasSplashscreenOn}: Props) => {
           </Text>
         </Button>
 
-        <View style={styles.categories}>
-          <Text style={[styles.category, {color: colors.lightPurple}]}>
-            Show all
-          </Text>
-          <Text style={[styles.category]}>Hobby project</Text>
-          <Text style={[styles.category]}>Blog</Text>
-        </View>
+        <ScrollView horizontal contentContainerStyle={styles.categories}>
+          <Button
+            onPress={() =>
+              setCategories({
+                blog: categories.blog,
+                favorites: !categories.favorites,
+                hobby: categories.hobby,
+                school: categories.school,
+              })
+            }>
+            <Text
+              style={[
+                styles.category,
+                categories.favorites && {color: colors.lightPurple},
+              ]}>
+              Favorites
+            </Text>
+          </Button>
+          <Button
+            onPress={() =>
+              setCategories({
+                blog: categories.blog,
+                favorites: categories.favorites,
+                hobby: !categories.hobby,
+                school: categories.school,
+              })
+            }>
+            <Text
+              style={[
+                styles.category,
+                categories.hobby && {color: colors.lightPurple},
+              ]}>
+              Hobby project
+            </Text>
+          </Button>
+          <Button
+            onPress={() =>
+              setCategories({
+                blog: !categories.blog,
+                favorites: categories.favorites,
+                hobby: categories.hobby,
+                school: categories.school,
+              })
+            }>
+            <Text
+              style={[
+                styles.category,
+                categories.blog && {color: colors.lightPurple},
+              ]}>
+              Blog
+            </Text>
+          </Button>
+          <Button
+            onPress={() =>
+              setCategories({
+                blog: categories.blog,
+                favorites: categories.favorites,
+                hobby: categories.hobby,
+                school: !categories.school,
+              })
+            }>
+            <Text
+              style={[
+                styles.category,
+                categories.school && {color: colors.lightPurple},
+              ]}>
+              School
+            </Text>
+          </Button>
+        </ScrollView>
 
         <AnimatedScrollview
           horizontal
           showsHorizontalScrollIndicator={false}
-          scrollEventThrottle={1}>
+          scrollEventThrottle={1}
+          contentContainerStyle={styles.pillList}>
           {projects.map((item: ProjectProps) => {
+            const {blog, school, hobby} = categories;
+            const {BLOG, SCHOOL, HOBBY} = Categories;
+
+            const uncheckedAll = !school && !blog && !hobby;
+            if (uncheckedAll) {
+              return (
+                <Button
+                  key={item.id}
+                  onPress={() =>
+                    navigation.navigate(Pages.PROJECT_DETAILS, {...item})
+                  }
+                  style={[styles.projectContainer]}>
+                  <Pill darkmode={darkmode} item={item} />
+                </Button>
+              );
+            }
+
+            const showHobbyPills = hobby && HOBBY === item.category;
+            const showBlogPills = blog && BLOG === item.category;
+            const showSchoolPills = school && SCHOOL === item.category;
             return (
               <Button
                 key={item.id}
                 onPress={() =>
                   navigation.navigate(Pages.PROJECT_DETAILS, {...item})
                 }
-                style={styles.projectContainer}>
+                style={[
+                  styles.projectContainer,
+                  {display: 'none'},
+                  showHobbyPills && {display: 'flex'},
+                  showBlogPills && {display: 'flex'},
+                  showSchoolPills && {display: 'flex'},
+                ]}>
                 <Pill darkmode={darkmode} item={item} />
               </Button>
             );

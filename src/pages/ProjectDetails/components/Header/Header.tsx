@@ -7,12 +7,12 @@ import styles from './header.style';
 
 interface HeaderProps {
   darkmode: boolean;
-  categories: string[];
+  category: string;
   title: string;
   navigation: any;
 }
 
-const Header = ({title, darkmode, categories, navigation}: HeaderProps) => (
+const Header = ({title, darkmode, category, navigation}: HeaderProps) => (
   <>
     <Menu
       backgroundColor={darkmode ? colors.white : colors.black}
@@ -20,9 +20,7 @@ const Header = ({title, darkmode, categories, navigation}: HeaderProps) => (
       goToPage={navigation.navigate}
     />
     <View style={styles.header}>
-      <Text style={[styles.categories, color(darkmode)]}>
-        {categories.map((category: string) => `${category} `)}
-      </Text>
+      <Text style={[styles.categories, color(darkmode)]}>{category}</Text>
       <Text style={styles.title}>{title}</Text>
     </View>
   </>
