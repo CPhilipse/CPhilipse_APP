@@ -6,10 +6,13 @@ import styles from './pill.style';
 import Icon from '../../../../components/Icon';
 import Icons from '../../../../enum/Icons';
 import {colors} from '../../../../themes';
+import Button from '../../../../components/Button';
 
 interface Props {
   darkmode: boolean;
   item: ProjectProps;
+  setFavorite: (item: ProjectProps) => void;
+  favorites: ProjectProps[];
 }
 
 // Onpress of heart a nice animation.
@@ -17,7 +20,7 @@ interface Props {
 // OR
 // fill the heart with a red element from bottom to top when activated
 // when unactivated have the red element go down
-const Pill = ({darkmode, item}: Props) => {
+const Pill = ({darkmode, item, setFavorite, favorites}: Props) => {
   return (
     <>
       <View style={styles.imageContainer}>
@@ -32,14 +35,13 @@ const Pill = ({darkmode, item}: Props) => {
           {item.category}
         </Text>
       </View>
-      <View
-        style={{
-          position: 'absolute',
-          right: 0,
-          bottom: 0,
-        }}>
-        <Icon name={Icons.FAVORITE} size={30} color={colors.lightGrey} />
-      </View>
+      <Button style={styles.favorite} onPress={() => setFavorite(item)}>
+        <Icon
+          name={Icons.FAVORITE}
+          size={30}
+          color={favorites.includes(item) ? colors.red : colors.lightGrey}
+        />
+      </Button>
     </>
   );
 };

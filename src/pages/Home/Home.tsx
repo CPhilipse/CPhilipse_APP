@@ -20,11 +20,19 @@ interface Props {
   darkmode: boolean;
   hasSplashscreenOn: boolean;
   navigation: any;
+  favorites: ProjectProps[];
+  setFavorites: (item: ProjectProps[]) => void;
 }
 
 const localizedCopy = (value: string) => getLocalizedString(Pages.HOME, value);
 
-const Home = ({navigation, darkmode, hasSplashscreenOn}: Props) => {
+const Home = ({
+  navigation,
+  darkmode,
+  hasSplashscreenOn,
+  setFavorites,
+  favorites,
+}: Props) => {
   const opacityValue = useSharedValue(1);
   const [openingScreenFinished, setOpeningScreenFinished] = useState(false);
   const [categories, setCategories] = useState({
@@ -46,6 +54,24 @@ const Home = ({navigation, darkmode, hasSplashscreenOn}: Props) => {
     openingScreenFinished,
     closeOpeningScreen,
   });
+
+  const setFavorite = useCallback(
+    (item) => {
+      let favs = [...favorites];
+
+      // if item is in list, than it is already favorite. If it's not already in list, than its not a fav.
+      if (favs.includes(item)) {
+        // Remove item from favorites
+        favs = favs.filter((_) => _.id !== item.id);
+      } else {
+        // Add item to favorites
+        favs.push(item);
+      }
+      console.log(favs);
+      setFavorites(favs);
+    },
+    [favorites, setFavorites],
+  );
 
   return (
     <View style={[styles.container, bgcolor(darkmode)]}>
@@ -146,44 +172,103 @@ const Home = ({navigation, darkmode, hasSplashscreenOn}: Props) => {
           showsHorizontalScrollIndicator={false}
           scrollEventThrottle={1}
           contentContainerStyle={styles.pillList}>
-          {projects.map((item: ProjectProps) => {
-            const {blog, school, hobby} = categories;
-            const {BLOG, SCHOOL, HOBBY} = Categories;
+          {categories.favorites
+            ? favorites.map((item: ProjectProps) => {
+                const {blog, school, hobby} = categories;
+                const {BLOG, SCHOOL, HOBBY} = Categories;
 
-            const uncheckedAll = !school && !blog && !hobby;
-            if (uncheckedAll) {
-              return (
-                <Button
-                  key={item.id}
-                  onPress={() =>
-                    navigation.navigate(Pages.PROJECT_DETAILS, {...item})
-                  }
-                  style={[styles.projectContainer]}>
-                  <Pill darkmode={darkmode} item={item} />
-                </Button>
-              );
-            }
-
-            const showHobbyPills = hobby && HOBBY === item.category;
-            const showBlogPills = blog && BLOG === item.category;
-            const showSchoolPills = school && SCHOOL === item.category;
-            return (
-              <Button
-                key={item.id}
-                onPress={() =>
-                  navigation.navigate(Pages.PROJECT_DETAILS, {...item})
+                const uncheckedAll = !school && !blog && !hobby;
+                if (uncheckedAll) {
+                  return (
+                    <Button
+                      key={item.id}
+                      onPress={() =>
+                        navigation.navigate(Pages.PROJECT_DETAILS, {...item})
+                      }
+                      style={[styles.projectContainer]}>
+                      <Pill
+                        setFavorite={setFavorite}
+                        darkmode={darkmode}
+                        item={item}
+                        favorites={favorites}
+                      />
+                    </Button>
+                  );
                 }
-                style={[
-                  styles.projectContainer,
-                  {display: 'none'},
-                  showHobbyPills && {display: 'flex'},
-                  showBlogPills && {display: 'flex'},
-                  showSchoolPills && {display: 'flex'},
-                ]}>
-                <Pill darkmode={darkmode} item={item} />
-              </Button>
-            );
-          })}
+
+                const showHobbyPills = hobby && HOBBY === item.category;
+                const showBlogPills = blog && BLOG === item.category;
+                const showSchoolPills = school && SCHOOL === item.category;
+                return (
+                  <Button
+                    key={item.id}
+                    onPress={() =>
+                      navigation.navigate(Pages.PROJECT_DETAILS, {...item})
+                    }
+                    style={[
+                      styles.projectContainer,
+                      {display: 'none'},
+                      showHobbyPills && {display: 'flex'},
+                      showBlogPills && {display: 'flex'},
+                      showSchoolPills && {display: 'flex'},
+                    ]}>
+                    <Pill
+                      setFavorite={setFavorite}
+                      darkmode={darkmode}
+                      item={item}
+                      favorites={favorites}
+                    />
+                  </Button>
+                );
+              })
+            : projects.map((item: ProjectProps) => {
+                const {blog, school, hobby} = categories;
+                const {BLOG, SCHOOL, HOBBY} = Categories;
+
+                const uncheckedAll = !school && !blog && !hobby;
+                if (uncheckedAll) {
+                  return (
+                    <Button
+                      key={item.id}
+                      onPress={() =>
+                        navigation.navigate(Pages.PROJECT_DETAILS, {...item})
+                      }
+                      style={[styles.projectContainer]}>
+                      <Pill
+                        setFavorite={setFavorite}
+                        darkmode={darkmode}
+                        item={item}
+                        favorites={favorites}
+                      />
+                    </Button>
+                  );
+                }
+
+                const showHobbyPills = hobby && HOBBY === item.category;
+                const showBlogPills = blog && BLOG === item.category;
+                const showSchoolPills = school && SCHOOL === item.category;
+                return (
+                  <Button
+                    key={item.id}
+                    onPress={() =>
+                      navigation.navigate(Pages.PROJECT_DETAILS, {...item})
+                    }
+                    style={[
+                      styles.projectContainer,
+                      {display: 'none'},
+                      showHobbyPills && {display: 'flex'},
+                      showBlogPills && {display: 'flex'},
+                      showSchoolPills && {display: 'flex'},
+                    ]}>
+                    <Pill
+                      setFavorite={setFavorite}
+                      darkmode={darkmode}
+                      item={item}
+                      favorites={favorites}
+                    />
+                  </Button>
+                );
+              })}
         </AnimatedScrollview>
       </View>
     </View>

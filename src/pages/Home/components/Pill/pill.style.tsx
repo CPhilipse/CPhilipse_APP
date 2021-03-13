@@ -35,4 +35,9 @@ export default StyleSheet.create({
     padding: metrics.scale(20),
     marginRight: metrics.scale(20),
   },
+  favorite: {
+    position: 'absolute',
+    right: 0,
+    bottom: 0,
+  },
 });
