@@ -10,18 +10,9 @@ export default StyleSheet.create({
   container: {
     flex: 1,
   },
-  cardRow: {
-    position: 'absolute',
-    bottom: metrics.vertical.spacing.xl,
-    alignItems: 'center',
-  },
-  cards: {
-    paddingHorizontal: OFFSET_CARD,
-    width: metrics.screenWidth,
-  },
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: colors.lightOverlay,
+    backgroundColor: colors.ultraLightOverlay,
     zIndex: 1,
   },
   image: {
@@ -49,5 +40,29 @@ export default StyleSheet.create({
   activeStyle: {
     borderWidth: 2,
     borderColor: colors.white,
+  },
+  extraInformationOverlayContainer: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: colors.darkOverlay,
+    zIndex: 1,
+  },
+  textContainer: {
+    marginTop: metrics.vertical.spacing.m,
+    paddingHorizontal: metrics.horizontal.padding,
+  },
+  txt: {
+    ...metrics.fonts.regularBold,
+  },
+  extraBtn: {
+    width: IMAGE_SIZE * 2,
+    height: IMAGE_SIZE / 2,
+    position: 'absolute',
+    zIndex: 2,
+    backgroundColor: colors.lightGrey,
+    bottom: IMAGE_SIZE * 2.2,
+    right: metrics.horizontal.pagePadding,
+    borderRadius: IMAGE_SIZE * 1.5,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

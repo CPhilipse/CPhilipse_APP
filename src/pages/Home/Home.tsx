@@ -67,7 +67,6 @@ const Home = ({
         // Add item to favorites
         favs.push(item);
       }
-      console.log(favs);
       setFavorites(favs);
     },
     [favorites, setFavorites],

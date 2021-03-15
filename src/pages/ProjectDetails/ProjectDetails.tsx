@@ -1,12 +1,15 @@
-import React, {useRef, useState} from 'react';
-import {View, ScrollView, FlatList, Image, StyleSheet} from 'react-native';
+import React, {useCallback, useRef, useState} from 'react';
+import {View, FlatList, Image, Text, StatusBar} from 'react-native';
+import Animated from 'react-native-reanimated';
 import styles, {IMAGE_SIZE, SPACING} from './projectdetails.style';
-import {bgcolor} from '../../utils/DarkmodeUtils';
+import {bgcolor, color} from '../../utils/DarkmodeUtils';
 import BackButton from '../../components/BackButton';
-import {ProjectProps, projects} from '../../utils/DummyData';
+import {ProjectProps} from '../../utils/DummyData';
 import Header from './components/Header';
-import {metrics} from '../../themes';
+import {colors, metrics} from '../../themes';
 import Button from '../../components/Button';
+import Icons from '../../enum/Icons';
+import useMenu from '../../components/Menu/useMenu';
 
 interface Props {
   darkmode: boolean;
@@ -14,32 +17,34 @@ interface Props {
   navigation: any;
 }
 
-type Offset = {
-  offsetY: number;
-  offsetX: number;
-};
-
-/**
- * TODO:
- *  1. Show cards on the sides
- *  2. Scale active card bigger
- *
- *  OnSwipe of the image/card, add this image to the back of the stack.
- *  Do this by accessing the Prev state and adding the swiped card to the array in the state.
- *
- * Potential helpful resources;
- *  - https://www.youtube.com/watch?v=rWwz9WO-hCo
- *  - https://github.com/catalinmiron/react-native-movie-2.0-carousel/blob/master/App.js
- *  - Tinder Swiping video of William Candillion
- * */
 const ProjectDetails = ({darkmode, route, navigation}: Props) => {
-  const {title, body, category, images} = route.params;
-  // const [index, setIndex] = useState(0);
+  const {title, category, images} = route.params;
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const [menuActive, setMenuActive] = useState(false);
+  const [overlayActive, setOverlayActive] = useState(false);
+
+  const toggleMenu = useCallback(
+    (isActive: boolean) => {
+      setMenuActive(isActive);
+    },
+    [setMenuActive],
+  );
+  const toggleOverlay = useCallback(
+    (isActive: boolean) => {
+      setOverlayActive(isActive);
+    },
+    [setOverlayActive],
+  );
+
+  const {
+    methods: {startMenuAnimation, closeMenu},
+    styles: {opacityStyle},
+  } = useMenu(toggleOverlay, toggleMenu);
+
   // Sync galleries
-  const topRef = useRef();
-  const thumbRef = useRef();
+  const topRef: any = useRef();
+  const thumbRef: any = useRef();
 
   const scrollToActiveIndex = (index: number) => {
     setActiveIndex(index);
@@ -71,12 +76,39 @@ const ProjectDetails = ({darkmode, route, navigation}: Props) => {
 
   return (
     <View style={[styles.container, bgcolor(darkmode)]}>
-      <Header
-        category={category}
-        title={title}
-        darkmode={darkmode}
-        navigation={navigation}
-      />
+      <StatusBar hidden />
+      <Animated.View
+        style={[
+          styles.extraInformationOverlayContainer,
+          overlayActive ? {zIndex: 2} : {zIndex: -2},
+          opacityStyle,
+        ]}>
+        <Header
+          category={category}
+          title={title}
+          darkmode={darkmode}
+          navigation={navigation}
+        />
+        <View style={styles.textContainer}>
+          <Text style={[color(darkmode), styles.txt]}>Homepage</Text>
+          <Text style={[color(darkmode)]}>
+            This image shows the homepage of this app. This was an interesting
+            page to make, because of the splashscreen and filters. The
+            splashscreen was the hardest part, though I made it from a tutorial,
+            making the animation work with my own custom text was a bit of a
+            hassle. The text is made out of SVG and I've like no experience with
+            SVG. When I tried it the first time with my own text as SVG, it
+            didn't animate the whole text. It only animated half of the letters.
+            After some trial and error I found the correct number to adjust to
+            have it show correctly.
+          </Text>
+        </View>
+        <BackButton
+          icon={Icons.HOME}
+          darkmode={darkmode}
+          onPress={() => navigation.goBack()}
+        />
+      </Animated.View>
       <FlatList
         ref={topRef}
         style={styles.mainFlatlist}
@@ -126,7 +158,14 @@ const ProjectDetails = ({darkmode, route, navigation}: Props) => {
           );
         }}
       />
-      <BackButton darkmode={darkmode} onPress={() => navigation.goBack()} />
+      <Button
+        style={[
+          styles.extraBtn,
+          menuActive && {backgroundColor: colors.lightPurple},
+        ]}
+        onPress={menuActive ? closeMenu : startMenuAnimation}>
+        <Text>{[menuActive ? 'Show Less' : 'Show Extra']}</Text>
+      </Button>
     </View>
   );
 };

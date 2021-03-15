@@ -31,6 +31,7 @@ export default {
   lightGrey: '#b3b2b2',
   grey: '#414549',
   darkGrey: '#5f6368',
+  darkOverlay: 'rgba(0, 0, 0, 0.9)',
   overlay: 'rgba(0, 0, 0, 0.8)',
   lightOverlay: 'rgba(0, 0, 0, 0.4)',
   ultraLightOverlay: 'rgba(0, 0, 0, 0.2)',

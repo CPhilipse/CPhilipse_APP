@@ -73,15 +73,12 @@ const icon = {
 
 const fonts = {
   bigAssTitle: {
-    fontFamily: 'Sansita-Regular',
     fontSize: scale(100),
   },
   title: {
-    fontFamily: 'Sansita-Regular',
     fontSize: scale(80),
   },
   subtitle: {
-    fontFamily: 'Sansita-Regular',
     fontSize: scale(60),
   },
   mediumSubtitle: {
@@ -91,9 +88,6 @@ const fonts = {
   smallSubtitle: {
     fontFamily: 'Sansita-Bold',
     fontSize: scale(40),
-  },
-  regular: {
-    fontFamily: 'Sansita-Regular',
   },
   regularBold: {
     fontFamily: 'Sansita-Bold',
@@ -105,7 +99,6 @@ const fonts = {
     fontFamily: 'Sansita-Italic',
   },
   smallRegular: {
-    fontFamily: 'Sansita-Regular',
     fontSize: scale(30),
   },
   smallItalic: {

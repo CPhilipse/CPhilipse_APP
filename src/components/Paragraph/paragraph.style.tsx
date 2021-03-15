@@ -11,7 +11,6 @@ export default StyleSheet.create({
     color: colors.white,
   },
   body: {
-    ...metrics.fonts.regular,
     color: colors.white,
   },
 });
