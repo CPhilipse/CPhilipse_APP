@@ -75,6 +75,7 @@ const Cphilipse = ({navigation, darkmode}: Props) => {
           colorStyle3,
           colorStyle4,
           colorStyle5,
+          navigation,
         }}
       />
       {cards.map(({index, title, body}) => {

@@ -11,6 +11,7 @@ import Pages from './enum/Pages';
 import Cphilipse from './pages/Cphilipse';
 import Settings from './pages/Settings';
 import ProjectDetails from './pages/ProjectDetails';
+import EvidenceForJesus from './pages/EvidenceForJesus';
 
 const Stack = createStackNavigator();
 
@@ -66,6 +67,11 @@ export default () => {
               name={Pages.PORTFOLIO}
               component={Portfolio}
               options={{title: Pages.PORTFOLIO, headerShown: false}}
+            />
+            <Stack.Screen
+              name={Pages.EVIDENCE_FOR_JESUS}
+              component={EvidenceForJesus}
+              options={{title: Pages.EVIDENCE_FOR_JESUS, headerShown: false}}
             />
           </Stack.Navigator>
         </NavigationContainer>

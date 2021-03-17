@@ -19,6 +19,7 @@ interface Props {
   colorStyle3: Animated.AnimatedStyleProp<object>;
   colorStyle4: Animated.AnimatedStyleProp<object>;
   colorStyle5: Animated.AnimatedStyleProp<object>;
+  navigation: any;
 }
 
 const localizedCopy = (value: string) =>
@@ -30,6 +31,7 @@ const Items = ({
   colorStyle3,
   colorStyle4,
   colorStyle5,
+  navigation,
 }: Props) => {
   const openLinkedin = useCallback(() => {
     openUrl(localizedCopy('linkedinUrl'));
@@ -44,7 +46,9 @@ const Items = ({
         <View style={styles.basketball}>
           <Basketball />
         </View>
-        <View style={styles.crucifix}>
+        <Button
+          onPress={() => navigation.navigate(Pages.EVIDENCE_FOR_JESUS)}
+          style={styles.crucifix}>
           <Crucifix
             {...{
               colorStyle,
@@ -54,7 +58,7 @@ const Items = ({
               colorStyle5,
             }}
           />
-        </View>
+        </Button>
         <Button onPress={openLinkedin} style={styles.button}>
           <Text style={styles.buttonText}>{localizedCopy('linkedin')}</Text>
         </Button>
