@@ -5,7 +5,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
   },
-  header: {
+  page: {
     marginTop: metrics.vertical.spacing.l,
     paddingHorizontal: metrics.horizontal.pagePadding,
   },

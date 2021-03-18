@@ -1,31 +1,35 @@
 import React, {memo} from 'react';
 import Animated from 'react-native-reanimated';
-import {styles} from './crucifix.style';
-import {StyleSheet, View} from 'react-native';
+import {styles} from './crucifixicon.style';
+import {StyleProp, StyleSheet, View} from 'react-native';
 
 interface Props {
-  colorStyle: Animated.AnimateStyle<object>;
-  colorStyle2: Animated.AnimateStyle<object>;
-  colorStyle3: Animated.AnimateStyle<object>;
-  colorStyle4: Animated.AnimateStyle<object>;
-  colorStyle5: Animated.AnimateStyle<object>;
+  isAnimation: boolean;
+  colorStyle?: Animated.AnimateStyle<object>;
+  colorStyle2?: Animated.AnimateStyle<object>;
+  colorStyle3?: Animated.AnimateStyle<object>;
+  colorStyle4?: Animated.AnimateStyle<object>;
+  colorStyle5?: Animated.AnimateStyle<object>;
   borderColor?: string;
+  style?: StyleProp<object>;
 }
 
-const Crucifix = ({
+const CrucifixIcon = ({
+  isAnimation,
   colorStyle,
   colorStyle2,
   colorStyle3,
   colorStyle4,
   colorStyle5,
+  style,
 }: Props) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <View style={styles.topPiece}>
         <Animated.View
           style={[
             {backgroundColor: 'white', ...StyleSheet.absoluteFillObject},
-            colorStyle,
+            isAnimation && colorStyle,
           ]}
         />
       </View>
@@ -33,7 +37,7 @@ const Crucifix = ({
         <Animated.View
           style={[
             {backgroundColor: 'white', ...StyleSheet.absoluteFillObject},
-            colorStyle2,
+            isAnimation && colorStyle2,
           ]}
         />
       </View>
@@ -41,7 +45,7 @@ const Crucifix = ({
         <Animated.View
           style={[
             {backgroundColor: 'white', ...StyleSheet.absoluteFillObject},
-            colorStyle3,
+            isAnimation && colorStyle3,
           ]}
         />
       </View>
@@ -49,7 +53,7 @@ const Crucifix = ({
         <Animated.View
           style={[
             {backgroundColor: 'white', ...StyleSheet.absoluteFillObject},
-            colorStyle4,
+            isAnimation && colorStyle4,
           ]}
         />
       </View>
@@ -57,7 +61,7 @@ const Crucifix = ({
         <Animated.View
           style={[
             {backgroundColor: 'white', ...StyleSheet.absoluteFillObject},
-            colorStyle5,
+            isAnimation && colorStyle5,
           ]}
         />
       </View>
@@ -65,4 +69,4 @@ const Crucifix = ({
   );
 };
 
-export default memo(Crucifix);
+export default memo(CrucifixIcon);

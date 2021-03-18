@@ -3,7 +3,7 @@ import {View, Text} from 'react-native';
 import Animated from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/Entypo';
 import Basketball from '../../../../components/Basketball';
-import Crucifix from '../../../../components/Crucifix/Crucifix';
+import CrucifixIcon from '../../../../components/CrucifixIcon/CrucifixIcon';
 import Icons from '../../../../enum/Icons';
 import {ICON_SIZE} from '../../../../components/Icon/Icon';
 import {colors} from '../../../../themes';
@@ -49,7 +49,8 @@ const Items = ({
         <Button
           onPress={() => navigation.navigate(Pages.EVIDENCE_FOR_JESUS)}
           style={styles.crucifix}>
-          <Crucifix
+          <CrucifixIcon
+            isAnimation
             {...{
               colorStyle,
               colorStyle2,
