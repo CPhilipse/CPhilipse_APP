@@ -13,6 +13,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import Icon from '../../components/Icon/Icon';
 import Icons from '../../enum/Icons';
+import Page from './components/Page';
 
 interface Props {
   darkmode: boolean;
@@ -25,7 +26,6 @@ const EvidenceForJesus = ({darkmode, navigation}: Props) => {
   const styleOpacity = useAnimatedStyle(() => {
     return {
       opacity: opacity.value,
-      transform: [{rotate: '90deg'}],
     };
   });
 
@@ -43,91 +43,41 @@ const EvidenceForJesus = ({darkmode, navigation}: Props) => {
   return (
     <View style={[styles.container, bgcolor(darkmode)]}>
       <ScrollView>
-        <View style={styles.page}>
-          <Text style={[styles.headerTitle, color(darkmode)]}>
-            Evidence for the historical Jesus
-          </Text>
-
-          <Text style={[styles.title1, color(darkmode)]}>
-            Is the story of Jesus historical?
-          </Text>
-          <Text style={[styles.body1, color(darkmode)]}>
-            {/*The short answer is most likely. There is no reason to disbelief*/}
-            {/*that Jesus was condemned to the cross by Pontius Pilate, let alone*/}
-            {/*that Jesus never existed. If Jesus lived and died, than the only*/}
-            {/*reasonable explanation for the empty tomb is the resurrection. 007*/}
-          </Text>
-        </View>
-        <CrucifixBackground
-          style={{zIndex: 99}}
-          bgcolor={{backgroundColor: colors.black}}
+        <Text style={[styles.headerTitle, color(darkmode)]}>
+          Evidence for the historical Jesus
+        </Text>
+        <Page
+          darkmode={darkmode}
+          title={'Is the story of Jesus historical accurate?'}
+          body={"Let's find out! "}
+          styleOpacity={styleOpacity}
+          showSwipeIndication
         />
-        <CrucifixBackground
-          style={{left: 10, bottom: 45, opacity: 0.5}}
-          // bgcolor={{backgroundColor: colors.lightPurple}}
+        <Page
+          style={styles.nextPagePadding}
+          darkmode={darkmode}
+          title={'Historical evidence'}
+          body={
+            "In order to answer the question, we need to look at the historical evidence. There are 2 historians that are of significant value in regards to Jesus' existence and death; Tacitus and Josephus."
+          }
+          styleOpacity={styleOpacity}
+          showSwipeIndication
         />
-        <Animated.View
-          style={[
-            {
-              position: 'absolute',
-              top: metrics.screenHeight * 0.85,
-              alignSelf: 'center',
-            },
-            styleOpacity,
-          ]}>
-          <Text
-            style={[
-              color(darkmode),
-              {
-                transform: [{rotate: '270deg'}],
-                position: 'absolute',
-                width: 70,
-                left: -50,
-              },
-            ]}>
-            Swipe up
-          </Text>
-          <Icon name={Icons.ARROW_RIGHT} color={colors.white} />
-        </Animated.View>
-        <View style={[styles.page, {marginTop: metrics.screenHeight / 1.5}]}>
-          <Text style={[styles.title1, color(darkmode)]}>
-            {/*Did Jesus even live and die on the cross?*/}
-            What's the historical evidence?
-          </Text>
-          <Text style={[styles.body1, color(darkmode)]}>
-            Tacitus Josephus
-            {/*The short answer is most likely. There is no reason to disbelief*/}
-            {/*that Jesus was condemned to the cross by Pontius Pilate, let alone*/}
-            {/*that Jesus never existed. If Jesus lived and died, than the only*/}
-            {/*reasonable explanation for the empty tomb is the resurrection.*/}
-          </Text>
-        </View>
-        <CrucifixBackground
-          style={{zIndex: 99}}
-          bgcolor={{backgroundColor: colors.black}}
+        <Page
+          style={styles.nextPagePadding}
+          darkmode={darkmode}
+          title={'haiii'}
+          body={"Let's find out! "}
+          styleOpacity={styleOpacity}
+          showSwipeIndication
         />
-        <CrucifixBackground
-          style={{left: 10, bottom: 45, opacity: 0.5}}
-          // bgcolor={{backgroundColor: colors.lightPurple}}
-        />
-        <View style={[styles.page, {marginTop: metrics.screenHeight / 1.5}]}>
-          <Text style={[styles.title1, color(darkmode)]}>
-            Is the story of Jesus historical?
-          </Text>
-          <Text style={[styles.body1, color(darkmode)]}>
-            {/*The short answer is most likely. There is no reason to disbelief that*/}
-            {/*Jesus was condemned to the cross by Pontius Pilate, let alone that*/}
-            {/*Jesus never existed. If Jesus lived and died, than the only reasonable*/}
-            {/*explanation for the empty tomb is the resurrection. 007*/}
-          </Text>
-        </View>
-        <CrucifixBackground
-          style={{zIndex: 99}}
-          bgcolor={{backgroundColor: colors.black}}
-        />
-        <CrucifixBackground
-          style={{left: 10, bottom: 45, opacity: 0.5}}
-          // bgcolor={{backgroundColor: colors.lightPurple}}
+        <Page
+          style={styles.nextPagePadding}
+          darkmode={darkmode}
+          title={'TEST'}
+          body={"Let's find out! "}
+          styleOpacity={styleOpacity}
+          showSwipeIndication
         />
       </ScrollView>
       <BackButton darkmode={darkmode} onPress={() => navigation.goBack()} />

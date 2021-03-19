@@ -90,17 +90,17 @@ const ProjectDetails = ({darkmode, route, navigation}: Props) => {
           navigation={navigation}
         />
         <View style={styles.textContainer}>
-          <Text style={[color(darkmode), styles.txt]}>Homepage</Text>
+          <Text style={[color(darkmode), styles.txt]}>My own app!</Text>
           <Text style={[color(darkmode)]}>
-            This image shows the homepage of this app. This was an interesting
-            page to make, because of the splashscreen and filters. The
-            splashscreen was the hardest part, though I made it from a tutorial,
-            making the animation work with my own custom text was a bit of a
-            hassle. The text is made out of SVG and I've like no experience with
-            SVG. When I tried it the first time with my own text as SVG, it
-            didn't animate the whole text. It only animated half of the letters.
-            After some trial and error I found the correct number to adjust to
-            have it show correctly.
+            The first image shows the homepage of this app. This was an
+            interesting page to make, because of the splashscreen and filters.
+            The splashscreen was the hardest part, though I made it from a
+            tutorial, making the animation work with my own custom text was a
+            bit of a hassle. The text is made out of SVG and I've like no
+            experience with SVG. When I tried it the first time with my own text
+            as SVG, it didn't animate the whole text. It only animated half of
+            the letters. After some trial and error I found the correct number
+            to adjust to have it show correctly.
           </Text>
         </View>
         <BackButton
@@ -164,7 +164,7 @@ const ProjectDetails = ({darkmode, route, navigation}: Props) => {
           menuActive && {backgroundColor: colors.lightPurple},
         ]}
         onPress={menuActive ? closeMenu : startMenuAnimation}>
-        <Text>{[menuActive ? 'Show Less' : 'Show Extra']}</Text>
+        <Text>{menuActive ? 'Show Less' : 'Show Extra'}</Text>
       </Button>
     </View>
   );

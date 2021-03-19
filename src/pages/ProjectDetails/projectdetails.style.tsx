@@ -39,7 +39,7 @@ export default StyleSheet.create({
   },
   activeStyle: {
     borderWidth: 2,
-    borderColor: colors.white,
+    borderColor: colors.lightPurple,
   },
   extraInformationOverlayContainer: {
     ...StyleSheet.absoluteFillObject,
