@@ -36,9 +36,9 @@ export default StyleSheet.create({
   projectContainer: {
     marginLeft: metrics.horizontal.pagePadding,
     width: PROJECT_SIZE,
-    height: PROJECT_SIZE * 2,
+    height: PROJECT_SIZE * 1.9,
     backgroundColor: colors.lightPurple,
-    borderRadius: PROJECT_SIZE / 2,
+    borderRadius: PROJECT_SIZE / 4,
   },
   categories: {
     marginBottom: metrics.vertical.spacing.m,

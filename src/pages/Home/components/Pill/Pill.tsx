@@ -39,7 +39,7 @@ const Pill = ({darkmode, item, setFavorite, favorites}: Props) => {
         <Icon
           name={Icons.FAVORITE}
           size={30}
-          color={favorites.includes(item) ? colors.red : colors.lightGrey}
+          color={favorites.includes(item) ? colors.red : colors.white}
         />
       </Button>
     </>

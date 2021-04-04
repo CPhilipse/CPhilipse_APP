@@ -15,10 +15,12 @@ export interface ProjectProps {
 export const projects = [
   {
     id: 0,
+    home_image: images.app_icon, // TODO: use this on home.
     title: 'Portfolio App',
     subTitle: 'Welcome to my very own app!',
     body: 'This app is open source, so if interested in the code ....',
     images: [
+      images.app_icon,
       images.app_home,
       images.app_menu,
       images.cphilipse,
@@ -34,10 +36,11 @@ export const projects = [
   },
   {
     id: 1,
+    home_image: images.hvgea_icon, // TODO: use this on home.
     title: 'HvGeA',
     subTitle: 'Home of Prayer and Worship.',
     body: 'body',
-    images: [images.hvgea],
+    images: [images.hvgea_icon, images.hvgea],
     video: 'video',
     category: Categories.BLOG,
   },

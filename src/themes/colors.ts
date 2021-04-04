@@ -2,6 +2,8 @@ export default {
   white: '#ffffff',
   error: '#ff4a1e',
 
+  pink: '#ff00fd',
+
   lightPurple: '#af76e7',
   purple: '#7121be',
   darkPurple: '#2f0954',

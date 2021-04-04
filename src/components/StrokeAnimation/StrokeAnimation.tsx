@@ -60,7 +60,7 @@ const StrokeAnimation = ({fadeOutOverlay}: Props) => {
     progress.value = withTiming(
       1,
       {
-        duration: 4000,
+        duration: 4500,
         easing: Easing.linear,
       },
       (isFinished) => isFinished && fadeOutOverlay(),
