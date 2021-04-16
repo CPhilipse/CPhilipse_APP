@@ -17,11 +17,6 @@ const COLORS = [
   colors.midGreen,
 ];
 
-// First color does h and second i
-// Second color
-// third color
-// last color does the first letter C
-
 const AnimatedStroke = ({d, progress}: Props) => {
   // colors.length - 1 because length doesn't count from 0 so it'd be 4. When we use it we want to call the length from 0 to 3, so 4 elements.
   // So it doesn't exceed the number of elements in the array. With 4 there are 5 options (0-4) with 3 there are 4 options (0-3).

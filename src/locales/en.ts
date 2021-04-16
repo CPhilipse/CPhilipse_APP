@@ -17,7 +17,7 @@ export default {
     splash: 'Opening screen',
   },
   [Pages.CPHILIPSE]: {
-    age: '19',
+    age: '20',
     name: 'Clemens Philipse',
     linkedin: 'LinkedIn',
     github: 'GitHub',

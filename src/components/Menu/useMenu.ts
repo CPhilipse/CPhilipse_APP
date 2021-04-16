@@ -7,6 +7,7 @@ import {
 const useMenu = (
   setOverlayActive: (isActive: boolean) => void,
   setMenuActive: (isActive: boolean) => void,
+  disableOverlayOpacity?: boolean,
 ) => {
   const scale = useSharedValue(0);
   const opacityValue = useSharedValue(0);
@@ -24,7 +25,7 @@ const useMenu = (
     setOverlayActive(true);
 
     // Overlay animation
-    opacityValue.value = withTiming(0.8, {
+    opacityValue.value = withTiming(disableOverlayOpacity ? 1 : 0.8, {
       duration: 1500,
     });
     opacityIconValue.value = withTiming(1, {

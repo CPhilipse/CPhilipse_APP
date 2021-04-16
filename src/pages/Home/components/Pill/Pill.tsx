@@ -7,12 +7,19 @@ import Icon from '../../../../components/Icon';
 import Icons from '../../../../enum/Icons';
 import {colors} from '../../../../themes';
 import Button from '../../../../components/Button';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withRepeat,
+  withTiming,
+} from 'react-native-reanimated';
 
 interface Props {
   darkmode: boolean;
   item: ProjectProps;
   setFavorite: (item: ProjectProps) => void;
   favorites: ProjectProps[];
+  styleFavoriteTransition: Animated.AnimatedStyleProp<object>;
 }
 
 // Onpress of heart a nice animation.
@@ -20,7 +27,13 @@ interface Props {
 // OR
 // fill the heart with a red element from bottom to top when activated
 // when unactivated have the red element go down
-const Pill = ({darkmode, item, setFavorite, favorites}: Props) => {
+const Pill = ({
+  darkmode,
+  item,
+  setFavorite,
+  favorites,
+  styleFavoriteTransition,
+}: Props) => {
   return (
     <>
       <View style={styles.imageContainer}>
@@ -36,11 +49,13 @@ const Pill = ({darkmode, item, setFavorite, favorites}: Props) => {
         </Text>
       </View>
       <Button style={styles.favorite} onPress={() => setFavorite(item)}>
-        <Icon
-          name={Icons.FAVORITE}
-          size={30}
-          color={favorites.includes(item) ? colors.red : colors.white}
-        />
+        <Animated.View style={[styleFavoriteTransition]}>
+          <Icon
+            name={Icons.FAVORITE}
+            size={30}
+            color={favorites.includes(item) ? colors.red : colors.white}
+          />
+        </Animated.View>
       </Button>
     </>
   );

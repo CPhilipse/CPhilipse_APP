@@ -10,6 +10,7 @@ import {colors, metrics} from '../../themes';
 import Button from '../../components/Button';
 import Icons from '../../enum/Icons';
 import useMenu from '../../components/Menu/useMenu';
+import Menu from '../../components/Menu';
 
 interface Props {
   darkmode: boolean;

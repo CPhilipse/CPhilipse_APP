@@ -5,7 +5,12 @@ import Pages from '../../enum/Pages';
 import {ProjectProps, projects} from '../../utils/DummyData';
 import Button from '../../components/Button';
 import {bgcolor, color} from '../../utils/DarkmodeUtils';
-import Animated, {useSharedValue} from 'react-native-reanimated';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withRepeat,
+  withTiming,
+} from 'react-native-reanimated';
 import Menu from '../../components/Menu';
 import Pill from './components/Pill';
 import {fadeOutOverlay} from './animations/fadeOutOverlay';
@@ -55,6 +60,35 @@ const Home = ({
     closeOpeningScreen,
   });
 
+  const scale = useSharedValue(1);
+  const heartOpacity = useSharedValue(0);
+  const startHeartAnimation = useCallback(() => {
+    'worklet';
+    scale.value = withTiming(4, {
+      duration: 1500,
+    });
+
+    // heartOpacity.value = withTiming(isFavourite ? 0 : 1, {
+    //   duration: 10000,
+    // });
+  }, [scale.value]);
+
+  const reverseHeartAnimation = useCallback(() => {
+    'worklet';
+    scale.value = withRepeat(
+      withTiming(1, {
+        duration: 1500,
+      }),
+      1,
+      true,
+    );
+  }, [scale.value]);
+
+  const styleFavoriteTransition = useAnimatedStyle(() => ({
+    transform: [{scale: scale.value}],
+    // opacity: heartOpacity.value,
+  }));
+
   const setFavorite = useCallback(
     (item) => {
       let favs = [...favorites];
@@ -63,13 +97,15 @@ const Home = ({
       if (favs.includes(item)) {
         // Remove item from favorites
         favs = favs.filter((_) => _.id !== item.id);
+        // reverseHeartAnimation();
       } else {
         // Add item to favorites
         favs.push(item);
+        startHeartAnimation();
       }
       setFavorites(favs);
     },
-    [favorites, setFavorites],
+    [favorites, setFavorites, startHeartAnimation, reverseHeartAnimation],
   );
 
   return (
@@ -190,6 +226,7 @@ const Home = ({
                         darkmode={darkmode}
                         item={item}
                         favorites={favorites}
+                        styleFavoriteTransition={styleFavoriteTransition}
                       />
                     </Button>
                   );
@@ -216,6 +253,7 @@ const Home = ({
                       darkmode={darkmode}
                       item={item}
                       favorites={favorites}
+                      styleFavoriteTransition={styleFavoriteTransition}
                     />
                   </Button>
                 );
@@ -238,6 +276,7 @@ const Home = ({
                         darkmode={darkmode}
                         item={item}
                         favorites={favorites}
+                        styleFavoriteTransition={styleFavoriteTransition}
                       />
                     </Button>
                   );
@@ -264,6 +303,7 @@ const Home = ({
                       darkmode={darkmode}
                       item={item}
                       favorites={favorites}
+                      styleFavoriteTransition={styleFavoriteTransition}
                     />
                   </Button>
                 );

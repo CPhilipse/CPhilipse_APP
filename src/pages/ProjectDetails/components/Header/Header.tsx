@@ -15,6 +15,7 @@ interface HeaderProps {
 const Header = ({title, darkmode, category, navigation}: HeaderProps) => (
   <>
     <Menu
+      disableOverlayOpacity
       backgroundColor={darkmode ? colors.white : colors.black}
       darkmode={darkmode}
       goToPage={navigation.navigate}

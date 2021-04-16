@@ -9,12 +9,14 @@ import {bgcolor} from '../../utils/DarkmodeUtils';
 import useMenu from './useMenu';
 
 interface Props {
+  disableOverlayOpacity?: boolean;
   darkmode: boolean;
   goToPage: (page: string) => void;
   backgroundColor?: string;
 }
 
 const Menu = ({
+  disableOverlayOpacity,
   darkmode,
   goToPage,
   backgroundColor = colors.lightPurple,
@@ -38,7 +40,7 @@ const Menu = ({
   const {
     methods: {startMenuAnimation, closeMenu},
     styles: {scaleStyle, opacityStyle, opacityIcon, opacityIcon2},
-  } = useMenu(toggleOverlay, toggleMenu);
+  } = useMenu(toggleOverlay, toggleMenu, disableOverlayOpacity);
 
   return (
     <>
