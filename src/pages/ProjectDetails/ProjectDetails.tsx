@@ -91,8 +91,8 @@ const ProjectDetails = ({darkmode, route, navigation}: Props) => {
           navigation={navigation}
         />
         <View style={styles.textContainer}>
-          <Text style={[color(darkmode), styles.txt]}>My own app!</Text>
-          <Text style={[color(darkmode)]}>
+          <Text style={styles.overlayTitleCopy}>My own app!</Text>
+          <Text style={styles.overlayCopy}>
             The first image shows the homepage of this app. This was an
             interesting page to make, because of the splashscreen and filters.
             The splashscreen was the hardest part, though I made it from a
@@ -105,8 +105,8 @@ const ProjectDetails = ({darkmode, route, navigation}: Props) => {
           </Text>
         </View>
         <BackButton
+          darkmode
           icon={Icons.HOME}
-          darkmode={darkmode}
           onPress={() => navigation.goBack()}
         />
       </Animated.View>

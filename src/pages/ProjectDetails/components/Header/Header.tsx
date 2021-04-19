@@ -16,12 +16,12 @@ const Header = ({title, darkmode, category, navigation}: HeaderProps) => (
   <>
     <Menu
       disableOverlayOpacity
-      backgroundColor={darkmode ? colors.white : colors.black}
+      backgroundColor={colors.white}
       darkmode={darkmode}
       goToPage={navigation.navigate}
     />
     <View style={styles.header}>
-      <Text style={[styles.categories, color(darkmode)]}>{category}</Text>
+      <Text style={styles.categories}>{category}</Text>
       <Text style={styles.title}>{title}</Text>
     </View>
   </>

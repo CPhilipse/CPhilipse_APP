@@ -39,14 +39,10 @@ const Pill = ({
       <View style={styles.imageContainer}>
         <Image source={item.images[0]} style={styles.image} />
       </View>
-      <Text style={[styles.projectTitle, color(darkmode)]}>{item.title}</Text>
-      <Text style={[styles.projectSubtitle, color(darkmode)]}>
-        {item.subTitle}
-      </Text>
+      <Text style={styles.projectTitle}>{item.title}</Text>
+      <Text style={styles.projectSubtitle}>{item.subTitle}</Text>
       <View style={styles.categoriesContainer}>
-        <Text style={[styles.projectCategories, color(darkmode)]}>
-          {item.category}
-        </Text>
+        <Text style={styles.projectCategories}>{item.category}</Text>
       </View>
       <Button style={styles.favorite} onPress={() => setFavorite(item)}>
         <Animated.View style={[styleFavoriteTransition]}>

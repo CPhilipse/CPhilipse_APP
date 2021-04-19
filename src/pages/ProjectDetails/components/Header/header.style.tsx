@@ -7,7 +7,7 @@ export default StyleSheet.create({
     marginTop: metrics.vertical.spacing.xl,
     zIndex: 1,
   },
-  categories: {...metrics.fonts.smallItalic, color: colors.lightPurple},
+  categories: {...metrics.fonts.smallItalic, color: colors.white},
   title: {
     ...metrics.fonts.subtitle,
     paddingTop: metrics.scaleY(20),

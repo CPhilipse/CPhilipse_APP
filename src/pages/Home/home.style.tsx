@@ -6,9 +6,6 @@ export default StyleSheet.create({
   container: {
     flex: 1,
   },
-  padding: {
-    marginTop: metrics.vertical.spacing.s,
-  },
   cardContainer: {
     alignItems: 'center',
   },

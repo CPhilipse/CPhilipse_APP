@@ -16,11 +16,13 @@ export default StyleSheet.create({
     ...metrics.fonts.mediumSubtitle,
     paddingHorizontal: metrics.horizontal.pagePadding,
     marginTop: metrics.vertical.spacing.m,
+    color: colors.white,
   },
   projectSubtitle: {
     ...metrics.fonts.smallRegular,
     paddingHorizontal: metrics.horizontal.pagePadding,
     marginTop: metrics.vertical.spacing.s,
+    color: colors.white,
   },
   categoriesContainer: {
     position: 'absolute',
@@ -35,6 +37,7 @@ export default StyleSheet.create({
     padding: metrics.scale(20),
     marginRight: metrics.scale(20),
     borderRadius: metrics.scale(20),
+    color: colors.white,
   },
   favorite: {
     position: 'absolute',

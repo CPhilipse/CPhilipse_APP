@@ -110,9 +110,8 @@ const Home = ({
 
   return (
     <View style={[styles.container, bgcolor(darkmode)]}>
-      <View style={styles.padding}>
-        <Menu darkmode={darkmode} goToPage={navigation.navigate} />
-
+      <Menu darkmode={darkmode} goToPage={navigation.navigate} />
+      <View>
         <Splashscreen
           opacity={opacity}
           opacity2={opacity2}
@@ -131,7 +130,10 @@ const Home = ({
           </Text>
         </Button>
 
-        <ScrollView horizontal contentContainerStyle={styles.categories}>
+        <ScrollView
+          horizontal
+          contentContainerStyle={styles.categories}
+          showsHorizontalScrollIndicator={false}>
           <Button
             onPress={() =>
               setCategories({
