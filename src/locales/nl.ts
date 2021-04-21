@@ -23,15 +23,28 @@ export default {
     github: 'GitHub',
     linkedinUrl: 'https://www.linkedin.com/in/clemens-philipse-2615b9162/',
     githubUrl: 'https://github.com/CPhilipse/CPhilipse_APP',
-    firstCardTitle: 'About me',
+    firstCardTitle: 'Over mij',
     firstCard:
-      "I live in The Netherlands and I'm following the education Machine Science at the university of Leiden. My ultimate dream and goal is to become a digital investigator at Interpol in Lyon. \n\n Swipe recht of links.",
-    secondCardTitle: 'Reason',
+      'Ik woon in Nederland en ik volg de opleiding Informatica aan de hogschool van Leiden. Mijn droombaan is om bij Interpol te gaan werken als digital investigator in Lyon. PS. Je kan op het kruisje klikken. \n\n Swipe rechts of links.',
+    secondCardTitle: 'Reden',
     secondCard:
-      'I started making this app with the intent of practicing mobile animations. I knew I could go nuts with animations on my own app and since I really love animations, I went all out! While trying to not make it too chaotic.',
-    thirdCardTitle: 'https://github.com/CPhilipse/CPhilipse_APP',
-    thirdCard: 'https://github.com/CPhilipse/CPhilipse_APP',
-    fourthCardTitle: 'https://github.com/CPhilipse/CPhilipse_APP',
+      'Ik begon met het maken van deze app om te oefenen met animaties. In mijn eigen app kan ik maken wat ik mooi vind, dus het was super leuk om deze app in elkaar te zetten.',
+    thirdCardTitle: 'The App',
+    thirdCard:
+      'De app is gemaakt in React-Native v0.63, ik maak gebruik van React-Native-Reanimated v2 voor de animaties. Deze app maakt ook gebruik van TypeScript en maakt gebruik van Redux voor het opslaan van gegevens.',
+    fourthCardTitle: 'Open source App',
     fourthCard: 'https://github.com/CPhilipse/CPhilipse_APP',
+  },
+  [Pages.PROJECT_DETAILS]: {
+    overlayCopy:
+      'The first image shows the homepage of this app. This was an' +
+      'interesting page to make, because of the splashscreen and filters.' +
+      'The splashscreen was the hardest part, though I made it from a' +
+      'tutorial, making the animation work with my own custom text was a' +
+      "bit of a hassle. The text is made out of SVG and I've like no" +
+      'experience with SVG. When I tried it the first time with my own text' +
+      "as SVG, it didn't animate the whole text. It only animated half of" +
+      'the letters. After some trial and error I found the correct number' +
+      'to adjust to have it show correctly.',
   },
 };

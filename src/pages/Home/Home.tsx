@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useRef, useState} from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import styles from './home.style';
 import Pages from '../../enum/Pages';
@@ -105,8 +105,31 @@ const Home = ({
       }
       setFavorites(favs);
     },
-    [favorites, setFavorites, startHeartAnimation, reverseHeartAnimation],
+    [favorites, setFavorites, startHeartAnimation],
   );
+
+  const scrollRef = useRef();
+  const handleFilter = (cat: string) => {
+    const pressedHobby = cat === Categories.HOBBY;
+    const pressedBlog = cat === Categories.BLOG;
+    const pressedSchool = cat === Categories.SCHOOL;
+    const pressedFavorites = cat === Categories.FAVORITES;
+    setCategories({
+      blog: pressedBlog ? !categories.blog : categories.blog,
+      favorites: pressedFavorites
+        ? !categories.favorites
+        : categories.favorites,
+      hobby: pressedHobby ? !categories.hobby : categories.hobby,
+      school: pressedSchool ? !categories.school : categories.school,
+    });
+
+    // Scroll to start position on filter, so an item always shows.
+    scrollRef.current?.scrollTo({
+      y: 0,
+      x: 0,
+      animated: true,
+    });
+  };
 
   return (
     <View style={[styles.container, bgcolor(darkmode)]}>
@@ -134,15 +157,7 @@ const Home = ({
           horizontal
           contentContainerStyle={styles.categories}
           showsHorizontalScrollIndicator={false}>
-          <Button
-            onPress={() =>
-              setCategories({
-                blog: categories.blog,
-                favorites: !categories.favorites,
-                hobby: categories.hobby,
-                school: categories.school,
-              })
-            }>
+          <Button onPress={() => handleFilter(Categories.FAVORITES)}>
             <Text
               style={[
                 styles.category,
@@ -151,15 +166,7 @@ const Home = ({
               Favorites
             </Text>
           </Button>
-          <Button
-            onPress={() =>
-              setCategories({
-                blog: categories.blog,
-                favorites: categories.favorites,
-                hobby: !categories.hobby,
-                school: categories.school,
-              })
-            }>
+          <Button onPress={() => handleFilter(Categories.HOBBY)}>
             <Text
               style={[
                 styles.category,
@@ -168,15 +175,7 @@ const Home = ({
               Hobby project
             </Text>
           </Button>
-          <Button
-            onPress={() =>
-              setCategories({
-                blog: !categories.blog,
-                favorites: categories.favorites,
-                hobby: categories.hobby,
-                school: categories.school,
-              })
-            }>
+          <Button onPress={() => handleFilter(Categories.BLOG)}>
             <Text
               style={[
                 styles.category,
@@ -185,15 +184,7 @@ const Home = ({
               Blog
             </Text>
           </Button>
-          <Button
-            onPress={() =>
-              setCategories({
-                blog: categories.blog,
-                favorites: categories.favorites,
-                hobby: categories.hobby,
-                school: !categories.school,
-              })
-            }>
+          <Button onPress={() => handleFilter(Categories.SCHOOL)}>
             <Text
               style={[
                 styles.category,
@@ -206,6 +197,7 @@ const Home = ({
 
         <AnimatedScrollview
           horizontal
+          ref={scrollRef}
           showsHorizontalScrollIndicator={false}
           scrollEventThrottle={1}
           contentContainerStyle={styles.pillList}>

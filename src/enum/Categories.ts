@@ -3,4 +3,5 @@ export default {
   SCHOOL: 'School',
   HOBBY: 'Hobby project',
   PROJECT: 'Project',
+  FAVORITES: 'Favorites',
 };

@@ -11,12 +11,17 @@ import Button from '../../components/Button';
 import Icons from '../../enum/Icons';
 import useMenu from '../../components/Menu/useMenu';
 import Menu from '../../components/Menu';
+import {getLocalizedString} from '../../utils/LocalizedUtils';
+import Pages from '../../enum/Pages';
 
 interface Props {
   darkmode: boolean;
   route: {params: ProjectProps};
   navigation: any;
 }
+
+const localizedCopy = (value: string) =>
+  getLocalizedString(Pages.PROJECT_DETAILS, value);
 
 const ProjectDetails = ({darkmode, route, navigation}: Props) => {
   const {title, category, images} = route.params;
@@ -92,17 +97,7 @@ const ProjectDetails = ({darkmode, route, navigation}: Props) => {
         />
         <View style={styles.textContainer}>
           <Text style={styles.overlayTitleCopy}>My own app!</Text>
-          <Text style={styles.overlayCopy}>
-            The first image shows the homepage of this app. This was an
-            interesting page to make, because of the splashscreen and filters.
-            The splashscreen was the hardest part, though I made it from a
-            tutorial, making the animation work with my own custom text was a
-            bit of a hassle. The text is made out of SVG and I've like no
-            experience with SVG. When I tried it the first time with my own text
-            as SVG, it didn't animate the whole text. It only animated half of
-            the letters. After some trial and error I found the correct number
-            to adjust to have it show correctly.
-          </Text>
+          <Text style={styles.overlayCopy}>{localizedCopy('overlayCopy')}</Text>
         </View>
         <BackButton
           darkmode
