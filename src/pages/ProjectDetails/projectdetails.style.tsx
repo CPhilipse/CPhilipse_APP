@@ -15,9 +15,6 @@ export default StyleSheet.create({
     backgroundColor: colors.ultraLightOverlay,
     zIndex: 1,
   },
-  overlayTitleCopy: {
-    color: colors.white,
-  },
   overlayCopy: {
     color: colors.white,
   },

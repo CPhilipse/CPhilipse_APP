@@ -37,7 +37,7 @@ const Pill = ({
   return (
     <>
       <View style={styles.imageContainer}>
-        <Image source={item.images[0]} style={styles.image} />
+        <Image source={item.home_image} style={styles.image} />
       </View>
       <Text style={styles.projectTitle}>{item.title}</Text>
       <Text style={styles.projectSubtitle}>{item.subTitle}</Text>

@@ -5,4 +5,5 @@ export default {
   app_home: require('../assets/images/App_Home.jpg'),
   app_menu: require('../assets/images/App_Menu.jpg'),
   app_icon: require('../assets/images/icon.png'),
+  android_default_icon: require('../assets/images/android_default_icon.png'),
 };

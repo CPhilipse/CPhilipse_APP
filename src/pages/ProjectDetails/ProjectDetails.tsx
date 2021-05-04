@@ -24,7 +24,7 @@ const localizedCopy = (value: string) =>
   getLocalizedString(Pages.PROJECT_DETAILS, value);
 
 const ProjectDetails = ({darkmode, route, navigation}: Props) => {
-  const {title, category, images} = route.params;
+  const {title, body, category, images} = route.params;
   const [activeIndex, setActiveIndex] = useState(0);
 
   const [menuActive, setMenuActive] = useState(false);
@@ -96,8 +96,7 @@ const ProjectDetails = ({darkmode, route, navigation}: Props) => {
           navigation={navigation}
         />
         <View style={styles.textContainer}>
-          <Text style={styles.overlayTitleCopy}>My own app!</Text>
-          <Text style={styles.overlayCopy}>{localizedCopy('overlayCopy')}</Text>
+          <Text style={styles.overlayCopy}>{body}</Text>
         </View>
         <BackButton
           darkmode
