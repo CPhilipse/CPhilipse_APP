@@ -61,32 +61,24 @@ const Home = ({
   });
 
   const scale = useSharedValue(1);
-  const heartOpacity = useSharedValue(0);
   const startHeartAnimation = useCallback(() => {
     'worklet';
+    if (scale.value === 4) {
+      scale.value = withTiming(1, {
+        duration: 1500,
+      });
+    } else {
+      scale.value = withTiming(4, {
+        duration: 1500,
+      });
+    }
     scale.value = withTiming(4, {
       duration: 1500,
     });
-
-    // heartOpacity.value = withTiming(isFavourite ? 0 : 1, {
-    //   duration: 10000,
-    // });
-  }, [scale.value]);
-
-  const reverseHeartAnimation = useCallback(() => {
-    'worklet';
-    scale.value = withRepeat(
-      withTiming(1, {
-        duration: 1500,
-      }),
-      1,
-      true,
-    );
   }, [scale.value]);
 
   const styleFavoriteTransition = useAnimatedStyle(() => ({
     transform: [{scale: scale.value}],
-    // opacity: heartOpacity.value,
   }));
 
   const setFavorite = useCallback(
@@ -257,6 +249,7 @@ const Home = ({
                 const {BLOG, SCHOOL, HOBBY} = Categories;
 
                 const uncheckedAll = !school && !blog && !hobby;
+
                 if (uncheckedAll) {
                   return (
                     <Button

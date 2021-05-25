@@ -34,6 +34,9 @@ const Pill = ({
   favorites,
   styleFavoriteTransition,
 }: Props) => {
+  // Filter out the id of the favorites, so it'll show the heart red when there is a favorite.
+  // Cause for some very odd reason, favorites.includes(item) does not work.
+  const favId = favorites.filter((_: ProjectProps) => _.id === item.id);
   return (
     <>
       <View style={styles.imageContainer}>
@@ -49,7 +52,7 @@ const Pill = ({
           <Icon
             name={Icons.FAVORITE}
             size={30}
-            color={favorites.includes(item) ? colors.red : colors.white}
+            color={favId?.[0]?.id === item.id ? colors.red : colors.white}
           />
         </Animated.View>
       </Button>

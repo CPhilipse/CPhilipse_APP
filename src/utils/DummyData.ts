@@ -15,7 +15,8 @@ export interface ProjectProps {
   category: string;
 }
 
-const localizedCopy = (value: string) => getLocalizedString(Pages.HOME, value);
+const localizedCopy = (value: string) =>
+  getLocalizedString(Pages.PROJECT_DETAILS, value);
 
 export const projects = [
   {
@@ -44,7 +45,21 @@ export const projects = [
     title: 'HvGeA',
     subTitle: 'Home of Prayer and Worship.',
     body: localizedCopy('hvgea_app'),
-    images: [images.hvgea],
+    images: [
+      images.hvgea_app01,
+      images.hvgea_app02,
+      images.hvgea_app03,
+      images.hvgea_app04,
+      images.hvgea_app05,
+      images.hvgea_app06,
+      images.hvgea_app07,
+      images.hvgea_app08,
+      images.hvgea_app09,
+      images.hvgea_app10,
+      images.hvgea_app11,
+      images.hvgea_app12,
+      images.hvgea_app13,
+    ],
     video: 'video',
     category: Categories.BLOG,
   },
