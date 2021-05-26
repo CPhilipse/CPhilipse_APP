@@ -16,7 +16,8 @@ export default StyleSheet.create({
   headerTitle: {
     ...metrics.fonts.smallSubtitle,
     alignSelf: 'flex-end',
-    marginTop: metrics.vertical.spacing.l,
+    top: metrics.scale(40),
+    paddingTop: metrics.scale(80),
     paddingHorizontal: metrics.horizontal.pagePadding,
   },
   title1: {

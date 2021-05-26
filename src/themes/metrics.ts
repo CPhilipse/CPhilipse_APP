@@ -98,6 +98,9 @@ const fonts = {
   regularItalic: {
     fontFamily: 'Sansita-Italic',
   },
+  mediumRegular: {
+    fontSize: scale(35),
+  },
   smallRegular: {
     fontSize: scale(30),
   },

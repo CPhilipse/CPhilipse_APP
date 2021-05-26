@@ -16,7 +16,7 @@ export default StyleSheet.create({
     zIndex: 2,
   },
   languageContainer: {
-    top: metrics.scaleY(530),
+    top: metrics.scaleY(560),
     marginHorizontal: metrics.horizontal.pagePadding,
   },
   splashContainer: {

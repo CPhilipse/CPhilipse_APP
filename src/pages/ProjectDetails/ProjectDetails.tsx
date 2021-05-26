@@ -20,9 +20,6 @@ interface Props {
   navigation: any;
 }
 
-const localizedCopy = (value: string) =>
-  getLocalizedString(Pages.PROJECT_DETAILS, value);
-
 const ProjectDetails = ({darkmode, route, navigation}: Props) => {
   const {title, body, category, images} = route.params;
   const [activeIndex, setActiveIndex] = useState(0);

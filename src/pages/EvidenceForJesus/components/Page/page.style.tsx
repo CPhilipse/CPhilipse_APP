@@ -19,7 +19,7 @@ export default StyleSheet.create({
   },
   swipeUpContainer: {
     position: 'absolute',
-    top: metrics.screenHeight * 0.85,
+    top: metrics.screenHeight * 0.88,
     alignSelf: 'center',
     textAlign: 'center',
     alignItems: 'center',

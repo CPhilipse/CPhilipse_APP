@@ -12,7 +12,7 @@ export default StyleSheet.create({
   },
   cable: {
     position: 'absolute',
-    top: -50, // top out of screen
+    top: -metrics.scaleY(105), // top out of screen
     right: metrics.scale(140),
     height: metrics.scaleY(858),
     width: metrics.scale(15),

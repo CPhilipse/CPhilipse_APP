@@ -17,6 +17,7 @@ export default StyleSheet.create({
   },
   overlayCopy: {
     color: colors.white,
+    ...metrics.fonts.mediumRegular,
   },
   image: {
     width: metrics.screenWidth,
@@ -52,9 +53,6 @@ export default StyleSheet.create({
   textContainer: {
     marginTop: metrics.vertical.spacing.m,
     paddingHorizontal: metrics.horizontal.padding,
-  },
-  txt: {
-    ...metrics.fonts.regularBold,
   },
   extraBtn: {
     width: IMAGE_SIZE * 2,
