@@ -1,9 +1,9 @@
 import React from 'react';
-import {View, Text, ScrollView, StyleProp} from 'react-native';
+import {View, Text, StyleProp} from 'react-native';
 import styles from './page.style';
 import {color} from '../../../../utils/DarkmodeUtils';
 import CrucifixBackground from '../../../../components/CrucifixBackground';
-import {colors, metrics} from '../../../../themes';
+import {colors} from '../../../../themes';
 import Animated from 'react-native-reanimated';
 import Icon from '../../../../components/Icon/Icon';
 import Icons from '../../../../enum/Icons';
@@ -14,7 +14,7 @@ interface Props {
   title: string;
   body?: string;
   styleOpacity?: any;
-  showSwipeIndication: boolean;
+  showSwipeIndication?: boolean;
 }
 
 const Page = ({
