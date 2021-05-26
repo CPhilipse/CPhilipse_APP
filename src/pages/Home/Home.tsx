@@ -6,6 +6,8 @@ import {ProjectProps, projects} from '../../utils/DummyData';
 import Button from '../../components/Button';
 import {bgcolor, color} from '../../utils/DarkmodeUtils';
 import Animated, {
+  Easing,
+  runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withRepeat,
@@ -100,27 +102,54 @@ const Home = ({
     [favorites, setFavorites, startHeartAnimation],
   );
 
-  const scrollRef = useRef();
-  const handleFilter = (cat: string) => {
-    const pressedHobby = cat === Categories.HOBBY;
-    const pressedBlog = cat === Categories.BLOG;
-    const pressedSchool = cat === Categories.SCHOOL;
-    const pressedFavorites = cat === Categories.FAVORITES;
-    setCategories({
-      blog: pressedBlog ? !categories.blog : categories.blog,
-      favorites: pressedFavorites
-        ? !categories.favorites
-        : categories.favorites,
-      hobby: pressedHobby ? !categories.hobby : categories.hobby,
-      school: pressedSchool ? !categories.school : categories.school,
+  const itemOpacity = useSharedValue(1);
+  const filterAnimation = () => {
+    'worklet';
+    itemOpacity.value = withTiming(0, {
+      duration: 500,
+      easing: Easing.linear,
     });
 
-    // Scroll to start position on filter, so an item always shows.
-    scrollRef.current?.scrollTo({
-      y: 0,
-      x: 0,
-      animated: true,
-    });
+    // During the timeout filter the items and fade these in.
+    setTimeout(() => {
+      itemOpacity.value = withTiming(1, {
+        duration: 500,
+        easing: Easing.linear,
+      });
+    }, 750);
+  };
+
+  const itemOpacityStyle = useAnimatedStyle(() => {
+    return {
+      opacity: itemOpacity.value,
+    };
+  });
+
+  const scrollRef = useRef();
+  const handleFilter = (cat: string) => {
+    setTimeout(() => {
+      const pressedHobby = cat === Categories.HOBBY;
+      const pressedBlog = cat === Categories.BLOG;
+      const pressedSchool = cat === Categories.SCHOOL;
+      const pressedFavorites = cat === Categories.FAVORITES;
+      setCategories({
+        blog: pressedBlog ? !categories.blog : categories.blog,
+        favorites: pressedFavorites
+          ? !categories.favorites
+          : categories.favorites,
+        hobby: pressedHobby ? !categories.hobby : categories.hobby,
+        school: pressedSchool ? !categories.school : categories.school,
+      });
+
+      // Scroll to start position on filter, so an item always shows.
+      scrollRef.current?.scrollTo({
+        y: 0,
+        x: 0,
+        animated: true,
+      });
+    }, 500);
+
+    filterAnimation();
   };
 
   return (
@@ -192,7 +221,8 @@ const Home = ({
           ref={scrollRef}
           showsHorizontalScrollIndicator={false}
           scrollEventThrottle={1}
-          contentContainerStyle={styles.pillList}>
+          contentContainerStyle={styles.pillList}
+          style={itemOpacityStyle}>
           {categories.favorites
             ? favorites.map((item: ProjectProps) => {
                 const {blog, school, hobby} = categories;
