@@ -80,7 +80,6 @@ const ProjectDetails = ({darkmode, route, navigation}: Props) => {
   };
 
   const handleOverlayImage = () => {
-    console.log('>> Overlay image: ', activeOverlayImage);
     setActiveOverlayImage(!activeOverlayImage);
   };
 

@@ -23,6 +23,7 @@ const getLocalizedString = (page: string, value: string) => {
   const enText = en[page][value];
   // @ts-ignore
   const nlText = nl[page][value];
+
   if (language === languages.en) {
     return enText;
   } else if (language === languages.nl) {

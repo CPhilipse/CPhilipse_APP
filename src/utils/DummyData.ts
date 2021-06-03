@@ -11,7 +11,7 @@ export interface ProjectProps {
   subTitle: string;
   body: string;
   images: ImageRequireSource[];
-  video: string;
+  url: string;
   category: string;
 }
 
@@ -36,7 +36,7 @@ export const projects = [
       images.hvgea,
       images.cphilipse,
     ],
-    video: 'video2',
+    url: null,
     category: Categories.HOBBY,
   },
   {
@@ -67,7 +67,7 @@ export const projects = [
       images.hvgea_app19,
       images.hvgea_app20,
     ],
-    video: 'video',
+    url: null,
     category: Categories.BLOG,
   },
   {
@@ -85,7 +85,7 @@ export const projects = [
       images.exam_app05,
       images.exam_app06,
     ],
-    video: 'video1',
+    url: null,
     category: Categories.SCHOOL,
   },
   {
@@ -104,7 +104,7 @@ export const projects = [
       images.mm_07,
       images.mm_08,
     ],
-    video: 'video2',
+    url: null,
     category: Categories.SCHOOL,
   },
   {
@@ -123,7 +123,7 @@ export const projects = [
       images.iwder_07,
       images.iwder_08,
     ],
-    video: 'video2',
+    url: 'https://iwder-s1125584-finalassignment.web.app/index.html',
     category: Categories.SCHOOL,
   },
 ];

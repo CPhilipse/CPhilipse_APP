@@ -94,7 +94,7 @@ const EvidenceForJesus = ({darkmode, navigation}: Props) => {
           darkmode={darkmode}
           title={'Conclusion'}
           body={
-            'The short answer is most likely. There is no reason to disbelief that  Jesus was condemned to the cross by Pontius Pilate, let alone that Jesus never existed. If Jesus lived and died, than the only reasonable explanation for the empty tomb is the resurrection.'
+            'So to conclude, where does the evidence point to? There is no reason to disbelief that Jesus was condemned to the cross by Pontius Pilate, let alone that Jesus never existed. If Jesus lived and died, than the only reasonable explanation for the empty tomb is the resurrection.'
           }
           styleOpacity={styleOpacity}
         />
