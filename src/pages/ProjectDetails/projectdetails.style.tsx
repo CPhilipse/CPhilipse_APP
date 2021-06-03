@@ -22,7 +22,7 @@ export default StyleSheet.create({
   link: {
     color: colors.midBlue,
   },
-  overlayImage: {
+  fullImage: {
     width: metrics.screenWidth,
     height: metrics.screenHeight,
     resizeMode: 'contain',

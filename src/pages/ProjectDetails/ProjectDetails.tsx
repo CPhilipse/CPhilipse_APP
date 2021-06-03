@@ -2,7 +2,7 @@ import React, {useCallback, useRef, useState} from 'react';
 import {View, FlatList, Image, Text, StatusBar} from 'react-native';
 import Animated from 'react-native-reanimated';
 import styles, {IMAGE_SIZE, SPACING} from './projectdetails.style';
-import {bgcolor, color} from '../../utils/DarkmodeUtils';
+import {bgcolor} from '../../utils/DarkmodeUtils';
 import BackButton from '../../components/BackButton';
 import {ProjectProps} from '../../utils/DummyData';
 import Header from './components/Header';
@@ -10,9 +10,6 @@ import {colors, metrics} from '../../themes';
 import Button from '../../components/Button';
 import Icons from '../../enum/Icons';
 import useMenu from '../../components/Menu/useMenu';
-import Menu from '../../components/Menu';
-import {getLocalizedString} from '../../utils/LocalizedUtils';
-import Pages from '../../enum/Pages';
 import {openUrl} from '../../utils/LinkingUtils';
 
 interface Props {
@@ -24,7 +21,7 @@ interface Props {
 const ProjectDetails = ({darkmode, route, navigation}: Props) => {
   const {title, body, category, url, images} = route.params;
   const [activeIndex, setActiveIndex] = useState(0);
-  const [activeOverlayImage, setActiveOverlayImage] = useState(false);
+  const [showFullImage, setFullImage] = useState(false);
 
   const [menuActive, setMenuActive] = useState(false);
   const [overlayActive, setOverlayActive] = useState(false);
@@ -79,9 +76,9 @@ const ProjectDetails = ({darkmode, route, navigation}: Props) => {
     }
   };
 
-  const handleOverlayImage = () => {
-    setActiveOverlayImage(!activeOverlayImage);
-  };
+  const handleOverlayImage = useCallback(() => {
+    setFullImage(!showFullImage);
+  }, [showFullImage]);
 
   return (
     <View style={[styles.container, bgcolor(darkmode)]}>
@@ -131,9 +128,9 @@ const ProjectDetails = ({darkmode, route, navigation}: Props) => {
           );
         }}
         renderItem={({item}) => {
-          return activeOverlayImage ? (
+          return showFullImage ? (
             <Button onPress={handleOverlayImage}>
-              <Image source={item} style={styles.overlayImage} />
+              <Image source={item} style={styles.fullImage} />
             </Button>
           ) : (
             <Button onPress={handleOverlayImage} style={styles.listItem}>
