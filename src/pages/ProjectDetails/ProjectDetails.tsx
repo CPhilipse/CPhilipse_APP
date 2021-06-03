@@ -13,6 +13,7 @@ import useMenu from '../../components/Menu/useMenu';
 import Menu from '../../components/Menu';
 import {getLocalizedString} from '../../utils/LocalizedUtils';
 import Pages from '../../enum/Pages';
+import {openUrl} from '../../utils/LinkingUtils';
 
 interface Props {
   darkmode: boolean;
@@ -21,8 +22,9 @@ interface Props {
 }
 
 const ProjectDetails = ({darkmode, route, navigation}: Props) => {
-  const {title, body, category, images} = route.params;
+  const {title, body, category, url, images} = route.params;
   const [activeIndex, setActiveIndex] = useState(0);
+  const [activeOverlayImage, setActiveOverlayImage] = useState(false);
 
   const [menuActive, setMenuActive] = useState(false);
   const [overlayActive, setOverlayActive] = useState(false);
@@ -77,6 +79,11 @@ const ProjectDetails = ({darkmode, route, navigation}: Props) => {
     }
   };
 
+  const handleOverlayImage = () => {
+    console.log('>> Overlay image: ', activeOverlayImage);
+    setActiveOverlayImage(!activeOverlayImage);
+  };
+
   return (
     <View style={[styles.container, bgcolor(darkmode)]}>
       <StatusBar hidden />
@@ -94,6 +101,11 @@ const ProjectDetails = ({darkmode, route, navigation}: Props) => {
         />
         <View style={styles.textContainer}>
           <Text style={styles.overlayCopy}>{body}</Text>
+          <Text
+            onPress={() => openUrl(url)}
+            style={[styles.overlayCopy, styles.link]}>
+            {url}
+          </Text>
         </View>
         <BackButton
           darkmode
@@ -120,11 +132,15 @@ const ProjectDetails = ({darkmode, route, navigation}: Props) => {
           );
         }}
         renderItem={({item}) => {
-          return (
-            <View style={styles.listItem}>
+          return activeOverlayImage ? (
+            <Button onPress={handleOverlayImage}>
+              <Image source={item} style={styles.overlayImage} />
+            </Button>
+          ) : (
+            <Button onPress={handleOverlayImage} style={styles.listItem}>
               <View style={styles.overlay} />
               <Image source={item} style={styles.image} />
-            </View>
+            </Button>
           );
         }}
       />

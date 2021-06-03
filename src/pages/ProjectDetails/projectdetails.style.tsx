@@ -19,6 +19,14 @@ export default StyleSheet.create({
     color: colors.white,
     ...metrics.fonts.mediumRegular,
   },
+  link: {
+    color: colors.midBlue,
+  },
+  overlayImage: {
+    width: metrics.screenWidth,
+    height: metrics.screenHeight,
+    resizeMode: 'contain',
+  },
   image: {
     width: metrics.screenWidth,
     height: metrics.screenHeight,
