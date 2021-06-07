@@ -7,6 +7,7 @@ import Pages from '../../enum/Pages';
 import styles from './menu.style';
 import {bgcolor} from '../../utils/DarkmodeUtils';
 import useMenu from './useMenu';
+import {getLocalizedString} from '../../utils/LocalizedUtils';
 
 interface Props {
   disableOverlayOpacity?: boolean;
@@ -14,6 +15,8 @@ interface Props {
   goToPage: (page: string) => void;
   backgroundColor?: string;
 }
+
+const localizedCopy = (value: string) => getLocalizedString(Pages.HOME, value);
 
 const Menu = ({
   disableOverlayOpacity,
@@ -57,13 +60,13 @@ const Menu = ({
           onPress={() => goToPage(Pages.SETTINGS)}
           style={styles.menuItem}
           disabled={!overlayActive}>
-          <Text style={styles.menuItemText}>Settings</Text>
+          <Text style={styles.menuItemText}>{localizedCopy('settings')}</Text>
         </Button>
         <Button
           onPress={() => goToPage(Pages.CPHILIPSE)}
           style={styles.menuItem2}
           disabled={!overlayActive}>
-          <Text style={styles.menuItemText}>About</Text>
+          <Text style={styles.menuItemText}>{localizedCopy('about')}</Text>
         </Button>
       </Animated.View>
       <View style={styles.menuContainer}>

@@ -4,6 +4,8 @@ export default {
   [Pages.HOME]: {
     fname: 'Clemens',
     lname: 'Philipse',
+    settings: 'Instellingen',
+    about: 'Contact',
   },
   [Pages.SETTINGS]: {
     title: 'Instellingen',
@@ -25,7 +27,7 @@ export default {
     githubUrl: 'https://github.com/CPhilipse/CPhilipse_APP',
     firstCardTitle: 'Over mij',
     firstCard:
-      'Ik woon in Nederland en ik volg de opleiding Informatica aan de hogschool van Leiden. Mijn droombaan is om bij Interpol te gaan werken als digital investigator in Lyon. PS. Je kan op het kruisje klikken. \n\n Swipe rechts of links.',
+      'Ik woon in Nederland en ik volg de opleiding Informatica aan de hogschool van Leiden. Mijn droombaan is om bij Interpol te gaan werken als digital investigator in Lyon.\n\nPS Je kan op het kruis klikken. \n\n Swipe rechts of links.',
     secondCardTitle: 'Reden',
     secondCard:
       'Ik begon met het maken van deze app om te oefenen met animaties. In mijn eigen app kan ik maken wat ik mooi vind, dus het was super leuk om deze app in elkaar te zetten.',
@@ -33,7 +35,7 @@ export default {
     thirdCard:
       'De app is gemaakt in React-Native v0.63, ik maak gebruik van React-Native-Reanimated v2 voor de animaties. Deze app maakt ook gebruik van TypeScript en maakt gebruik van Redux voor het opslaan van gegevens.',
     fourthCardTitle: 'Open source App',
-    fourthCard: 'https://github.com/CPhilipse/CPhilipse_APP',
+    fourthCard: ':https://github.com/CPhilipse/CPhilipse_APP',
   },
   [Pages.PROJECT_DETAILS]: {
     portfolio_app:

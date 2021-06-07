@@ -15,16 +15,13 @@ export interface ProjectProps {
   category: string;
 }
 
-const localizedCopy = (value: string) =>
-  getLocalizedString(Pages.PROJECT_DETAILS, value);
-
 export const projects = [
   {
     id: 0,
     home_image: images.app_icon,
     title: 'Portfolio App',
     subTitle: 'Welcome to my very own app!',
-    body: localizedCopy('portfolio_app'),
+    body: 'portfolio_app',
     images: [
       images.app_home,
       images.app_menu,
@@ -44,7 +41,7 @@ export const projects = [
     home_image: images.hvgea_icon,
     title: 'HvGeA',
     subTitle: 'Home of Prayer and Worship.',
-    body: localizedCopy('hvgea_app'),
+    body: 'hvgea_app',
     images: [
       images.hvgea_app01,
       images.hvgea_app02,
@@ -76,7 +73,7 @@ export const projects = [
     title: 'Exam',
     subTitle:
       'Mobile Application Development (MAD). Creating detailed incident reports.',
-    body: localizedCopy('exam_app'),
+    body: 'exam_app',
     images: [
       images.exam_app01,
       images.exam_app02,
@@ -93,7 +90,7 @@ export const projects = [
     home_image: images.android_default_icon,
     title: 'Internship',
     subTitle: 'All the apps I worked on within my internship.',
-    body: localizedCopy('internship_copy'),
+    body: 'internship_copy',
     images: [
       images.mm_01,
       images.mm_02,
@@ -112,7 +109,7 @@ export const projects = [
     home_image: images.android_default_icon,
     title: 'IWDER Module',
     subTitle: 'A website I made in HTML, CSS and JS to wrap up a module.',
-    body: localizedCopy('iwder_web'),
+    body: 'iwder_web',
     images: [
       images.iwder_01,
       images.iwder_02,

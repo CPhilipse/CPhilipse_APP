@@ -13,8 +13,8 @@ import {
   PanGestureHandler,
   PanGestureHandlerGestureEvent,
 } from 'react-native-gesture-handler';
-import {mix, mixColor, snapPoint} from 'react-native-redash';
-import {colors, metrics} from '../../themes';
+import {mix, snapPoint} from 'react-native-redash';
+import {metrics} from '../../themes';
 import {color} from '../../utils/DarkmodeUtils';
 import Button from '../Button';
 import {openUrl} from '../../utils/LinkingUtils';

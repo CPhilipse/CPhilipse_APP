@@ -12,7 +12,7 @@ export default StyleSheet.create({
   },
   card: {
     width: SIZE,
-    height: SIZE,
+    height: SIZE * 1.2,
     borderRadius: 24,
     borderWidth: 1,
     alignItems: 'flex-start',

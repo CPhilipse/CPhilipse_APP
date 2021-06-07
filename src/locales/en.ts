@@ -4,6 +4,8 @@ export default {
   [Pages.HOME]: {
     fname: 'Clemens',
     lname: 'Philipse',
+    settings: 'Settings',
+    about: 'About',
   },
   [Pages.SETTINGS]: {
     title: 'Settings',
@@ -25,7 +27,7 @@ export default {
     githubUrl: 'https://github.com/CPhilipse/CPhilipse_APP',
     firstCardTitle: 'About me',
     firstCard:
-      "I live in The Netherlands and I'm following the education Machine Science at the university of Leiden. My ultimate dream and goal is to become a digital investigator at Interpol in Lyon. PS you can press the cross. \n\n Swipe right or left.",
+      "I live in The Netherlands and I'm following the education Machine Science at the university of Leiden. My ultimate dream and goal is to become a digital investigator at Interpol in Lyon.\n\nPS you can press the cross. \n\n Swipe right or left.",
     secondCardTitle: 'Reason',
     secondCard:
       'I started making this app with the intent of practicing mobile animations and on my own app I can make animations based on my preferences. So it was really enjoyable making this app!',

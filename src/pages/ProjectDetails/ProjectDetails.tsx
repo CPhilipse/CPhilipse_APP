@@ -11,6 +11,8 @@ import Button from '../../components/Button';
 import Icons from '../../enum/Icons';
 import useMenu from '../../components/Menu/useMenu';
 import {openUrl} from '../../utils/LinkingUtils';
+import {getLocalizedString} from '../../utils/LocalizedUtils';
+import Pages from '../../enum/Pages';
 
 interface Props {
   darkmode: boolean;
@@ -18,8 +20,12 @@ interface Props {
   navigation: any;
 }
 
+const localizedCopy = (value: string) =>
+  getLocalizedString(Pages.PROJECT_DETAILS, value);
+
 const ProjectDetails = ({darkmode, route, navigation}: Props) => {
   const {title, body, category, url, images} = route.params;
+  console.log('>> BODY: ', body);
   const [activeIndex, setActiveIndex] = useState(0);
   const [showFullImage, setFullImage] = useState(false);
 
@@ -89,14 +95,9 @@ const ProjectDetails = ({darkmode, route, navigation}: Props) => {
           overlayActive ? {zIndex: 2} : {zIndex: -2},
           opacityStyle,
         ]}>
-        <Header
-          category={category}
-          title={title}
-          darkmode={darkmode}
-          navigation={navigation}
-        />
+        <Header category={category} title={title} />
         <View style={styles.textContainer}>
-          <Text style={styles.overlayCopy}>{body}</Text>
+          <Text style={styles.overlayCopy}>{localizedCopy(body)}</Text>
           <Text
             onPress={() => openUrl(url)}
             style={[styles.overlayCopy, styles.link]}>

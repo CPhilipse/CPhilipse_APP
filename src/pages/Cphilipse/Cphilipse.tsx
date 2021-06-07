@@ -28,23 +28,23 @@ interface cardProps {
 const cards: cardProps[] = [
   {
     index: 3,
-    title: localizedCopy('fourthCardTitle'),
-    body: localizedCopy('fourthCard'),
+    title: 'fourthCardTitle',
+    body: 'fourthCard',
   },
   {
     index: 2,
-    title: localizedCopy('thirdCardTitle'),
-    body: localizedCopy('thirdCard'),
+    title: 'thirdCardTitle',
+    body: 'thirdCard',
   },
   {
     index: 1,
-    title: localizedCopy('secondCardTitle'),
-    body: localizedCopy('secondCard'),
+    title: 'secondCardTitle',
+    body: 'secondCard',
   },
   {
     index: 0,
-    title: localizedCopy('firstCardTitle'),
-    body: localizedCopy('firstCard'),
+    title: 'firstCardTitle',
+    body: 'firstCard',
   },
 ];
 const step = 1 / (cards.length - 1);
@@ -87,8 +87,8 @@ const Cphilipse = ({navigation, darkmode}: Props) => {
               darkmode={darkmode}
               index={index}
               aIndex={aIndex}
-              title={title}
-              body={body}
+              title={localizedCopy(title)}
+              body={localizedCopy(body)}
               step={step}
               onSwipe={() => {
                 setCurrentIndex((prev) => {
