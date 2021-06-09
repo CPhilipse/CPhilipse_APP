@@ -25,7 +25,6 @@ const localizedCopy = (value: string) =>
 
 const ProjectDetails = ({darkmode, route, navigation}: Props) => {
   const {title, body, category, url, images} = route.params;
-  console.log('>> BODY: ', body);
   const [activeIndex, setActiveIndex] = useState(0);
   const [showFullImage, setFullImage] = useState(false);
 
@@ -98,11 +97,13 @@ const ProjectDetails = ({darkmode, route, navigation}: Props) => {
         <Header category={category} title={title} />
         <View style={styles.textContainer}>
           <Text style={styles.overlayCopy}>{localizedCopy(body)}</Text>
-          <Text
-            onPress={() => openUrl(url)}
-            style={[styles.overlayCopy, styles.link]}>
-            {url}
-          </Text>
+          {url && (
+            <Text
+              onPress={() => openUrl(url)}
+              style={[styles.overlayCopy, styles.link]}>
+              {url}
+            </Text>
+          )}
         </View>
         <BackButton
           darkmode
