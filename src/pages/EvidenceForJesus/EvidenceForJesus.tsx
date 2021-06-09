@@ -76,7 +76,7 @@ const EvidenceForJesus = ({darkmode, navigation}: Props) => {
           darkmode={darkmode}
           title={"Most popular popular 'contradictions' debunked"}
           body={
-            "Certain historian specialists like Bart Ehrman believe the New Testament to be false on the resurrection because of the pieces of text that they see as 'contradictions'. Let's see why or why not these pieces are contradictions."
+            "Certain historian specialists like Bart Ehrman believe the New Testament to be false on the resurrection because of the pieces of text that they see as 'contradictions'. Let's see why or why not these pieces are contradictions.\n\n#1How many women were at the tomb?\nJohn 20:1 says Mary Magdalene came to the tomb. Matthew 28:1 says both Mary Magdalene and the other Mary went to the tomb. Luke says Mary Magdalene, Joanna, Mary the mother of James and the other women went to the tomb. Looking at this you can understand why skeptics would point these out. But Luke explicitly says that there were others that he didn't name. In no gospel did it say these were the only women or people who came to the tomb. An example by Frank Turek, he says \"If I say I went to the store with my wife last night. I'm not automatically excluding the fact that I brought my four kids with me. I just left out a detail. So what\".\n\n#2 Was the tomb opened or closed when the women arrived?\n"
           }
           styleOpacity={styleOpacity}
         />
