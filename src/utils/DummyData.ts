@@ -1,8 +1,6 @@
 import {ImageRequireSource} from 'react-native';
 import Categories from '../enum/Categories';
 import {images} from '../themes';
-import {getLocalizedString} from './LocalizedUtils';
-import Pages from '../enum/Pages';
 
 export interface ProjectProps {
   id: number;
@@ -11,7 +9,7 @@ export interface ProjectProps {
   subTitle: string;
   body: string;
   images: ImageRequireSource[];
-  url: string;
+  url: string | null;
   category: string;
 }
 

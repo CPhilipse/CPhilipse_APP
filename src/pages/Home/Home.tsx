@@ -1,4 +1,4 @@
-import React, {useCallback, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import styles from './home.style';
 import Pages from '../../enum/Pages';
@@ -65,18 +65,13 @@ const Home = ({
   const scale = useSharedValue(1);
   const startHeartAnimation = useCallback(() => {
     'worklet';
-    if (scale.value === 4) {
-      scale.value = withTiming(1, {
-        duration: 1500,
-      });
-    } else {
-      scale.value = withTiming(4, {
-        duration: 1500,
-      });
-    }
-    scale.value = withTiming(4, {
-      duration: 1500,
-    });
+    scale.value = withRepeat(
+      withTiming(3, {
+        duration: 2500,
+      }),
+      2,
+      true,
+    );
   }, [scale.value]);
 
   const styleFavoriteTransition = useAnimatedStyle(() => ({
@@ -86,20 +81,19 @@ const Home = ({
   const setFavorite = useCallback(
     (item) => {
       let favs = [...favorites];
+      // startHeartAnimation();
 
       // if item is in list, than it is already favorite. If it's not already in list, than its not a fav.
       if (favs.includes(item)) {
         // Remove item from favorites
         favs = favs.filter((_) => _.id !== item.id);
-        // reverseHeartAnimation();
       } else {
         // Add item to favorites
         favs.push(item);
-        startHeartAnimation();
       }
       setFavorites(favs);
     },
-    [favorites, setFavorites, startHeartAnimation],
+    [favorites, setFavorites],
   );
 
   const itemOpacity = useSharedValue(1);
@@ -119,11 +113,9 @@ const Home = ({
     }, 750);
   };
 
-  const itemOpacityStyle = useAnimatedStyle(() => {
-    return {
-      opacity: itemOpacity.value,
-    };
-  });
+  const itemOpacityStyle = useAnimatedStyle(() => ({
+    opacity: itemOpacity.value,
+  }));
 
   const scrollRef = useRef();
   const handleFilter = (cat: string) => {
@@ -239,10 +231,8 @@ const Home = ({
                       style={[styles.projectContainer]}>
                       <Pill
                         setFavorite={setFavorite}
-                        darkmode={darkmode}
                         item={item}
                         favorites={favorites}
-                        styleFavoriteTransition={styleFavoriteTransition}
                       />
                     </Button>
                   );
@@ -266,10 +256,8 @@ const Home = ({
                     ]}>
                     <Pill
                       setFavorite={setFavorite}
-                      darkmode={darkmode}
                       item={item}
                       favorites={favorites}
-                      styleFavoriteTransition={styleFavoriteTransition}
                     />
                   </Button>
                 );
@@ -290,10 +278,8 @@ const Home = ({
                       style={[styles.projectContainer]}>
                       <Pill
                         setFavorite={setFavorite}
-                        darkmode={darkmode}
                         item={item}
                         favorites={favorites}
-                        styleFavoriteTransition={styleFavoriteTransition}
                       />
                     </Button>
                   );
@@ -317,10 +303,8 @@ const Home = ({
                     ]}>
                     <Pill
                       setFavorite={setFavorite}
-                      darkmode={darkmode}
                       item={item}
                       favorites={favorites}
-                      styleFavoriteTransition={styleFavoriteTransition}
                     />
                   </Button>
                 );
