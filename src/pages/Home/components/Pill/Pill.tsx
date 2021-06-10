@@ -24,12 +24,13 @@ const Pill = ({item, setFavorite, favorites}: Props) => {
   // Cause for some very odd reason, favorites.includes(item) does not work.
   const favId = favorites.filter((_: ProjectProps) => _.id === item.id);
 
+  // TODO: abstract this animation code into its own function.
   const scale = useSharedValue(1);
   const translateY = useSharedValue(0);
   const addFavAnimation = useCallback(() => {
     scale.value = withRepeat(
       withTiming(2, {
-        duration: 1000,
+        duration: 750,
       }),
       2,
       true,
@@ -37,7 +38,7 @@ const Pill = ({item, setFavorite, favorites}: Props) => {
   }, [scale.value]);
   const removeFavAnimation = useCallback(() => {
     'worklet';
-    translateY.value = withRepeat(withTiming(50, {duration: 1000}), 2, true);
+    translateY.value = withRepeat(withTiming(50, {duration: 750}), 2, true);
   }, [translateY.value]);
 
   const heartAnimationStyle = useAnimatedStyle(() => ({

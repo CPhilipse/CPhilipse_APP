@@ -62,29 +62,16 @@ const Home = ({
     closeOpeningScreen,
   });
 
-  const scale = useSharedValue(1);
-  const startHeartAnimation = useCallback(() => {
-    'worklet';
-    scale.value = withRepeat(
-      withTiming(3, {
-        duration: 2500,
-      }),
-      2,
-      true,
-    );
-  }, [scale.value]);
-
-  const styleFavoriteTransition = useAnimatedStyle(() => ({
-    transform: [{scale: scale.value}],
-  }));
-
   const setFavorite = useCallback(
     (item) => {
       let favs = [...favorites];
-      // startHeartAnimation();
 
-      // if item is in list, than it is already favorite. If it's not already in list, than its not a fav.
-      if (favs.includes(item)) {
+      /** .includes does not work upon favorite item following restart of app, item will not be removed on first try but added again.
+       * With .filter the item in favorites is found at any time, also on boot up.
+       * */
+      const favsIncludes = favs.filter((_) => _.id === item.id).length !== 0;
+      // If item is in list, than it is already favorite. If it's not already in list, than its not a fav.
+      if (favsIncludes) {
         // Remove item from favorites
         favs = favs.filter((_) => _.id !== item.id);
       } else {
