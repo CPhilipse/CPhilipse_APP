@@ -2,11 +2,13 @@ export default {
   white: '#ffffff',
   error: '#ff4a1e',
 
+  pink: '#ff00fd',
+
   lightPurple: '#af76e7',
   purple: '#7121be',
   darkPurple: '#2f0954',
 
-  midBlue: '#1a73e8',
+  midBlue: '#87afe5',
   lightBlue: '#E8F0FE',
   lightDarkBlue: '#4285F4',
   darkBlue: '#002e6c',
@@ -31,6 +33,7 @@ export default {
   lightGrey: '#b3b2b2',
   grey: '#414549',
   darkGrey: '#5f6368',
+  darkOverlay: 'rgba(0, 0, 0, 0.9)',
   overlay: 'rgba(0, 0, 0, 0.8)',
   lightOverlay: 'rgba(0, 0, 0, 0.4)',
   ultraLightOverlay: 'rgba(0, 0, 0, 0.2)',

@@ -1,18 +1,19 @@
-// import {connect} from 'react-redux';
+import {connect} from 'react-redux';
 import Home from './Home';
-// import Pages from '../../enum/Pages';
-// import {RootState} from '../../store/reducers';
+import {RootState} from '../../store/reducers';
+import {setFavorites} from '../../store/reducers/profileReducer';
 
-// const mapStateToProps = (state: RootState) => {
-//   const {darkmode} = state.profileReducer;
-//   return {
-//     darkmode,
-//   };
-// };
+const mapStateToProps = (state: RootState) => {
+  const {darkmode, splashscreen, favorites} = state.profile;
+  return {
+    darkmode,
+    hasSplashscreenOn: splashscreen,
+    favorites,
+  };
+};
 
-// const mapDispatchToProps = {
-//     < function >,
-//     };
+const mapDispatchToProps = {
+  setFavorites,
+};
 
-export default Home;
-// export default connect(mapStateToProps, null)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

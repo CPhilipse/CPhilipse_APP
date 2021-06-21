@@ -4,10 +4,11 @@ import {
   runOnJS,
   useAnimatedGestureHandler,
   useAnimatedStyle,
+  interpolateColor,
 } from 'react-native-reanimated';
 import {clamp} from '../../../utils/AnimationUtils';
 import {KNOB_SIZE, SLIDER_HEIGHT, SLIDER_WIDTH} from '../slider.style';
-import {interpolateColor, snapPoint} from 'react-native-redash';
+import {snapPoint} from 'react-native-redash';
 import {colors} from '../../../themes';
 
 interface sliderProps {
@@ -65,7 +66,7 @@ const useSlider = ({
     const backgroundColor = interpolateColor(
       gestureX.value,
       [0, SLIDER_WIDTH - KNOB_SIZE],
-      [colors.white, colors.black],
+      [0xffffffff, 0x00000000],
     );
     return {
       backgroundColor,

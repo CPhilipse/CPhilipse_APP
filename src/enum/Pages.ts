@@ -1,6 +1,7 @@
 export default {
   HOME: 'Home',
-  ARTICLE_DETAILS: 'Article',
+  EVIDENCE_FOR_JESUS: 'EvidenceForJesus',
+  PROJECT_DETAILS: 'ProjectDetails',
   PORTFOLIO: 'Portfolio',
   SETTINGS: 'Settings',
   CPHILIPSE: 'CPHILIPSE',

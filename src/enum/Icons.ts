@@ -18,4 +18,7 @@ export default {
   GAME_CONTROLLER: 'game-controller',
   ARROW_LEFT: 'arrow-left',
   ARROW_RIGHT: 'arrow-right',
+  ARROW_DOWN: 'arrow-downward',
+  CLOSE: 'close',
+  FAVORITE: 'favorite',
 };

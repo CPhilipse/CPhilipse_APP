@@ -10,6 +10,8 @@ import Portfolio from './pages/Portfolio';
 import Pages from './enum/Pages';
 import Cphilipse from './pages/Cphilipse';
 import Settings from './pages/Settings';
+import ProjectDetails from './pages/ProjectDetails';
+import EvidenceForJesus from './pages/EvidenceForJesus';
 
 const Stack = createStackNavigator();
 
@@ -21,24 +23,55 @@ export default () => {
           <StatusBar translucent={true} backgroundColor={'transparent'} />
           <Stack.Navigator>
             <Stack.Screen
+              name={Pages.HOME}
+              component={Home}
+              options={{
+                title: Pages.HOME,
+                headerShown: false,
+                cardStyle: {backgroundColor: 'black'},
+                animationEnabled: false,
+              }}
+            />
+            <Stack.Screen
               name={Pages.SETTINGS}
               component={Settings}
-              options={{title: Pages.SETTINGS, headerShown: false}}
+              options={{
+                title: Pages.SETTINGS,
+                headerShown: false,
+                cardStyle: {backgroundColor: 'black'},
+                // https://reactnavigation.org/docs/themes/
+                animationEnabled: false, // TODO: Look into: without this, there is a white flash when navigating between pages.
+              }}
             />
             <Stack.Screen
               name={Pages.CPHILIPSE}
               component={Cphilipse}
-              options={{title: Pages.CPHILIPSE, headerShown: false}}
+              options={{
+                title: Pages.CPHILIPSE,
+                headerShown: false,
+                cardStyle: {backgroundColor: 'black'},
+                animationEnabled: false,
+              }}
             />
             <Stack.Screen
-              name={Pages.HOME}
-              component={Home}
-              options={{title: Pages.HOME, headerShown: false}}
+              name={Pages.PROJECT_DETAILS}
+              component={ProjectDetails}
+              options={{
+                title: Pages.PROJECT_DETAILS,
+                headerShown: false,
+                cardStyle: {backgroundColor: 'black'},
+                animationEnabled: false,
+              }}
             />
             <Stack.Screen
               name={Pages.PORTFOLIO}
               component={Portfolio}
-              options={{title: Pages.PORTFOLIO}}
+              options={{title: Pages.PORTFOLIO, headerShown: false}}
+            />
+            <Stack.Screen
+              name={Pages.EVIDENCE_FOR_JESUS}
+              component={EvidenceForJesus}
+              options={{title: Pages.EVIDENCE_FOR_JESUS, headerShown: false}}
             />
           </Stack.Navigator>
         </NavigationContainer>

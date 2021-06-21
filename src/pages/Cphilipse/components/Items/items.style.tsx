@@ -1,32 +1,35 @@
 import {StyleSheet} from 'react-native';
 import {colors, metrics} from '../../../../themes';
+import {CARD_SIZE} from '../../../ProjectDetails/projectdetails.style';
 
+const SIZE = metrics.scale(110);
 export default StyleSheet.create({
-  characterColumn: {},
+  characterColumn: {
+    width: CARD_SIZE,
+    alignSelf: 'center',
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    marginTop: metrics.scale(30),
+  },
   basketball: {
-    bottom: metrics.scale(200),
-    left: metrics.scale(20),
     zIndex: 9,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: metrics.scale(120),
-    height: metrics.scale(120),
+    width: SIZE,
+    height: SIZE,
   },
   crucifix: {
-    bottom: metrics.scale(115),
-    right: metrics.scale(60),
+    width: SIZE,
+    height: SIZE,
+    right: metrics.scale(15),
   },
   gameController: {
-    left: metrics.scale(245),
-    alignItems: 'center',
-    position: 'absolute',
-    top: metrics.scale(135),
+    width: SIZE,
+    height: SIZE,
   },
   nineteenContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    bottom: metrics.scale(5),
-    right: metrics.scale(60),
+    width: SIZE,
+    height: SIZE,
   },
   nineteen: {
     ...metrics.fonts.subtitle,
@@ -37,12 +40,8 @@ export default StyleSheet.create({
     width: metrics.scale(275),
     height: metrics.scale(65),
     borderRadius: metrics.scale(10),
-    alignSelf: 'flex-end',
-    bottom: metrics.scale(195),
-    right: metrics.scale(240),
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 20,
   },
   buttonText: {
     ...metrics.fonts.regularExtraBold,

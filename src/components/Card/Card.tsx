@@ -1,29 +1,60 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Text, View} from 'react-native';
 import Animated, {
+  runOnJS,
   useAnimatedGestureHandler,
   useAnimatedStyle,
+  useDerivedValue,
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
 import styles from './card.style';
-import {PanGestureHandler} from 'react-native-gesture-handler';
-import {snapPoint} from 'react-native-redash';
-import {colors, metrics} from '../../themes';
+import {
+  PanGestureHandler,
+  PanGestureHandlerGestureEvent,
+} from 'react-native-gesture-handler';
+import {mix, snapPoint} from 'react-native-redash';
+import {metrics} from '../../themes';
+import {color} from '../../utils/DarkmodeUtils';
+import Button from '../Button';
+import {openUrl} from '../../utils/LinkingUtils';
 
 interface Props {
+  darkmode: boolean;
+  title: string;
   body: string;
+  step: number;
+  index: number;
+  aIndex: Animated.SharedValue<number>;
   onSwipe: () => void;
 }
 
-const Card = ({body, onSwipe}: Props) => {
+// Snap out of the screen on the left, snap in the middle or out of screen to the right
+const snapPoints = [-metrics.screenWidth, 0, metrics.screenWidth];
+
+const Card = ({darkmode, title, body, index, aIndex, step, onSwipe}: Props) => {
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(0);
   const velocityX = useSharedValue(0);
-  const velocityY = useSharedValue(0);
-  const isActive = useSharedValue(true);
 
-  const onGestureEvent = useAnimatedGestureHandler({
+  const position = useDerivedValue(() => index * step - aIndex.value);
+
+  const cardStyle = useAnimatedStyle(() => {
+    const scale = mix(position.value, 1, 0.9);
+
+    return {
+      transform: [
+        {translateX: translateX.value},
+        {translateY: translateY.value},
+        {scale},
+      ],
+    };
+  });
+
+  const onGestureEvent = useAnimatedGestureHandler<
+    PanGestureHandlerGestureEvent,
+    {offsetY: number; offsetX: number}
+  >({
     onStart: (event, ctx) => {
       ctx.offsetX = translateX.value;
       ctx.offsetY = translateY.value;
@@ -31,30 +62,41 @@ const Card = ({body, onSwipe}: Props) => {
     onActive: (event, ctx) => {
       translateX.value = ctx.offsetX + event.translationX;
       translateY.value = ctx.offsetY + event.translationY;
-      velocityX.value = event.velocityX;
-      velocityY.value = event.velocityY;
     },
-    onEnd: (event, ctx) => {
-      translateX.value = snapPoint(translateX.value, velocityX.value, [0]);
-      translateY.value = snapPoint(translateY.value, velocityY.value, [0]);
+    onEnd: (event) => {
+      // When swiping up or down it should spring back to 0.
+      translateY.value = withSpring(0, {
+        velocity: event.velocityY,
+      });
+      const dest = snapPoint(translateX.value, velocityX.value, snapPoints);
+      translateX.value = withSpring(
+        dest,
+        {
+          overshootClamping: dest !== 0,
+          restSpeedThreshold: dest === 0 ? 0.01 : 100,
+          restDisplacementThreshold: dest === 0 ? 0.01 : 100,
+        },
+        () => () => dest !== 0 && runOnJS(onSwipe)(),
+      );
     },
-  });
-
-  // TODO: Wait for the Swiping video https://start-react-native.dev/
-  //  This will help with the snapping points of the cards.
-  const swipeStyle = useAnimatedStyle(() => {
-    const springX = withSpring(translateX.value, {velocity: velocityX.value});
-    const springY = withSpring(translateY.value, {velocity: velocityY.value});
-    return {
-      transform: [{translateX: springX}, {translateY: springY}],
-    };
   });
 
   return (
-    <View style={[styles.container]}>
+    <View style={styles.container}>
       <PanGestureHandler {...{onGestureEvent}}>
-        <Animated.View style={[styles.card, swipeStyle]}>
-          <Text style={styles.body}>{body}</Text>
+        <Animated.View style={[styles.card, cardStyle]}>
+          {body?.[0] !== ':' ? (
+            <>
+              <Text style={[styles.title, color(!darkmode)]}>{title}</Text>
+              <Text style={[styles.body, color(!darkmode)]}>{body}</Text>
+            </>
+          ) : (
+            <Button
+              style={styles.bodyButton}
+              onPress={() => openUrl(body.substring(1))}>
+              <Text style={[styles.title, color(darkmode)]}>{title}</Text>
+            </Button>
+          )}
         </Animated.View>
       </PanGestureHandler>
     </View>

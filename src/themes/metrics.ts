@@ -1,5 +1,5 @@
 import {Dimensions} from 'react-native';
-import {isiOS, isiPhoneX} from '../utils/PlatformUtils';
+import {isAndroid, isiOS, isiPhoneX} from '../utils/PlatformUtils';
 
 const {height, width} = Dimensions.get('window');
 
@@ -43,6 +43,9 @@ export const getStatusBarHeight = () => {
   if (isiOS) {
     return isiPhoneX ? 44 : 20;
   }
+  if (isAndroid) {
+    return 22;
+  }
   return 0;
 };
 
@@ -69,20 +72,22 @@ const icon = {
 };
 
 const fonts = {
+  bigAssTitle: {
+    fontSize: scale(100),
+  },
   title: {
-    fontFamily: 'Sansita-Regular',
     fontSize: scale(80),
   },
   subtitle: {
-    fontFamily: 'Sansita-Regular',
     fontSize: scale(60),
+  },
+  mediumSubtitle: {
+    fontFamily: 'Sansita-Bold',
+    fontSize: scale(50),
   },
   smallSubtitle: {
     fontFamily: 'Sansita-Bold',
     fontSize: scale(40),
-  },
-  regular: {
-    fontFamily: 'Sansita-Regular',
   },
   regularBold: {
     fontFamily: 'Sansita-Bold',
@@ -92,6 +97,16 @@ const fonts = {
   },
   regularItalic: {
     fontFamily: 'Sansita-Italic',
+  },
+  mediumRegular: {
+    fontSize: scale(35),
+  },
+  smallRegular: {
+    fontSize: scale(30),
+  },
+  smallItalic: {
+    fontFamily: 'Sansita-Italic',
+    fontSize: scale(30),
   },
 };
 
