@@ -28,6 +28,8 @@ const Pill = ({item, setFavorite, favorites}: Props) => {
   const scale = useSharedValue(1);
   const translateY = useSharedValue(0);
   const addFavAnimation = useCallback(() => {
+    'worklet';
+    // Animate item and back to start position.
     scale.value = withRepeat(
       withTiming(2, {
         duration: 750,
@@ -38,6 +40,7 @@ const Pill = ({item, setFavorite, favorites}: Props) => {
   }, [scale.value]);
   const removeFavAnimation = useCallback(() => {
     'worklet';
+    // Animate item and back to start position.
     translateY.value = withRepeat(withTiming(50, {duration: 750}), 2, true);
   }, [translateY.value]);
 

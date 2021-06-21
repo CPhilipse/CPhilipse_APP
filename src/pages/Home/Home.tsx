@@ -62,6 +62,7 @@ const Home = ({
     closeOpeningScreen,
   });
 
+  // TODO: put all filter logic in a separate file.
   const setFavorite = useCallback(
     (item) => {
       let favs = [...favorites];
@@ -131,6 +132,7 @@ const Home = ({
     filterAnimation();
   };
 
+  // TODO: abstract filter list and item list.
   return (
     <View style={[styles.container, bgcolor(darkmode)]}>
       <Menu darkmode={darkmode} goToPage={navigation.navigate} />

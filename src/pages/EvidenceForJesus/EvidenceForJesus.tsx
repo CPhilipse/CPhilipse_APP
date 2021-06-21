@@ -46,7 +46,7 @@ const EvidenceForJesus = ({darkmode, navigation}: Props) => {
           darkmode={darkmode}
           title={'Is the story of Jesus historically accurate?'}
           body={
-            'If Jesus really rose from the dead to prove He is God, would you follow Him?\n\n'
+            'And if Jesus really rose from the dead to prove He is God, would you follow Him?\n\n'
           }
           styleOpacity={styleOpacity}
           showSwipeIndication
@@ -54,9 +54,9 @@ const EvidenceForJesus = ({darkmode, navigation}: Props) => {
         <Page
           style={styles.nextPagePadding}
           darkmode={darkmode}
-          title={'Non-Christian historical sources'}
+          title={'Historical sources'}
           body={
-            "There are 2 historians that are of significant value in regards to Jesus' existence and death; \n\nTacitus\nHis written documents verify Jesus' crucifixion under Tiberius and Pontius Pilate. [see original]\n\nFlavius Josephus\nHe has written the Antiquities of the Jews. He verifies through Antiquites 20.200 that the brother of Jesus, James, has been stoned to death. [see original] Through his work the Antiquities 18:63 he verifies that Jesus has been condemned to be crucified by Pontius Pilate. [see original]\n\nOther historians\nThallus, Mara Bar-serapion, Phelgon, Babylonian Talmud, Suetonius, Pliny the Younger and Lucian of Samosata are all historians who mention Jesus in their work. It is remarkable to discover that not one of all of these historical documents that have been found doubt Jesus' His existence."
+            "There are 2 historians that are of significant value in regards to Jesus' existence and death; \n\nTacitus\nHis written documents verify Jesus' crucifixion under Tiberius and Pontius Pilate. [see original]\n\nFlavius Josephus\nHe has written the Antiquities of the Jews. He verifies through Antiquites 20.200 that the brother of Jesus, James, has been stoned to death. [see original] Through his work the Antiquities 18:63 he verifies that Jesus has been condemned to be crucified by Pontius Pilate. [see original]\n\nOther historians\nThallus, Mara Bar-serapion, Phelgon, Babylonian Talmud, Suetonius, Pliny the Younger and Lucian of Samosata are all historians who mention Jesus in their work. It is remarkable to discover that not one of all of these historical documents that have been found doubt Jesus' His existence.\n\nThe New Testament\nThe New Testament is incredible since over 5600 manuscripts have been found, more than any other historical story. The earliest manuscripts for the New Testament are months from the resurrection event. Which is incredible evidnece, because take for example Alexander de Groot, historical manuscripts have been found of him 400 years after his supposed existence and he is considered a historical figure in most history books. The same can be said for Julius Ceasar, the amount of historical evidence for Jesus is so overwhelmingly more than any other historical figure. Yet Jesus is not found in most history books. Most scholars count [NT books, chapters or verses] as reliable."
           }
           styleOpacity={styleOpacity}
         />
@@ -67,7 +67,7 @@ const EvidenceForJesus = ({darkmode, navigation}: Props) => {
             'Verifying characters, places and events of the eyewitness testimonies'
           }
           body={
-            "To verify whether the writers of the New Testament are telling a true story can be done by verifying elements of it. Let's see what elements are verified to be true.\n\nPontius Pilate\nThe man who has condemned Jesus to be crucified. He has been verified to be a historical figure through historians as Pliny the Younger, Josephus, Tacitus and the Gospels. Also is there archeological evidence proofing he is a historical figure. Namely: a copper ring with the inscription 'of Pilate' and a stone which has the inscription 'Pilate' have been found.\n\nYehosef Bar Caiaphas\nThis person is a high priest who is famous for his involvement with the crucifixion of Jesus. He has been mentioned in the New Testament (Matt. 26:3, 57; Luke 3:2; John 11:49; 18:13-14, 24, 28; Acts 4:6). There has been found a bone box (some sort of grave) of a relative of this high priest which has the inscription 'Yehosef bar Qafa' which means 'Joseph son of Caiaphas'. The historian Josephus also talks about this relative Joseph Caiaphas in Antiquities XVIII.33-35. All this verifies the historical figure Caiaphas. [see original]\n\nThe eclips\n...\n\nRoman crucifixions\n...\n\nJesus hometown\n...\n\nGolgotha\n...\n\nTombs\n...\n\nConclusion\n..."
+            "To verify whether the writers of the New Testament are telling a true story can be done by verifying elements of it. Let's see what elements are verified to be true.\n\nPontius Pilate\nThe man who has condemned Jesus to be crucified. He has been verified to be a historical figure through historians as Pliny the Younger, Josephus, Tacitus and the Gospels. Also is there archeological evidence proofing he is a historical figure. Namely: a copper ring with the inscription 'of Pilate' and a stone which has the inscription 'Pilate' have been found.\n\nYehosef Bar Caiaphas\nThis person is a high priest who is famous for his involvement with the crucifixion of Jesus. He has been mentioned in the New Testament (Matt. 26:3, 57; Luke 3:2; John 11:49; 18:13-14, 24, 28; Acts 4:6). There has been found a bone box (some sort of grave) of a relative of this high priest which has the inscription 'Yehosef bar Qafa' which means 'Joseph son of Caiaphas'. The historian Josephus also talks about this relative Joseph Caiaphas in Antiquities XVIII.33-35. All this verifies the historical figure Caiaphas. [see original]\n\nThe eclips\nThere is historical evidence that supports the eclips described in [...verse in NT...]. ...\n\nRoman crucifixions\nThere is both historical and archeological evidence for the claim that there were crucifixion around the time of Jesus...\n\nJesus hometown\n...\n\nGolgotha\n...\n\nConclusion\nThese verified elements corroborate the reliability of the New Testament more and more."
           }
           styleOpacity={styleOpacity}
         />
@@ -92,17 +92,17 @@ const EvidenceForJesus = ({darkmode, navigation}: Props) => {
         <Page
           style={styles.nextPagePadding}
           darkmode={darkmode}
-          title={'Minimal facts'}
-          body={''}
+          title={'Conclusion'}
+          body={
+            'So to conclude, where does the evidence point to? There is no feasible reason to disbelief that Jesus was condemned to the cross by Pontius Pilate, let alone that Jesus never existed. If Jesus lived and died, than the only reasonable explanation for the minimal facts mentioned before is the resurrection.'
+          }
           styleOpacity={styleOpacity}
         />
         <Page
           style={styles.nextPagePadding}
           darkmode={darkmode}
-          title={'Conclusion'}
-          body={
-            'So to conclude, where does the evidence point to? There is no reason to disbelief that Jesus was condemned to the cross by Pontius Pilate, let alone that Jesus never existed. If Jesus lived and died, than the only reasonable explanation for the empty tomb is the resurrection.'
-          }
+          title={'Sources'}
+          body={'...'}
           styleOpacity={styleOpacity}
         />
       </ScrollView>

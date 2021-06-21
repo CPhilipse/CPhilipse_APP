@@ -32,14 +32,19 @@ export const usePullSwitch = ({
     {offsetY: number}
   >({
     onStart: (_, ctx) => {
+      // Create variable offsetY in context and update it with the value of translateY.
       ctx.offsetY = translateY.value;
     },
     onActive: ({translationY}, {offsetY}) => {
+      // Adjust animation according to the interruption, so do not let it flicker back to starting position on interruption.
       translateY.value = offsetY + translationY;
     },
     onEnd: (event) => {
+      // Snap back to the top on release.
       const dest = snapPoint(translateY.value, event.velocityY, [0]);
+      // Spring it back to the top.
       translateY.value = withSpring(dest);
+      // When swiping halfway over the slider and darkmode is off than turn light off else turn it on.
       if (translateY.value > SLIDER_SIZE / 2 && !darkmode) {
         runOnJS(turnLightOff)();
         bgTime.value = withTiming(0);
@@ -50,6 +55,7 @@ export const usePullSwitch = ({
     },
   });
 
+  // Keep the animation within the slider boundary.
   const clampY = useDerivedValue(() => {
     return clamp(translateY.value, -SLIDER_SIZE, SLIDER_SIZE);
   });
@@ -62,6 +68,7 @@ export const usePullSwitch = ({
 
   // @ts-ignore
   const bgStyle = useAnimatedStyle(() => {
+    // Change bg color with smooth transition.
     const backgroundColor = interpolateColor(
       bgTime.value,
       [0, 1],
