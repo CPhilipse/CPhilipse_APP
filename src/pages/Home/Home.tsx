@@ -1,25 +1,23 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import React, {useCallback, useRef, useState} from 'react';
+import {View, ScrollView} from 'react-native';
 import styles from './home.style';
 import Pages from '../../enum/Pages';
 import {ProjectProps, projects} from '../../utils/DummyData';
 import Button from '../../components/Button';
-import {bgcolor, color} from '../../utils/DarkmodeUtils';
+import {bgcolor} from '../../utils/DarkmodeUtils';
 import Animated, {
   Easing,
-  runOnJS,
   useAnimatedStyle,
   useSharedValue,
-  withRepeat,
   withTiming,
 } from 'react-native-reanimated';
 import Menu from '../../components/Menu';
 import Pill from './components/Pill';
 import {fadeOutOverlay} from './animations/fadeOutOverlay';
 import Splashscreen from './components/Splashscreen';
-import {getLocalizedString} from '../../utils/LocalizedUtils';
-import {colors} from '../../themes';
 import Categories from '../../enum/Categories';
+import FullName from './components/FullName';
+import FilterList from './components/FilterList/FilterList';
 
 const AnimatedScrollview = Animated.createAnimatedComponent(ScrollView);
 
@@ -31,15 +29,13 @@ interface Props {
   setFavorites: (item: ProjectProps[]) => void;
 }
 
-const localizedCopy = (value: string) => getLocalizedString(Pages.HOME, value);
-
-const Home = ({
+const Home: React.FC<Props> = ({
   navigation,
   darkmode,
   hasSplashscreenOn,
   setFavorites,
   favorites,
-}: Props) => {
+}) => {
   const opacityValue = useSharedValue(1);
   const [openingScreenFinished, setOpeningScreenFinished] = useState(false);
   const [categories, setCategories] = useState({
@@ -144,58 +140,9 @@ const Home = ({
           hasSplashscreenOn={hasSplashscreenOn}
         />
 
-        <Button
-          onPress={() => navigation.navigate(Pages.CPHILIPSE)}
-          style={styles.cphilipse}>
-          <Text style={[styles.clemens, color(darkmode)]}>
-            {localizedCopy('fname')}
-          </Text>
-          <Text style={[styles.philipse, color(darkmode)]}>
-            {localizedCopy('lname')}
-          </Text>
-        </Button>
+        <FullName navigation={navigation} darkmode={darkmode} />
 
-        <ScrollView
-          horizontal
-          contentContainerStyle={styles.categories}
-          showsHorizontalScrollIndicator={false}>
-          <Button onPress={() => handleFilter(Categories.FAVORITES)}>
-            <Text
-              style={[
-                styles.category,
-                categories.favorites && {color: colors.lightPurple},
-              ]}>
-              Favorites
-            </Text>
-          </Button>
-          <Button onPress={() => handleFilter(Categories.HOBBY)}>
-            <Text
-              style={[
-                styles.category,
-                categories.hobby && {color: colors.lightPurple},
-              ]}>
-              Hobby project
-            </Text>
-          </Button>
-          <Button onPress={() => handleFilter(Categories.BLOG)}>
-            <Text
-              style={[
-                styles.category,
-                categories.blog && {color: colors.lightPurple},
-              ]}>
-              Blog
-            </Text>
-          </Button>
-          <Button onPress={() => handleFilter(Categories.SCHOOL)}>
-            <Text
-              style={[
-                styles.category,
-                categories.school && {color: colors.lightPurple},
-              ]}>
-              School
-            </Text>
-          </Button>
-        </ScrollView>
+        <FilterList handleFilter={handleFilter} categories={categories} />
 
         <AnimatedScrollview
           horizontal
