@@ -9,4 +9,6 @@ export default {
   UNAUTHENTICATED: 'Unauthenticated',
   AUTHENTICATED: 'Authenticated',
   FALLBACK: 'Fallback',
+  SHARED_ELEMENT: 'SharedElementTransition',
+  SHARED_ELEMENT_DETAILS: 'SharedElementTransitionDetails',
 };

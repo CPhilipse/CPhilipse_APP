@@ -12,6 +12,8 @@ import Cphilipse from './pages/Cphilipse';
 import Settings from './pages/Settings';
 import ProjectDetails from './pages/ProjectDetails';
 import EvidenceForJesus from './pages/EvidenceForJesus';
+import SharedElement from './pages/SharedElement';
+import SharedElementDetails from './pages/SharedElementDetails';
 
 const Stack = createStackNavigator();
 
@@ -72,6 +74,16 @@ export default () => {
               name={Pages.EVIDENCE_FOR_JESUS}
               component={EvidenceForJesus}
               options={{title: Pages.EVIDENCE_FOR_JESUS, headerShown: false}}
+            />
+            <Stack.Screen
+              name={Pages.SHARED_ELEMENT}
+              component={SharedElement}
+              options={{title: Pages.SHARED_ELEMENT, headerShown: false}}
+            />
+            <Stack.Screen
+              name={Pages.SHARED_ELEMENT_DETAILS}
+              component={SharedElementDetails}
+              options={{title: Pages.SHARED_ELEMENT, headerShown: false}}
             />
           </Stack.Navigator>
         </NavigationContainer>

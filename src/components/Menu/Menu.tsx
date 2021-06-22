@@ -57,14 +57,20 @@ const Menu = ({
           opacityStyle,
         ]}>
         <Button
-          onPress={() => goToPage(Pages.SETTINGS)}
+          onPress={() => goToPage(Pages.SHARED_ELEMENT)}
           style={styles.menuItem}
+          disabled={!overlayActive}>
+          <Text style={styles.menuItemText}>Shared Element</Text>
+        </Button>
+        <Button
+          onPress={() => goToPage(Pages.SETTINGS)}
+          style={styles.menuItem2}
           disabled={!overlayActive}>
           <Text style={styles.menuItemText}>{localizedCopy('settings')}</Text>
         </Button>
         <Button
           onPress={() => goToPage(Pages.CPHILIPSE)}
-          style={styles.menuItem2}
+          style={styles.menuItem3}
           disabled={!overlayActive}>
           <Text style={styles.menuItemText}>{localizedCopy('about')}</Text>
         </Button>

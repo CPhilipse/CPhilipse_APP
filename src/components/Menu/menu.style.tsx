@@ -45,5 +45,9 @@ export default StyleSheet.create({
     marginHorizontal: metrics.horizontal.pagePadding,
     top: metrics.scaleY(675),
   },
+  menuItem3: {
+    marginHorizontal: metrics.horizontal.pagePadding,
+    top: metrics.scaleY(750),
+  },
   menuItemText: {...metrics.fonts.mediumSubtitle, color: colors.white},
 });
