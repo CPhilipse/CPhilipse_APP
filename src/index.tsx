@@ -1,9 +1,10 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+// import {createStackNavigator} from '@react-navigation/stack';
 import {StatusBar} from 'react-native';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
+import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import {store, persistor} from './store';
 import Home from './pages/Home';
 import Portfolio from './pages/Portfolio';
@@ -15,7 +16,22 @@ import EvidenceForJesus from './pages/EvidenceForJesus';
 import SharedElement from './pages/SharedElement';
 import SharedElementDetails from './pages/SharedElementDetails';
 
-const Stack = createStackNavigator();
+// const Stack = createStackNavigator();
+// @ts-ignore
+const Stack = createSharedElementStackNavigator();
+
+const options = {
+  headerBackTitleVisible: false,
+  title: Pages.EVIDENCE_FOR_JESUS,
+  headerShown: false,
+  cardStyleInterpolator: ({current: {progress}}) => {
+    return {
+      cardStyle: {
+        opacity: progress,
+      },
+    };
+  },
+};
 
 export default () => {
   return (
@@ -78,12 +94,12 @@ export default () => {
             <Stack.Screen
               name={Pages.SHARED_ELEMENT}
               component={SharedElement}
-              options={{title: Pages.SHARED_ELEMENT, headerShown: false}}
+              options={() => options}
             />
             <Stack.Screen
               name={Pages.SHARED_ELEMENT_DETAILS}
               component={SharedElementDetails}
-              options={{title: Pages.SHARED_ELEMENT, headerShown: false}}
+              options={() => options}
             />
           </Stack.Navigator>
         </NavigationContainer>

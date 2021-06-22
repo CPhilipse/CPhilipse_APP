@@ -5973,10 +5973,10 @@ react-native@0.63.3:
     use-subscription "^1.0.0"
     whatwg-fetch "^3.0.0"
 
-react-navigation-shared-element@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/react-navigation-shared-element/-/react-navigation-shared-element-2.3.1.tgz#35a3ac2f42a3e8c55e60609344443725c793a9b7"
-  integrity sha512-MA2xDn9urQkgAiAhGttCtaoTW6VaseYpCB7f1CmXaj9ROYojznWxlKZuT94riGFzuiFxDMMKWFgLM6JMUf6ELA==
+react-navigation-shared-element@^5.0.0-alpha1:
+  version "5.0.0-alpha1"
+  resolved "https://registry.yarnpkg.com/react-navigation-shared-element/-/react-navigation-shared-element-5.0.0-alpha1.tgz#29f2090d3f0eef626df93b8572ce5c192d5c46f2"
+  integrity sha512-zPlpvUV6RGsZv3lTDanIN3ARvqABHDrqIOKcD6NpUKXarua8F2kukJ0MqD0Py+oZR3e5ksjDHAISDU05iGmPwQ==
   dependencies:
     hoist-non-react-statics "^3.3.2"
 

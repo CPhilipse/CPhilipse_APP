@@ -1,11 +1,12 @@
 import React from 'react';
 import {View, Text, ScrollView, TouchableOpacity, Image} from 'react-native';
+import {SharedElement as SharedElementLib} from 'react-navigation-shared-element';
 import styles from './sharedelement.style';
 import {bgcolor} from '../../utils/DarkmodeUtils';
-import {metrics} from '../../themes';
 import Pages from '../../enum/Pages';
 import Menu from '../../components/Menu';
 import BackButton from '../../components/BackButton';
+import {metrics} from '../../themes';
 
 interface Props {
   darkmode: boolean;
@@ -55,15 +56,17 @@ const SharedElement = ({darkmode, navigation}: Props) => {
               onPress={() =>
                 navigation.navigate(Pages.SHARED_ELEMENT_DETAILS, {item})
               }>
-              <Image
-                style={{
-                  borderRadius: 14,
-                  width: metrics.screenWidth * 0.9,
-                  height: metrics.screenHeight * 0.5,
-                }}
-                source={{uri: item.image_url}}
-                resizeMode="cover"
-              />
+              <SharedElementLib id={`item.${item.id}.image_url`}>
+                <Image
+                  style={{
+                    borderRadius: 14,
+                    width: metrics.screenWidth * 0.9,
+                    height: metrics.screenHeight * 0.5,
+                  }}
+                  source={{uri: item.image_url}}
+                  resizeMode="cover"
+                />
+              </SharedElementLib>
               <View
                 style={{
                   position: 'absolute',
