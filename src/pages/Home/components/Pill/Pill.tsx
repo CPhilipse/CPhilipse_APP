@@ -9,8 +9,7 @@ import Button from '../../../../components/Button';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
-  withRepeat,
-  withTiming,
+  withSpring,
 } from 'react-native-reanimated';
 
 interface Props {
@@ -26,39 +25,24 @@ const Pill = ({item, setFavorite, favorites}: Props) => {
 
   // TODO: abstract this animation code into its own function.
   const scale = useSharedValue(1);
-  const translateY = useSharedValue(0);
-  const addFavAnimation = useCallback(() => {
+  const startFavAnimation = useCallback(() => {
     'worklet';
     // Animate item and back to start position.
-    scale.value = withRepeat(
-      withTiming(2, {
-        duration: 750,
-      }),
-      2,
-      true,
-    );
+    scale.value = withSpring(2, undefined, (isFinished: boolean) => {
+      if (isFinished) {
+        scale.value = withSpring(1);
+      }
+    });
   }, [scale.value]);
-  const removeFavAnimation = useCallback(() => {
-    'worklet';
-    // Animate item and back to start position.
-    translateY.value = withRepeat(withTiming(50, {duration: 750}), 2, true);
-  }, [translateY.value]);
 
   const heartAnimationStyle = useAnimatedStyle(() => ({
-    transform: [{scale: scale.value}, {translateY: translateY.value}],
+    transform: [{scale: scale.value}],
   }));
 
   const handleFav = useCallback(() => {
-    if (favId?.[0]?.id !== item.id) {
-      setFavorite(item);
-      addFavAnimation();
-    } else {
-      setTimeout(() => {
-        setFavorite(item);
-      }, 550);
-      removeFavAnimation();
-    }
-  }, [favId, item, removeFavAnimation, setFavorite, addFavAnimation]);
+    setFavorite(item);
+    startFavAnimation();
+  }, [item, startFavAnimation, setFavorite]);
 
   return (
     <>
