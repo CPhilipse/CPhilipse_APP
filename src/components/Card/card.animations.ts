@@ -9,8 +9,8 @@ import Animated, {
   stopClock,
   call,
 } from 'react-native-reanimated';
-import { State } from 'react-native-gesture-handler';
-import { snapPoint, useClock, useValue } from 'react-native-redash';
+import {State} from 'react-native-gesture-handler';
+import {snapPoint, useClock, useValue} from 'react-native-redash';
 
 interface WithSpringParams {
   value: Animated.Node<number>;
@@ -54,7 +54,10 @@ export const useSpring = ({
     cond(eq(gestureState, State.ACTIVE), [
       set(state.position, add(offset, value)),
       set(state.velocity, velocity),
-      set(config.toValue, snapPoint(state.position, state.velocity, snapPoints)),
+      set(
+        config.toValue,
+        snapPoint(state.position, state.velocity, snapPoints),
+      ),
       cond(
         eq(config.toValue, 0),
         [
