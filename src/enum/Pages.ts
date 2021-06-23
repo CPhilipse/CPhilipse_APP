@@ -11,4 +11,5 @@ export default {
   FALLBACK: 'Fallback',
   SHARED_ELEMENT: 'SharedElementTransition',
   SHARED_ELEMENT_DETAILS: 'SharedElementTransitionDetails',
+  SHARED_ELEMENT_PAGE: 'SharedElementTransitionPage',
 };

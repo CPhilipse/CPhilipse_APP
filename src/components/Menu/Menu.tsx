@@ -57,7 +57,7 @@ const Menu = ({
           opacityStyle,
         ]}>
         <Button
-          onPress={() => goToPage(Pages.SHARED_ELEMENT)}
+          onPress={() => goToPage(Pages.SHARED_ELEMENT_PAGE)}
           style={styles.menuItem}
           disabled={!overlayActive}>
           <Text style={styles.menuItemText}>Shared Element</Text>
